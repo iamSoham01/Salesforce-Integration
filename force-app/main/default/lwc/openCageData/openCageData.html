@@ -1,0 +1,25 @@
+<template>
+  
+  <lightning-card title="Open Cage Geocoding" icon-name="standard:address">
+
+    <div class="slds-var-m-left_xx-large">
+      <h2 class="slds-text-heading_small slds-var-m-bottom_medium">
+          Please Select Your Geo Coding Preference
+      </h2>
+
+      <lightning-button-group>
+          <lightning-button label="Forward GeoCoding" icon-name="action:refresh" variant="brand-outline" onclick={handleGeoCodingType}></lightning-button>
+          <lightning-button label="Reverse GeoCoding" icon-name="action:recall" variant="brand-outline" onclick={handleGeoCodingType}></lightning-button>
+      </lightning-button-group>
+    </div>
+    
+    <template lwc:if={isForwardGeoCoding}> 
+      <c-forward-geo-coding></c-forward-geo-coding>
+    </template>
+    <template lwc:else> 
+      <c-reverse-geo-coding></c-reverse-geo-coding>
+    </template>
+                
+  </lightning-card>
+
+</template>

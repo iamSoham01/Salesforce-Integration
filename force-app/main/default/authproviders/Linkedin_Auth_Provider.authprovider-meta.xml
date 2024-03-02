@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://www.linkedin.com/oauth/v2/authorization</authorizeUrl>
+    <consumerKey>7709l7eoviqayl</consumerKey>
+    <consumerSecret>Placeholder_Value</consumerSecret>
+    <executionUser>sohamdatta01@curious-bear-ubysxu.com</executionUser>
+    <friendlyName>Linkedin Auth Provider</friendlyName>
+    <iconUrl>https://login.salesforce.com/icons/linkedin-grey.png</iconUrl>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>LinkedIn</providerType>
+    <registrationHandler>SocialRegHandler</registrationHandler>
+    <requireMfa>false</requireMfa>
+    <sendAccessTokenInHeader>false</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <sendSecretInApis>true</sendSecretInApis>
+</AuthProvider>

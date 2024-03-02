@@ -1,0 +1,57 @@
+<template>
+
+  <lightning-card title="Slack Conversation" icon-name="standard:quick_text">
+
+    <div class="slds-var-m-left_xx-large slds-var-p-top_large">
+      <lightning-button-group>
+        <lightning-button label="Post Message" icon-name="utility:new_direct_message" variant="brand-outline"
+          onclick={handleMessage}></lightning-button>
+        <lightning-button label="Delete Message" icon-name="utility:delete" variant="brand-outline"
+          onclick={handleMessage}></lightning-button>
+      </lightning-button-group>
+    </div>
+
+    <lightning-layout class="slds-var-m-around_small">
+
+      <lightning-layout-item size="4" padding="around-small">
+        <lightning-input label="Enter Channel Id" class="slds-var-m-left_large" lwc:ref="channelId"></lightning-input>
+      </lightning-layout-item>
+
+      <template lwc:if={isPostMsg}>
+        <lightning-layout-item size="4" padding="around-small">
+          <lightning-textarea label="Enter Message" class="slds-var-m-left_large" placeholder="type here..."
+            lwc:ref="msg"></lightning-textarea>
+        </lightning-layout-item>
+      </template>
+
+      <template lwc:else>
+        <lightning-layout-item size="4" padding="around-small">
+          <lightning-input label="Enter Timestamp" class="slds-var-m-left_large" lwc:ref="ts"></lightning-input>
+        </lightning-layout-item>
+      </template>
+
+      <lightning-layout-item size="4" padding="around-small" style="margin-top: 22px">
+        <lightning-button label={btnLabel} class="slds-var-m-left_large" onclick={handleBtn}
+          variant="brand-outline"></lightning-button>
+      </lightning-layout-item>
+
+    </lightning-layout>
+
+    <lightning-layout class="slds-var-m-around_small">
+
+      <template lwc:if={message}>
+        <lightning-layout-item size="12" padding="around-small">
+          <strong style="font-size: 15px;" class="slds-var-m-left_large">Status: </strong>{message}
+        </lightning-layout-item>
+      </template>
+
+      <template lwc:if={error}>
+        <lightning-layout-item size="12" padding="around-small">
+          <strong style="font-size: 15px;" class="slds-var-m-left_large">Error: </strong>{error}
+        </lightning-layout-item>
+      </template>
+    </lightning-layout>
+
+  </lightning-card>
+
+</template>

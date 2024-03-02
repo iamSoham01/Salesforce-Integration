@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>GoogleToken</label>
+    <protected>false</protected>
+    <values>
+        <field>Base_Url__c</field>
+        <value xsi:type="xsd:string">https://www.googleapis.com</value>
+    </values>
+    <values>
+        <field>Event_Url__c</field>
+        <value xsi:type="xsd:string">https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events</value>
+    </values>
+    <values>
+        <field>PageName__c</field>
+        <value xsi:type="xsd:string">GoogleToken</value>
+    </values>
+    <values>
+        <field>access_token__c</field>
+        <value xsi:type="xsd:string">ya29.a0AfB_byDyWWbWAPtEQampz0E1VXsxpDRhShk6wlE4axMWCfDGVPqTLjFPQMvTuLgOoc_Ayk66uLpN5SxkfuH3RLRWj9_LOQgPPlx5f-6nZqegGsL968XK3CVbKRhMbPRybzyxD6MFOOTrTc55DRx1GK2iNfdq7QwbEIf5aCgYKAUoSARASFQHGX2MiXiXyuUhXOrMPEkPrkADE7Q0171</value>
+    </values>
+    <values>
+        <field>auth_url__c</field>
+        <value xsi:type="xsd:string">https://accounts.google.com/o/oauth2/v2/auth</value>
+    </values>
+    <values>
+        <field>client_id__c</field>
+        <value xsi:type="xsd:string">664787879002-p0bf469gih8p2jlgvgce6tal1m2cmf96.apps.googleusercontent.com</value>
+    </values>
+    <values>
+        <field>client_secret__c</field>
+        <value xsi:type="xsd:string">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</value>
+    </values>
+    <values>
+        <field>expires_in__c</field>
+        <value xsi:type="xsd:double">3599.0</value>
+    </values>
+    <values>
+        <field>expires_in_time__c</field>
+        <value xsi:type="xsd:dateTime">2024-02-25T09:10:17.000Z</value>
+    </values>
+    <values>
+        <field>refresh_token__c</field>
+        <value xsi:type="xsd:string">1//0fKA0faYFAXXJCgYIARAAGA8SNwF-L9IrLJLCRF-FfODHzQMpDngu_GYeULLkHIyWKcg8Ucu68SH5u4y18Mi3ddIvWhn04W2ecQU</value>
+    </values>
+    <values>
+        <field>scope__c</field>
+        <value xsi:type="xsd:string">https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.events.readonly https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/calendar.settings.readonly</value>
+    </values>
+    <values>
+        <field>token_url__c</field>
+        <value xsi:type="xsd:string">https://oauth2.googleapis.com/token</value>
+    </values>
+</CustomMetadata>

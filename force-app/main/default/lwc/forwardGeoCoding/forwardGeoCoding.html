@@ -1,0 +1,27 @@
+<template>
+
+  <lightning-layout class="slds-var-m-left_xx-large slds-var-m-top_large">
+    
+    <lightning-layout-item size="4" class="slds-var-p-bottom_large">
+      <lightning-textarea label="Enter your address" placeholder="type here..." class="slds-var-m-bottom_large slds-var-m-right_medium" lwc:ref="address"></lightning-textarea>
+      <lightning-button label="Get Coordinate" icon-name="utility:pin" variant="brand-outline" onclick={handleCoordinate}></lightning-button>
+    </lightning-layout-item>
+
+    <template lwc:if={lat}> 
+      <lightning-layout-item size="8" class="slds-align_absolute-center" style="margin-top:40px" >
+        <strong style="font-size: 15px;">Coordinate Location: </strong>
+        <lightning-formatted-location latitude={lat} longitude={lng} class="slds-var-m-left_medium" style="font-size: 15px;"></lightning-formatted-location>
+      </lightning-layout-item>
+    </template>
+
+    <template lwc:if={error}>
+      <lightning-layout-item size="8" style="margin-top: 16px" class="slds-var-m-left_x-large slds-var-m-right_large">
+        <span style="font-size: 15px;">
+          <strong class="slds-var-m-right_xx-small">Please send this message to system admin: </strong> {error}
+        </span>
+      </lightning-layout-item>
+    </template>
+    
+  </lightning-layout>
+  
+</template>

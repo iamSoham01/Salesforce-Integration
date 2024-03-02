@@ -1,0 +1,30 @@
+<template>
+
+  <lightning-card  title="Create Servicenow Incident" icon-name="standard:person_language">
+
+    <lightning-layout class="slds-var-m-left_x-large slds-var-m-right_medium slds-var-m-bottom_x-large">
+    
+      <lightning-layout-item size="6" padding="around-large" >
+        <lightning-textarea label="Enter your message" placeholder="type here..." class="slds-var-m-bottom_large" lwc:ref="message"></lightning-textarea>
+        <lightning-button label="Create Incident" icon-name="utility:edit" variant="brand-outline" onclick={handleIncident}></lightning-button>
+      </lightning-layout-item>
+  
+      <template lwc:if={responseMsg}> 
+        <lightning-layout-item size="6" padding="around-large" style="margin-top: 32px" >
+          <span style="font-size: 15px;">
+            Incident Number: <strong class="slds-var-m-left_small">{responseMsg}</strong>
+          </span>
+        </lightning-layout-item>
+      </template>
+
+      <template lwc:if={error}> 
+        <lightning-layout-item size="6" padding="around-large" style="margin-top: 18px" class="" >
+          <strong style="font-size: 15px;">Please send this message to system admin: </strong> {error}
+        </lightning-layout-item>
+      </template>
+  
+    </lightning-layout>
+
+  </lightning-card>
+    
+</template>

@@ -1,0 +1,104 @@
+<template>
+    
+  <lightning-card  title="Google Calender Integration" icon-name="standard:announcement">
+
+    <!-- <lightning-layout class="slds-var-m-around_medium">
+
+      <lightning-layout-item size="6">
+        <h2 class="slds-text-heading_small slds-text-align_right" style="margin-top: 4px">
+          Click this button to Authenticate
+        </h2>
+      </lightning-layout-item> 
+
+      <lightning-layout-item size="6">
+        <lightning-button label="Authenticate" onclick={handleAuthentication} variant="success" class="slds-var-p-left_small"></lightning-button>
+      </lightning-layout-item>  
+    
+    </lightning-layout> -->
+
+    <lightning-layout class="slds-var-m-around_medium">
+      <lightning-icon icon-name="standard:date_input" alternative-text="Calendar" size="small"></lightning-icon>
+      <h2 class="slds-text-heading_small slds-var-m-left_small">Create a meeting</h2>
+    </lightning-layout>
+
+    <lightning-layout class="slds-var-m-around_medium">
+
+      <lightning-layout-item size="4" padding="around-small">
+        <lightning-input type="email" label="Enter Sender Email" lwc:ref="senderEmail"></lightning-input>
+      </lightning-layout-item>
+
+      <lightning-layout-item size="4" padding="around-small">
+        <lightning-input type="date" label="Enter Start Date" lwc:ref="startDate"></lightning-input>
+      </lightning-layout-item>
+
+      <lightning-layout-item size="4" padding="around-small">
+        <lightning-input type="time" label="Enter Start Time" lwc:ref="startTime"></lightning-input>
+      </lightning-layout-item>
+    
+    </lightning-layout>
+
+    <lightning-layout class="slds-var-m-around_medium">
+
+      <lightning-layout-item size="4" padding="around-small">
+        <lightning-input type="date" label="Enter End Date" lwc:ref="endDate"></lightning-input>
+      </lightning-layout-item>
+
+      <lightning-layout-item size="4" padding="around-small">
+        <lightning-input type="time" label="Enter End Time" lwc:ref="endTime"></lightning-input>
+      </lightning-layout-item>
+
+      <lightning-layout-item size="4" padding="around-small">
+        <lightning-combobox
+          name="timeZone"
+          label="Select Timezone"
+          value={selectedTimeZone}
+          options={timezones}
+          lwc:ref="timeZone">
+        </lightning-combobox>
+      </lightning-layout-item>
+    
+    </lightning-layout>
+
+    <lightning-layout class="slds-var-m-around_medium">
+
+      <lightning-layout-item size="4" padding="around-small">
+        <lightning-input label="Enter Meeting Subject" lwc:ref="meetingSubject"></lightning-input>
+      </lightning-layout-item>
+
+      <lightning-layout-item size="4" padding="around-small">
+        <lightning-textarea label="Enter Meeting Description" placeholder="type here..." lwc:ref="meetingDescription"></lightning-textarea>
+      </lightning-layout-item>
+
+      <lightning-layout-item size="4" padding="around-small">
+        <lightning-textarea label="Enter Attendees Email" placeholder="type here..." lwc:ref="attendeesEmail"></lightning-textarea>
+      </lightning-layout-item>
+
+    </lightning-layout>
+
+    <lightning-layout class="slds-var-m-around_medium">
+      <lightning-layout-item size="6"></lightning-layout-item>
+      <lightning-layout-item size="6">
+        <lightning-button label="Create Meeting" onclick={handleCreateMeeting} variant="brand-outline" class="slds-var-p-left_x-small"></lightning-button>
+      </lightning-layout-item>
+    </lightning-layout>
+
+    <lightning-layout class="slds-var-m-around_medium">
+
+      <template lwc:if={meetingURL}> 
+        <lightning-layout-item size="12" padding="around-medium" >
+          <strong style="font-size: 15px;">Meeting Link: </strong>
+          <lightning-formatted-url value={meetingURL} class="slds-var-m-left_small" style="font-size: 15px;" linkify></lightning-formatted-url>
+        </lightning-layout-item>
+      </template>
+
+      <template lwc:if={error}> 
+        <lightning-layout-item size="12" style="margin-top: 15px" padding="around-medium" >
+          <strong style="font-size: 15px;" class="slds-var-m-right_small">Please send this message to system admin: </strong> {error}
+        </lightning-layout-item>
+      </template>
+
+    </lightning-layout>
+    
+  </lightning-card>
+
+</template>

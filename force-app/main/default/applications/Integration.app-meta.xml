@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <logo>collaboration</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>It is used to demonstrate integration between Salesforce and other 3rd Party Services</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>true</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <label>Integration</label>
+    <navType>Standard</navType>
+    <tabs>OpenCage</tabs>
+    <tabs>ChatGTP</tabs>
+    <tabs>Google_Calender</tabs>
+    <tabs>LinkedIn</tabs>
+    <tabs>Servicenow</tabs>
+    <tabs>Slack</tabs>
+    <tabs>Spotify</tabs>
+    <tabs>Facebook</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Integration_UtilityBar</utilityBar>
+</CustomApplication>

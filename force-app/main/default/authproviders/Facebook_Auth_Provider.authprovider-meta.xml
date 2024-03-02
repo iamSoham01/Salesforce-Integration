@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://www.facebook.com/v19.0/dialog/oauth</authorizeUrl>
+    <consumerKey>7029979470464022</consumerKey>
+    <consumerSecret>Placeholder_Value</consumerSecret>
+    <executionUser>sohamdatta01@curious-bear-ubysxu.com</executionUser>
+    <friendlyName>Facebook Auth Provider</friendlyName>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>Facebook</providerType>
+    <registrationHandler>SocialRegHandler</registrationHandler>
+    <requireMfa>false</requireMfa>
+    <sendAccessTokenInHeader>false</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <sendSecretInApis>true</sendSecretInApis>
+    <tokenUrl>https://graph.facebook.com/v19.0/oauth/access_token</tokenUrl>
+</AuthProvider>

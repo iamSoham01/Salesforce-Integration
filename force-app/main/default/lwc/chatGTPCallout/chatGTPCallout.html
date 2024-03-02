@@ -1,0 +1,28 @@
+<template>
+
+  <lightning-card  title="Communicate with ChatGTP" icon-name="standard:messaging_conversation">
+
+    <lightning-layout class="slds-var-m-left_x-large slds-var-m-right_medium slds-var-m-bottom_x-large">
+    
+      <lightning-layout-item size="6" padding="around-medium" >
+        <lightning-textarea label="Enter your query" placeholder="type here..." class="slds-var-m-bottom_large" lwc:ref="question"></lightning-textarea>
+        <lightning-button label="Ask ChatGTP" icon-name="utility:question" variant="brand-outline" onclick={handleAskQuestion}></lightning-button>
+      </lightning-layout-item>
+  
+      <template lwc:if={responseMsg}> 
+        <lightning-layout-item size="6" padding="around-medium" style="margin-top: 15px" >
+          <lightning-formatted-rich-text value={responseMsg} class="" style="font-size: 15px;"></lightning-formatted-rich-text>
+        </lightning-layout-item>
+      </template>
+
+      <template lwc:if={error}> 
+        <lightning-layout-item size="6" padding="around-medium" style="margin-top: 18px" >
+          <strong style="font-size: 15px;">Please send this message to system admin: </strong> {error}
+        </lightning-layout-item>
+      </template>
+  
+    </lightning-layout>
+
+  </lightning-card>
+    
+</template>

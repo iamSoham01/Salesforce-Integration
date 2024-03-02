@@ -1,0 +1,21 @@
+.envelope {
+  height: 500px;
+  width: auto;
+  background-color: white;
+}
+
+.imgcover {
+  height: 500px;
+  width: 500px;
+}
+
+.song-info {
+  position: absolute;
+  top: 300px;
+  left: 560px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 15pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: black;
+}
