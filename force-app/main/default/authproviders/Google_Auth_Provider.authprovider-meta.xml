@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
     <authorizeUrl>https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&amp;prompt=consent</authorizeUrl>
-    <consumerKey>664787879002-p0bf469gih8p2jlgvgce6tal1m2cmf96.apps.googleusercontent.com</consumerKey>
+    <consumerKey>YOUR_CONSUMER_KEY</consumerKey>
     <consumerSecret>Placeholder_Value</consumerSecret>
-    <executionUser>sohamdatta01@curious-bear-ubysxu.com</executionUser>
+    <executionUser>YOUR_EXECUTION_USER</executionUser>
     <friendlyName>Google Auth Provider</friendlyName>
     <iconUrl>https://login.salesforce.com/icons/google-colored.png</iconUrl>
     <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
