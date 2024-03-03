@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
+		<members>loading</members>
+		<name>StaticResource</name>
+	</types>
+	<types>
+		<members>GoogleAPI</members>
+		<members>GoogleToken</members>
+		<name>RemoteSiteSetting</name>
+	</types>
+	<types>
+		<members>Callout_Permission_Set</members>
+		<name>PermissionSet</name>
+	</types>
+	<types>
+		<members>GoogleToken</members>
+		<members>OpenCageApiKey</members>
+		<members>OpenCageEndPoint</members>
+		<name>CustomLabel</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>CustomMetadata</name>
+	</types>
+	<types>
+		<members>Google_Config__mdt</members>
+		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>Google_Config__mdt.Base_Url__c</members>
+		<members>Google_Config__mdt.Event_Url__c</members>
+		<members>Google_Config__mdt.PageName__c</members>
+		<members>Google_Config__mdt.access_token__c</members>
+		<members>Google_Config__mdt.auth_url__c</members>
+		<members>Google_Config__mdt.client_id__c</members>
+		<members>Google_Config__mdt.client_secret__c</members>
+		<members>Google_Config__mdt.expires_in__c</members>
+		<members>Google_Config__mdt.expires_in_time__c</members>
+		<members>Google_Config__mdt.refresh_token__c</members>
+		<members>Google_Config__mdt.scope__c</members>
+		<members>Google_Config__mdt.token_url__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>WorldTimeApi</members>
+		<name>CspTrustedSite</name>
+	</types>
+	<types>
+		<members>collaboration</members>
+		<name>ContentAsset</name>
+	</types>
+	<types>
+		<members>Google_Config__mdt-Google Config Layout</members>
+		<name>Layout</name>
+	</types>
+	<types>
+		<members>Facebook_Auth_Provider</members>
+		<members>Google_Auth_Provider</members>
+		<members>Linkedin_Auth_Provider</members>
+		<members>Slack_Auth_Provider</members>
+		<members>Spotify_Auth_Provider</members>
+		<name>AuthProvider</name>
+	</types>
+	<types>
+		<members>ChatGTPCredential</members>
+		<members>FacebookCredential</members>
+		<members>GoogleCredential</members>
+		<members>LinkedinCredentials</members>
+		<members>ServicenowCredential</members>
+		<members>SlackCredential</members>
+		<members>SpotifyCredential</members>
+		<name>ExternalCredential</name>
+	</types>
+	<types>
+		<members>ChatGTP</members>
+		<members>Facebook</members>
+		<members>Google</members>
+		<members>Linkedin</members>
+		<members>Servicenow</members>
+		<members>Slack</members>
+		<members>Spotify</members>
+		<name>NamedCredential</name>
+	</types>
+	<types>
 		<members>ApexWebService</members>
 		<members>CalendarEventDetails</members>
 		<members>ChatGTPMock</members>
@@ -48,91 +130,6 @@
 		<name>ApexPage</name>
 	</types>
 	<types>
-		<members>Facebook_Auth_Provider</members>
-		<members>Google_Auth_Provider</members>
-		<members>Linkedin_Auth_Provider</members>
-		<members>Slack_Auth_Provider</members>
-		<members>Spotify_Auth_Provider</members>
-		<name>AuthProvider</name>
-	</types>
-	<types>
-		<members>collaboration</members>
-		<name>ContentAsset</name>
-	</types>
-	<types>
-		<members>WorldTimeApi</members>
-		<name>CspTrustedSite</name>
-	</types>
-	<types>
-		<members>Integration</members>
-		<name>CustomApplication</name>
-	</types>
-	<types>
-		<members>Google_Config__mdt.Base_Url__c</members>
-		<members>Google_Config__mdt.Event_Url__c</members>
-		<members>Google_Config__mdt.PageName__c</members>
-		<members>Google_Config__mdt.access_token__c</members>
-		<members>Google_Config__mdt.auth_url__c</members>
-		<members>Google_Config__mdt.client_id__c</members>
-		<members>Google_Config__mdt.client_secret__c</members>
-		<members>Google_Config__mdt.expires_in__c</members>
-		<members>Google_Config__mdt.expires_in_time__c</members>
-		<members>Google_Config__mdt.refresh_token__c</members>
-		<members>Google_Config__mdt.scope__c</members>
-		<members>Google_Config__mdt.token_url__c</members>
-		<name>CustomField</name>
-	</types>
-	<types>
-		<members>GoogleToken</members>
-		<members>OpenCageApiKey</members>
-		<members>OpenCageEndPoint</members>
-		<name>CustomLabel</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CustomMetadata</name>
-	</types>
-	<types>
-		<members>Google_Config__mdt</members>
-		<name>CustomObject</name>
-	</types>
-	<types>
-		<members>ChatGTP</members>
-		<members>Facebook</members>
-		<members>Google_Calender</members>
-		<members>LinkedIn</members>
-		<members>OpenCage</members>
-		<members>Servicenow</members>
-		<members>Slack</members>
-		<members>Spotify</members>
-		<name>CustomTab</name>
-	</types>
-	<types>
-		<members>ChatGTPCredential</members>
-		<members>FacebookCredential</members>
-		<members>GoogleCredential</members>
-		<members>LinkedinCredentials</members>
-		<members>ServicenowCredential</members>
-		<members>SlackCredential</members>
-		<members>SpotifyCredential</members>
-		<name>ExternalCredential</name>
-	</types>
-	<types>
-		<members>ChatGTP</members>
-		<members>Facebook</members>
-		<members>Google_Calender</members>
-		<members>LinkedIn</members>
-		<members>OpenCage</members>
-		<members>Servicenow</members>
-		<members>Slack</members>
-		<members>Spotify</members>
-		<name>FlexiPage</name>
-	</types>
-	<types>
-		<members>Google_Config__mdt-Google Config Layout</members>
-		<name>Layout</name>
-	</types>
-	<types>
 		<members>chatGTPCallout</members>
 		<members>facebookCallout</members>
 		<members>forwardGeoCoding</members>
@@ -148,25 +145,28 @@
 	<types>
 		<members>ChatGTP</members>
 		<members>Facebook</members>
-		<members>Google</members>
-		<members>Linkedin</members>
+		<members>Google_Calender</members>
+		<members>LinkedIn</members>
+		<members>OpenCage</members>
 		<members>Servicenow</members>
 		<members>Slack</members>
 		<members>Spotify</members>
-		<name>NamedCredential</name>
+		<name>FlexiPage</name>
 	</types>
 	<types>
-		<members>Callout_Permission_Set</members>
-		<name>PermissionSet</name>
+		<members>ChatGTP</members>
+		<members>Facebook</members>
+		<members>Google_Calender</members>
+		<members>LinkedIn</members>
+		<members>OpenCage</members>
+		<members>Servicenow</members>
+		<members>Slack</members>
+		<members>Spotify</members>
+		<name>CustomTab</name>
 	</types>
 	<types>
-		<members>GoogleAPI</members>
-		<members>GoogleToken</members>
-		<name>RemoteSiteSetting</name>
-	</types>
-	<types>
-		<members>loading</members>
-		<name>StaticResource</name>
+		<members>Integration</members>
+		<name>CustomApplication</name>
 	</types>
 	<version>58.0</version>
 </Package>
