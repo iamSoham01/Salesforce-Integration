@@ -1,18 +1,34 @@
-# Salesforce DX Project: Next Steps
+This project demonstrates various implementations of Salesforce integration with popular third-party providers like Google, LinkedIn, ChatGPT, and others, leveraging the OAuth 2.0 authorization framework. 
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+By exploring these examples, you'll gain hands-on experience with establishing secure connections and exchanging data between these platforms and Salesforce.
 
-## How Do You Plan to Deploy Your Changes?
+## Getting Started:
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+### Prerequisites:
+* A Salesforce org with appropriate permissions for creating apps and managing integrations.
+* Familiarity with Salesforce development concepts like Apex, Visualforce, or LWC (optional).
 
-## Configure Your Salesforce DX Project
+### Clone or Download the Repository:
+```bash
+  https://github.com/iamSoham01/Salesforce-Integration.git
+```
+Or download the ZIP file from the GitHub repository.
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+### Set Up Your Development Environment:
+* Follow Salesforce's official documentation for setting up your development environment, including installing tools like Salesforce DX and the Salesforce CLI.
 
-## Read All About It
+### Key Concepts:
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+**OAuth 2.0:**  This industry-standard authorization framework enables applications to securely access user data from other services without requiring users to share their credentials directly with those services.
+
+**Creating a Third-Party App:** You'll need to create apps within each provider (e.g., Google, LinkedIn) to obtain the necessary client credentials (client ID, client secret) for establishing the connection.
+
+**Salesforce Auth Provider:** This component holds the provider-specific configuration, including the client credentials and API endpoints for interacting with the provider.
+
+**External Credential and Named Credential:** These secure mechanisms allow you to store and manage access tokens and refresh tokens, which are crucial for maintaining ongoing connections with the third-party services.
+
+**Apex Classes:** These classes provide the programmatic logic for interacting with the third-party APIs using the obtained access tokens.
+
+### Examples:
+
+This repository includes multiple examples showcasing different ways to integrate with various providers using OAuth 2.0. Explore each example to understand the specific steps and considerations involved.
