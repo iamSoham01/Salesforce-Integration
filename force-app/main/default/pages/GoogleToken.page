@@ -1,6 +1,6 @@
-<apex:page id="thePage" controller="GoogleUtil" lightningStylesheets="true" >
-    
-    <script>
+<apex:page id="thePage" controller="GoogleUtil" lightningStylesheets="true">
+
+    <!-- <script>
     window.onload = function(){
         let code    =   '{!$CurrentPage.parameters.code}';
         if(code){
@@ -35,6 +35,6 @@
             </apex:pageBlockButtons>
         </apex:pageBlock>
         
-    </apex:form>
-    
+    </apex:form> -->
+
 </apex:page>

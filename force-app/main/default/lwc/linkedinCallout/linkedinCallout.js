@@ -1,5 +1,4 @@
 import { LightningElement } from 'lwc';
-import linkedInAuthenticationPage from '@salesforce/label/c.LinkedinToken';
 import createPost from '@salesforce/apex/LinkedinUtil.createPost';
 
 

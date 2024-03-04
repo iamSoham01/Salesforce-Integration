@@ -22,5 +22,4 @@
     <tabs>Spotify</tabs>
     <tabs>Facebook</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>Integration_UtilityBar</utilityBar>
 </CustomApplication>
