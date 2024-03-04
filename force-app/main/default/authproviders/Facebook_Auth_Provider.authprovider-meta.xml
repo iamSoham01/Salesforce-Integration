@@ -3,11 +3,9 @@
     <authorizeUrl>https://www.facebook.com/v19.0/dialog/oauth</authorizeUrl>
     <consumerKey>YOUR_CONSUMER_KEY</consumerKey>
     <consumerSecret>Placeholder_Value</consumerSecret>
-    <executionUser>YOUR_EXECUTION_USER</executionUser>
     <friendlyName>Facebook Auth Provider</friendlyName>
     <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
     <providerType>Facebook</providerType>
-    <registrationHandler>SocialRegHandler</registrationHandler>
     <requireMfa>false</requireMfa>
     <sendAccessTokenInHeader>false</sendAccessTokenInHeader>
     <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>

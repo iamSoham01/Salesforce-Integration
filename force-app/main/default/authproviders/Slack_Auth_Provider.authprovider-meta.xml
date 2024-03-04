@@ -4,12 +4,10 @@
     <consumerKey>YOUR_CONSUMER_KEY</consumerKey>
     <consumerSecret>Placeholder_Value</consumerSecret>
     <defaultScopes>incoming-webhook commands chat:write channels:read</defaultScopes>
-    <executionUser>YOUR_EXECUTION_USER</executionUser>
     <friendlyName>Slack Auth Provider</friendlyName>
     <iconUrl>https://login.salesforce.com/icons/slack-colored.png</iconUrl>
     <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
     <providerType>OpenIdConnect</providerType>
-    <registrationHandler>SocialRegHandler</registrationHandler>
     <requireMfa>false</requireMfa>
     <sendAccessTokenInHeader>true</sendAccessTokenInHeader>
     <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>

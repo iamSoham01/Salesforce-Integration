@@ -3,12 +3,10 @@
     <authorizeUrl>https://www.linkedin.com/oauth/v2/authorization</authorizeUrl>
     <consumerKey>YOUR_CONSUMER_KEY</consumerKey>
     <consumerSecret>Placeholder_Value</consumerSecret>
-    <executionUser>YOUR_EXECUTION_USER</executionUser>
     <friendlyName>Linkedin Auth Provider</friendlyName>
     <iconUrl>https://login.salesforce.com/icons/linkedin-grey.png</iconUrl>
     <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
     <providerType>LinkedIn</providerType>
-    <registrationHandler>SocialRegHandler</registrationHandler>
     <requireMfa>false</requireMfa>
     <sendAccessTokenInHeader>false</sendAccessTokenInHeader>
     <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
