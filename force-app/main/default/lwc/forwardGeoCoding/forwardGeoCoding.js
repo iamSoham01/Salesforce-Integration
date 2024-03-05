@@ -21,6 +21,16 @@ export default class ForwardGeoCoding extends LightningElement {
     return typeof str === 'string' && str.trim().startsWith('{') && str.trim().endsWith('}');
   }
 
+  sendMapCoordinates(latitude, longitude){
+    const mapEvt = new CustomEvent('mapcoordinates', {
+      detail: { 
+        lat: latitude,
+        lng: longitude 
+      }
+    });
+    this.dispatchEvent(mapEvt);
+  }
+
   handleCoordinate() {
 
     const address = this.refs.address;
@@ -36,6 +46,7 @@ export default class ForwardGeoCoding extends LightningElement {
         this.lat = coordinate.lat;
         this.lng = coordinate.lng;
         this.error = ``;
+        this.sendMapCoordinates(this.lat, this.lng);
       })
       .catch((error) => {
         const err = error.body.message;

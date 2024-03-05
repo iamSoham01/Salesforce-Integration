@@ -19,22 +19,25 @@
     <!-- Card Header End -->
 
     <!-- Card Body Start -->
-    <lightning-layout>
-      <lightning-layout-item size="6" padding="around-large">
+    <lightning-layout class="slds-var-m-bottom_xx-large">
+      <lightning-layout-item size="6" padding="around-medium">
         <!-- Forward Geocoding -->
         <template lwc:if={isForwardGeoCoding}> 
-          <c-forward-geo-coding></c-forward-geo-coding>
+          <c-forward-geo-coding onmapcoordinates={handleMapCoordinates}></c-forward-geo-coding>
         </template>
         <!-- Reverse Geocoding -->
         <template lwc:else> 
-          <c-reverse-geo-coding></c-reverse-geo-coding>
+          <c-reverse-geo-coding onmapcoordinates={handleMapCoordinates}></c-reverse-geo-coding>
         </template>
       </lightning-layout-item>
 
       <!-- Display Map -->
-      <lightning-layout-item size="6" padding="around-large">
-
-      </lightning-layout-item>
+      <template lwc:if={isMapVisible}> 
+        <lightning-layout-item size="5" class="slds-var-m-left_x-large">
+          <lightning-map map-markers={mapMarkers}> 
+          </lightning-map>
+        </lightning-layout-item>
+      </template>
     </lightning-layout>
     <!-- Card Body End -->
   </lightning-card>
