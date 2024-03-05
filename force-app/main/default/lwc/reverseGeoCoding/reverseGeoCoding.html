@@ -1,5 +1,7 @@
 <template>
-  <lightning-layout class="slds-var-m-left_x-small slds-var-m-right_large">
+
+  <!-- Input Start -->
+  <lightning-layout class="slds-var-m-left_medium slds-var-m-right_large slds-var-m-top_xx-large">
     <lightning-layout-item size="6" padding="around-medium">
       <lightning-input type="number" label="Enter Latitude" step="any" pattern="[0-9]+([.][0-9]+)?" lwc:ref="lat"></lightning-input>
     </lightning-layout-item>
@@ -8,9 +10,11 @@
     </lightning-layout-item>
   </lightning-layout>
 
-  <lightning-button label="Get Address" icon-name="utility:target" variant="brand-outline" onclick={handleAddress} class="slds-var-m-left_large"></lightning-button>
+  <lightning-button label="Get Address" icon-name="utility:target" variant="brand-outline" onclick={handleAddress} class="slds-var-m-bottom_xx-large slds-var-m-left_x-large"></lightning-button>
+  <!-- Input End -->
 
-  <div class="slds-var-m-left_large slds-var-m-top_large slds-var-m-bottom_xx-large">
+  <!-- Output Message Start -->
+  <div class="slds-var-m-left_x-large slds-var-m-top_x-large slds-var-m-bottom_xx-large">
     <template lwc:if={address}> 
       <span>
         <strong style="font-size: 15px;">Address Location: </strong>
@@ -22,5 +26,6 @@
       <strong style="font-size: 15px;" class="slds-var-m-right_small">Please send this message to system admin: </strong> {error}
     </template>
   </div>
+  <!-- Output Message End -->
 
 </template>
