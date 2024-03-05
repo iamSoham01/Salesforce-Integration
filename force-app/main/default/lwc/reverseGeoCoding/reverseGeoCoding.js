@@ -20,6 +20,16 @@ export default class ReverseGeoCoding extends LightningElement {
     return typeof str === 'string' && str.trim().startsWith('{') && str.trim().endsWith('}');
   }
 
+  sendMapCoordinates(latitude, longitude){
+    const mapEvt = new CustomEvent('mapcoordinates', {
+      detail: { 
+        lat: latitude,
+        lng: longitude 
+      }
+    });
+    this.dispatchEvent(mapEvt);
+  }
+
   handleAddress() {
 
     const lat = this.refs.lat;
@@ -36,6 +46,7 @@ export default class ReverseGeoCoding extends LightningElement {
       .then((result) => {
         this.address = result;
         this.error = ``;
+        this.sendMapCoordinates(lat.value, lng.value);
       })
       .catch((error) => {
         const err = error.body.message;
@@ -46,5 +57,5 @@ export default class ReverseGeoCoding extends LightningElement {
         }
         this.address = ``;
       });
-    }
+  }
 }

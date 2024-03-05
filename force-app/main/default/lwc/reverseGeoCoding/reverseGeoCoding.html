@@ -1,34 +1,26 @@
 <template>
-
-  <lightning-layout class="slds-var-m-left_xx-large slds-var-m-top_large slds-var-m-right_medium slds-var-m-bottom_xx-large" >
-    
-    <lightning-layout-item size="2">
+  <lightning-layout class="slds-var-m-left_x-small slds-var-m-right_large">
+    <lightning-layout-item size="6" padding="around-medium">
       <lightning-input type="number" label="Enter Latitude" step="any" pattern="[0-9]+([.][0-9]+)?" lwc:ref="lat"></lightning-input>
     </lightning-layout-item>
-
-    <lightning-layout-item size="2" class="slds-var-m-left_medium">
-      <lightning-input type="number" label="Enter Longitude" step="any" pattern="[0-9]+([.][0-9]+)?" lwc:ref="lng"></lightning-input>
+    <lightning-layout-item size="6" padding="around-medium">
+      <lightning-input type="number" label="Enter Longitude" step="any" lwc:ref="lng"></lightning-input>
     </lightning-layout-item>
+  </lightning-layout>
 
-    <lightning-layout-item size="2" class="slds-var-m-left_medium" style="margin-top: 24px;">
-      <lightning-button label="Get Address" icon-name="utility:target" variant="brand-outline" onclick={handleAddress}></lightning-button>
-    </lightning-layout-item>
+  <lightning-button label="Get Address" icon-name="utility:target" variant="brand-outline" onclick={handleAddress} class="slds-var-m-left_large"></lightning-button>
 
+  <div class="slds-var-m-left_large slds-var-m-top_large slds-var-m-bottom_xx-large">
     <template lwc:if={address}> 
-      <lightning-layout-item size="6" class="slds-var-m-left_medium" style="margin-top: 15px">
-        <span>
-          <strong style="font-size: 15px;">Address Location: </strong>
-          <p style="font-size: 15px;">{address}</p>
-        </span>
-      </lightning-layout-item>
+      <span>
+        <strong style="font-size: 15px;">Address Location: </strong>
+        <p style="font-size: 15px;">{address}</p>
+      </span>
     </template>
 
     <template lwc:if={error}> 
-      <lightning-layout-item size="6" class="slds-var-m-left_medium slds-var-p-right_large" style="margin-top: 20px">
-        <strong style="font-size: 15px;" class="slds-var-m-right_small">Please send this message to system admin: </strong> {error}
-      </lightning-layout-item>
+      <strong style="font-size: 15px;" class="slds-var-m-right_small">Please send this message to system admin: </strong> {error}
     </template>
-
-  </lightning-layout>
+  </div>
 
 </template>
