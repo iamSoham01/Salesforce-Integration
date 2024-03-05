@@ -4,40 +4,46 @@
   <lightning-card class="slds-var-m-top_xx-large">
 
     <!-- Card Header Start -->
-    <lightning-layout class="slds-var-m-bottom_xx-large">
-      <lightning-layout-item size="4" class="slds-var-p-left_xx-large">
-        <img src={opencageLogo} alt="Open Cage Logo" width="150" height="50">
-      </lightning-layout-item>
-
-      <lightning-layout-item size="8" class="slds-var-p-left_xx-large slds-var-m-top_x-large">
-        <lightning-button-group>
-            <lightning-button label="Forward GeoCoding" icon-name="action:refresh" variant={forwardGeocodingBtnVariant} onclick={handleGeoCodingType}></lightning-button>
-            <lightning-button label="Reverse GeoCoding" icon-name="action:recall" variant={reverseGeocodingBtnVariant} onclick={handleGeoCodingType}></lightning-button>
-        </lightning-button-group>
-      </lightning-layout-item>
-    </lightning-layout>
+    <div class="slds-var-p-left_xx-large slds-var-m-bottom_large">
+      <img src={opencageLogo} alt="Open Cage Logo" width="150" height="50">
+    </div>
     <!-- Card Header End -->
 
     <!-- Card Body Start -->
     <lightning-layout class="slds-var-m-bottom_xx-large">
+
       <lightning-layout-item size="6" padding="around-medium">
-        <!-- Forward Geocoding -->
+
+        <!-- Menu Button Start -->
+        <lightning-button-group class="slds-var-p-left_x-large slds-var-m-bottom_xx-large">
+          <lightning-button label="Forward GeoCoding" icon-name="action:refresh" variant={forwardGeocodingBtnVariant} onclick={handleGeoCodingType}></lightning-button>
+          <lightning-button label="Reverse GeoCoding" icon-name="action:recall" variant={reverseGeocodingBtnVariant} onclick={handleGeoCodingType}></lightning-button>
+        </lightning-button-group>
+        <!-- Menu Button End -->
+
+        <!-- Forward Geocoding Start -->
         <template lwc:if={isForwardGeoCoding}> 
           <c-forward-geo-coding onmapcoordinates={handleMapCoordinates}></c-forward-geo-coding>
         </template>
-        <!-- Reverse Geocoding -->
+        <!-- Forward Geocoding End -->
+        
+        <!-- Reverse Geocoding Start -->
         <template lwc:else> 
           <c-reverse-geo-coding onmapcoordinates={handleMapCoordinates}></c-reverse-geo-coding>
         </template>
+        <!-- Reverse Geocoding End -->
+
       </lightning-layout-item>
 
-      <!-- Display Map -->
+      <!-- Display Map Start -->
       <template lwc:if={isMapVisible}> 
         <lightning-layout-item size="5" class="slds-var-m-left_x-large">
           <lightning-map map-markers={mapMarkers}> 
           </lightning-map>
         </lightning-layout-item>
       </template>
+      <!-- Display Map End -->
+
     </lightning-layout>
     <!-- Card Body End -->
   </lightning-card>

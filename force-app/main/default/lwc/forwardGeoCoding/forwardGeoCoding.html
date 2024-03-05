@@ -1,11 +1,14 @@
 <template>
   
-  <div class="slds-var-m-left_large slds-var-m-right_large slds-var-m-bottom_large">
-    <lightning-textarea label="Enter your address" placeholder="type here..." lwc:ref="address" style="margin-bottom: 15px;"></lightning-textarea>
+  <!-- Input Start -->
+  <div class="slds-var-m-left_x-large slds-var-m-right_large slds-var-m-bottom_xx-large slds-var-m-top_xx-large">
+    <lightning-textarea label="Enter your address" placeholder="type here..." lwc:ref="address" style="margin-bottom: 18px;"></lightning-textarea>
     <lightning-button label="Get Coordinate" icon-name="utility:pin" variant="brand-outline" onclick={handleCoordinate}></lightning-button>
   </div>
+  <!-- Input End -->
 
-  <div class="slds-var-m-left_large slds-var-m-bottom_xx-large">
+  <!-- Output Message Start -->
+  <div class="slds-var-m-left_x-large">
     <template lwc:if={lat}> 
       <strong style="font-size: 15px;">Coordinate Location: </strong>
       <lightning-formatted-location latitude={lat} longitude={lng} style="font-size: 15px;"></lightning-formatted-location>
@@ -17,5 +20,6 @@
       </span>
     </template>
   </div>
+  <!-- Output Message Start -->
 
 </template>
