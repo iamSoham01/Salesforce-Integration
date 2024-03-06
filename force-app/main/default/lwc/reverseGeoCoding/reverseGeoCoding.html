@@ -14,18 +14,24 @@
   <!-- Input End -->
 
   <!-- Output Message Start -->
-  <div class="slds-var-m-left_x-large slds-var-m-top_x-large slds-var-m-bottom_xx-large">
-    <template lwc:if={address}> 
-      <span>
-        <strong style="font-size: 15px;">Address Location: </strong>
-        <p style="font-size: 15px;">{address}</p>
-      </span>
-    </template>
+  <template lwc:if={isLoaded}>
+    <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
+  </template>
 
-    <template lwc:if={error}> 
-      <strong style="font-size: 15px;" class="slds-var-m-right_small">Please send this message to system admin: </strong> {error}
-    </template>
-  </div>
+  <template lwc:else>
+    <div class="slds-var-m-left_x-large slds-var-m-top_x-large slds-var-m-bottom_xx-large">
+      <template lwc:if={address}> 
+        <span>
+          <strong style="font-size: 15px;">Address Location: </strong>
+          <p style="font-size: 15px;">{address}</p>
+        </span>
+      </template>
+
+      <template lwc:if={error}> 
+        <strong style="font-size: 15px;" class="slds-var-m-right_small">Please send this message to system admin: </strong> {error}
+      </template>
+    </div>
+  </template>
   <!-- Output Message End -->
 
 </template>

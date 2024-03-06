@@ -6,6 +6,7 @@ export default class ForwardGeoCoding extends LightningElement {
   lat;
   lng;
   error;
+  isLoaded = false;
 
   checkFieldValidity(inputType) {
 
@@ -39,6 +40,8 @@ export default class ForwardGeoCoding extends LightningElement {
     if(!addressValid){
       return;
     }
+
+    this.isLoaded = !this.isLoaded;
     
     forwardGeoCoding({ address: address.value })
       .then((result) => {
@@ -57,6 +60,9 @@ export default class ForwardGeoCoding extends LightningElement {
         }
         this.lat = ``;
         this.lng = ``;
+      })
+      .finally(() => {
+        this.isLoaded = !this.isLoaded;
       });
 
   }
