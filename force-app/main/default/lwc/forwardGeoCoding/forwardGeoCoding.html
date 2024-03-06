@@ -8,18 +8,24 @@
   <!-- Input End -->
 
   <!-- Output Message Start -->
-  <div class="slds-var-m-left_x-large">
-    <template lwc:if={lat}> 
-      <strong style="font-size: 15px;">Coordinate Location: </strong>
-      <lightning-formatted-location latitude={lat} longitude={lng} style="font-size: 15px;"></lightning-formatted-location>
-    </template>
+  <template lwc:if={isLoaded}>
+    <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
+  </template>
 
-    <template lwc:if={error}>
-      <span style="font-size: 15px;">
-        <strong>Please send this message to system admin: </strong> {error}
-      </span>
-    </template>
-  </div>
-  <!-- Output Message Start -->
+  <template lwc:else>
+    <div class="slds-var-m-left_x-large slds-var-m-bottom_xx-large">
+      <template lwc:if={lat}> 
+        <strong style="font-size: 15px;">Coordinate Location: </strong>
+        <lightning-formatted-location latitude={lat} longitude={lng} style="font-size: 15px;"></lightning-formatted-location>
+      </template>
+
+      <template lwc:if={error}>
+        <span style="font-size: 15px;">
+          <strong>Please send this message to system admin: </strong> {error}
+        </span>
+      </template>
+    </div>
+  </template>
+  <!-- Output Message End -->
 
 </template>

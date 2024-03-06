@@ -5,6 +5,7 @@ export default class ReverseGeoCoding extends LightningElement {
   
   address;
   error;
+  isLoaded = false;
 
   checkFieldValidity(inputType, msg) {
 
@@ -42,6 +43,8 @@ export default class ReverseGeoCoding extends LightningElement {
       return;
     }
 
+    this.isLoaded = !this.isLoaded;
+
     reverseGeoCoding({ lat: lat.value, lng: lng.value })
       .then((result) => {
         this.address = result;
@@ -56,6 +59,9 @@ export default class ReverseGeoCoding extends LightningElement {
           this.error = err;
         }
         this.address = ``;
+      })
+      .finally(() => {
+        this.isLoaded = !this.isLoaded;
       });
   }
 }
