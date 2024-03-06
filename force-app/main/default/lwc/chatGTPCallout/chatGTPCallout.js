@@ -1,10 +1,13 @@
 import { LightningElement } from 'lwc';
 import getResponseMsg from '@salesforce/apex/ChatGTPUtil.getResponseMsg';
+import CHATGTP_LOGO from '@salesforce/resourceUrl/chatgtp';
 
 export default class ChatGTPCallout extends LightningElement {
 
+  chatGTPLogo = CHATGTP_LOGO;
   responseMsg;
   error;
+  isLoaded = false;
 
   checkFieldValidity(inputType) {
 
@@ -28,6 +31,8 @@ export default class ChatGTPCallout extends LightningElement {
     if(!isQuestionValid){
       return;
     }
+    
+    this.isLoaded = !this.isLoaded;
 
     getResponseMsg({message: question.value})
       .then(result => {
@@ -42,6 +47,9 @@ export default class ChatGTPCallout extends LightningElement {
           this.error = err;
         }
         this.responseMsg = ``;
+      })
+      .finally(() => {
+        this.isLoaded = !this.isLoaded;
       });
   }
 

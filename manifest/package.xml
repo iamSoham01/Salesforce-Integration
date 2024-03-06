@@ -3,6 +3,7 @@
 	<types>
 		<members>loading</members>
 		<members>opencage</members>
+		<members>chatgtp</members>
 		<name>StaticResource</name>
 	</types>
 	<types>
