@@ -1,29 +1,59 @@
 <template>
 
-  <lightning-card  title="Create Servicenow Incident" icon-name="standard:person_language">
+  <lightning-card>
 
-    <lightning-layout class="slds-var-m-left_x-large slds-var-m-right_medium slds-var-m-bottom_x-large">
+    <!-- Card Header Start -->
+    <div class="slds-var-p-left_xx-large slds-var-m-bottom_xx-large">
+      <img src={servicenowLogo} alt="Servicenow Logo" width="200" height="15">
+    </div>
+    <!-- Card Header End -->
+
+    <lightning-layout class="slds-var-m-bottom_xx-large">
     
-      <lightning-layout-item size="6" padding="around-large" >
-        <lightning-textarea label="Enter your message" placeholder="type here..." class="slds-var-m-bottom_large" lwc:ref="message"></lightning-textarea>
-        <lightning-button label="Create Incident" icon-name="utility:edit" variant="brand-outline" onclick={handleIncident}></lightning-button>
+      <lightning-layout-item size="3">
+        <lightning-combobox
+            lwc:ref="caller"
+            label="Select caller"
+            value={value}
+            options={callerNames}
+            class="slds-var-m-left_xx-large"
+            onchange={handleSelectedCaller} >
+        </lightning-combobox>
       </lightning-layout-item>
-  
-      <template lwc:if={responseMsg}> 
-        <lightning-layout-item size="6" padding="around-large" style="margin-top: 32px" >
-          <span style="font-size: 15px;">
-            Incident Number: <strong class="slds-var-m-left_small">{responseMsg}</strong>
-          </span>
+
+      <template lwc:if={isCallerSelected}>
+        <lightning-layout-item size="5" >
+          <lightning-textarea label="Enter incident details" placeholder="type here..." class="slds-var-m-left_xx-large slds-var-m-right_xx-large" lwc:ref="message"></lightning-textarea>
+        </lightning-layout-item>
+
+        <lightning-layout-item size="4" style="margin-top:22px;" >
+          <lightning-button label="Create Incident" icon-name="utility:edit" variant="brand-outline" onclick={handleIncident}></lightning-button>
         </lightning-layout-item>
       </template>
+    
+    </lightning-layout>
 
-      <template lwc:if={error}> 
-        <lightning-layout-item size="6" padding="around-large" style="margin-top: 18px" class="" >
+    <lightning-layout class="slds-var-m-around_xx-large">
+  
+      <template lwc:if={isLoaded}>
+        <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
+      </template>
+
+      <template lwc:else>
+        <template lwc:if={incidentNumber}> 
+            <span style="font-size: 15px;">
+              Incident Number: <strong class="slds-var-m-left_small">{incidentNumber}</strong>
+            </span>
+        </template>
+
+        <template lwc:if={error}> 
           <strong style="font-size: 15px;">Please send this message to system admin: </strong> {error}
-        </lightning-layout-item>
+        </template>
       </template>
   
     </lightning-layout>
+
+    <div class="slds-var-m-bottom_xx-large"></div>
 
   </lightning-card>
     
