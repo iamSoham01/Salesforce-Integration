@@ -26,15 +26,14 @@ private class ServicenowUtilTest {
     *********************************************************
     @Method Name    : testCreateIncident
     @author         : Soham Datta  
-    @description    : test method for integrating with ServiceNow.
+    @description    : test method for getCallerDetails()
     @param          :
     *********************************************************
     */    
     @isTest
-    static void testIntegrateServiceNow() {
+    static void testGetCallerDetails() {
         
         User admin = [Select Id From User Where UserName = 'adminuser@servicenow.com'];
-        String message = 'Test Incident';
         
         // Starting the test execution.
         Test.startTest();
@@ -45,10 +44,47 @@ private class ServicenowUtilTest {
         System.runAs(admin) {
             
             // Performing the integration and getting actual output parameters.
-            String incidentId = ServicenowUtil.createIncident(message);
+            Map<String, String> mapCallerInfo = ServicenowUtil.getCallerDetails();
             
             // Asserting that the actual output matches the expected output.
-            Assert.areEqual('INC0010032', incidentId);
+            Assert.areEqual(1, mapCallerInfo.size());
+            
+        }
+        
+        // Stopping the test execution.
+        Test.stopTest();
+        
+    }
+    
+    /*
+    *********************************************************
+    @Method Name    : testCreateIncident
+    @author         : Soham Datta  
+    @description    : test method createIncident().
+    @param          :
+    *********************************************************
+    */    
+    @isTest
+    static void testCreateIncident() {
+        
+        User admin = [Select Id From User Where UserName = 'adminuser@servicenow.com'];
+        
+        // Starting the test execution.
+        Test.startTest();
+        
+        // Setting up a mock for the HTTP callout to ServiceNow.
+        Test.setMock(HttpCalloutMock.class, new ServicenowCommunicationMock());
+        
+        System.runAs(admin) {
+            
+            String callerId = '88aad6c5c73003005f1b78d48b9763a5';
+            String description = 'Test Incident';
+            
+            // Performing the integration and getting actual output parameters.
+            String incidentNumber = ServicenowUtil.createIncident(callerId, description);
+            
+            // Asserting that the actual output matches the expected output.
+            Assert.areEqual('INC0010032', incidentNumber);
             
         }
         
