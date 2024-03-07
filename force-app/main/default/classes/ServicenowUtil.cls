@@ -16,24 +16,20 @@ public with sharing class ServicenowUtil {
     
     /*
     *********************************************************
-    @Method Name    : getLookupRecord
+    @Method Name    : getCallerDetails
     @author         : Soham Datta  
-    @description    : Method to get Lookup Id from Servicenow
-    @param          : tableName, fieldName, fieldValue
-    @return         : String
+    @description    : Method to get caller details from Servicenow
+    @param          : 
+    @return         : Map<String, String>
     *********************************************************
 	*/
 
-    private static String getLookupRecord(String tableName, String fieldName, String fieldValue){
+    @AuraEnabled(cacheable=true)
+    public static Map<String, String> getCallerDetails(){
         
-        String recordId = '';
         //Preparing endpoint
-        String endPoint = 'callout:Servicenow/api/now/table/' + tableName;
-        Map<String, String> queryParams = new Map<String, String>{
-            'sysparm_limit' => '1',
-                fieldName => fieldValue
-                };
-        endPoint += '?' + getQueryString(queryParams);
+        String endPoint = 'callout:Servicenow/api/now/table/sys_user?sysparm_limit=10';
+        Map<String, String> mapCallerInfo = new Map<String, String>();
         
         Http http = new Http();
         //Preparing request for integration
@@ -46,11 +42,28 @@ public with sharing class ServicenowUtil {
             
             if(response.getStatusCode() == 200){
                 //Getting success response
-                String body = response.getBody();
-                LookupDetails getRecordDetails = (LookupDetails) System.JSON.deserialize(body, LookupDetails.class);
-                if (getRecordDetails != null && !getRecordDetails.result.isEmpty()) {
-                    //Store servicenow user Id
-                    recordId = getRecordDetails.result[0].sys_id;
+                String responseBody = response.getBody();
+                // Deserialize the response
+                Map<String, Object> parsedJson = (Map<String, Object>) JSON.deserializeUntyped(responseBody);
+                // Extract the result array
+                List<Object> results = (List<Object>) parsedJson.get('result');
+                
+                // Iterate over each record in the result array
+                for (Object result : results) {
+                    Map<String, Object> record = (Map<String, Object>) result;
+                    
+                    // Extract first_name and last_name
+                    String firstName = (String) record.get('first_name');
+                    String lastName = (String) record.get('last_name');
+                    
+                    // Combine first_name and last_name to create the key
+                    String fullName = firstName + ' ' + lastName;
+                    
+                    // Extract sys_id
+                    String sysId = (String) record.get('sys_id');
+                    
+                    // Add to the mapCallerInfo
+                    mapCallerInfo.put(fullName, sysId);
                 }
                 
             }else{
@@ -60,7 +73,7 @@ public with sharing class ServicenowUtil {
             throw new CustomException(e.getMessage());
         }
 
-        return recordId;
+        return mapCallerInfo;
     }
     
     /*
@@ -68,16 +81,15 @@ public with sharing class ServicenowUtil {
     @Method Name    : createIncident
     @author         : Soham Datta  
     @description    : Method to create incidents in Servicenow
-    @param          : requestBody
+    @param          : callerId, requestBody
     @return         : String
     *********************************************************
 	*/
 
     @AuraEnabled (cacheable=true)
-    public static String createIncident(String description){
+    public static String createIncident(String callerId, String description){
         
-        String userId = getLookupRecord('sys_user', 'user_name', 'admin');
-        String requestBody = buildIncidentRequestBody(userId, description);
+        String requestBody = buildIncidentRequestBody(callerId, description);
         
         String incidentNumber = '';        
         String endPoint = 'callout:Servicenow/api/now/table/incident';
@@ -92,9 +104,12 @@ public with sharing class ServicenowUtil {
             response = http.send(httpReq);
            
             if(response.getStatusCode() == 201){
+                //Getting success response
+                String responseBody = response.getBody();
                 //Fetch incident information
-                IncidentDetails incidentInfo = (IncidentDetails) JSON.deserialize(response.getBody(), IncidentDetails.class);
-                incidentNumber = incidentInfo.result.task_effective_number;
+                Map<String, Object> parsedJson = (Map<String, Object>) JSON.deserializeUntyped(responseBody);
+                Map<String, Object> result = (Map<String, Object>) parsedJson.get('result');
+                incidentNumber = (String) result.get('task_effective_number');
             }else{
                 throw new CustomException(response.getBody());
             }
@@ -102,25 +117,6 @@ public with sharing class ServicenowUtil {
             throw new CustomException(e.getMessage());
         }
         return incidentNumber;
-    }
-
-    /*
-    *********************************************************
-    @Method Name    : getQueryString
-    @author         : Soham Datta  
-    @description    : Method to create requestBody from objectMap
-    @param          : params
-    @return         : String
-    *********************************************************
-	*/
-    private static String getQueryString(Map<String, String> params) {
-        
-        List<String> keyValuePairs = new List<String>();
-        for (String key : params.keySet()) {
-            keyValuePairs.add(key + '=' + EncodingUtil.urlEncode(params.get(key), 'UTF-8'));
-        }
-        return String.join(keyValuePairs, '&');
-    
     }
     
     /*
@@ -149,16 +145,16 @@ public with sharing class ServicenowUtil {
     @Method Name    : buildIncidentRequestBody
     @author         : Soham Datta
     @description    : Build request body to create incident in servicenow
-    @param          : userId, assigmentGrpId
+    @param          : callerId, assigmentGrpId
     @return         : String
     ********************************************************
     */
     
-    private static String buildIncidentRequestBody(String userId, String description) {
+    private static String buildIncidentRequestBody(String callerId, String description) {
         
         //Mapping between case record and servicenow fields
         Map<String, Object> requestBodyMap = new Map<String, Object>{
-            'caller_id' => userId,
+            'caller_id' => callerId,
                 'short_description' => description
                 };
                     

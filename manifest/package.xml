@@ -4,6 +4,7 @@
 		<members>loading</members>
 		<members>opencage</members>
 		<members>chatgtp</members>
+		<members>servicenow</members>
 		<name>StaticResource</name>
 	</types>
 	<types>
@@ -101,13 +102,11 @@
 		<members>GoogleUtil</members>
 		<members>GoogleUtilMock</members>
 		<members>GoogleUtilTest</members>
-		<members>IncidentDetails</members>
 		<members>LinkedinProfileDetails</members>
 		<members>LinkedinToken</members>
 		<members>LinkedinUtil</members>
 		<members>LinkedinUtilMock</members>
 		<members>LinkedinUtilTest</members>
-		<members>LookupDetails</members>
 		<members>MessageDetails</members>
 		<members>OpenCageMock</members>
 		<members>OpenCageUtil</members>
