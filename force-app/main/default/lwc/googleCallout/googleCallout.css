@@ -1,0 +1,23 @@
+/* customButton.css */
+.custom-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.button-label:active {
+  text-decoration: underline;
+}
+
+.button-image {
+  width: 35px;
+  height: 30px;
+  margin-right: 8px;
+}
+
+.button-label {
+  font-size: 14px;
+}

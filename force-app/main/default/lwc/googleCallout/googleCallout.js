@@ -1,9 +1,23 @@
 import { LightningElement } from 'lwc';
-import googleAuthenticationPage from '@salesforce/label/c.GoogleToken';
+import GOOGLE_LOGO from '@salesforce/resourceUrl/google';
+import CALENDAR_LOGO from '@salesforce/resourceUrl/googleCalendar';
+import GMAIL_LOGO from '@salesforce/resourceUrl/gmail';
+import DRIVE_LOGO from '@salesforce/resourceUrl/googleDrive';
+import MAPS_LOGO from '@salesforce/resourceUrl/googleMaps';
+
 import createCalenderMeeting from '@salesforce/apex/GoogleUtil.createCalenderMeeting';
 
 export default class GoogleCallout extends LightningElement {
 
+  resources = {
+    googleLogo: GOOGLE_LOGO,
+    calnedarLogo: CALENDAR_LOGO,
+    gmailLogo: GMAIL_LOGO,
+    driveLogo: DRIVE_LOGO,
+    mapsLogo: MAPS_LOGO
+  };
+
+  googleLogo = GOOGLE_LOGO;
   timezones = [];
   error;
   meetingURL;

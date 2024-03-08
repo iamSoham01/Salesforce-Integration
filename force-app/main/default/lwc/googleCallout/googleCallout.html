@@ -1,6 +1,49 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
 <template>
-    
-  <lightning-card  title="Google Calender Integration" icon-name="standard:announcement">
+  
+  <!-- Card Begin -->
+  <lightning-card class="slds-var-m-top_xx-large">
+
+    <!-- Card Header Start -->
+    <div class="slds-var-p-left_xx-large slds-var-m-bottom_xx-large">
+      <img src={resources.googleLogo} alt="Open Cage Logo" width="75" height="25">
+    </div>
+    <!-- Card Header End -->
+    <lightning-layout-item size="12">
+
+      <!-- Menu Button Start -->
+      <lightning-button-group class="slds-var-p-left_xx-large slds-var-m-bottom_xx-large">
+
+        <!-- Google Calendar Button -->
+        <button onclick={handleMenuBtn} class="custom-button slds-button">
+          <img src={resources.calnedarLogo} alt="Google Calendar Logo" class="button-image" />
+          <span class="button-label">Calendar</span>
+        </button>
+
+        <!-- Gmail Button -->
+        <button onclick={handleMenuBtn} class="custom-button">
+          <img src={resources.gmailLogo} alt="Gmail Logo" class="button-image" />
+          <span class="button-label">Gmail</span>
+        </button>
+
+        <!-- Google Maps Button -->
+        <button onclick={handleMenuBtn} class="custom-button">
+          <img src={resources.mapsLogo} alt="Google Maps Logo" class="button-image" />
+          <span class="button-label">Maps</span>
+        </button>
+
+        <!-- Google Drive Button -->
+        <button onclick={handleMenuBtn} class="custom-button">
+          <img src={resources.driveLogo} alt="Google Drive Logo" class="button-image" />
+          <span class="button-label">Drive</span>
+        </button>
+
+      </lightning-button-group>
+      <!-- Menu Button End -->
+
+    </lightning-layout-item>
+
 
     <lightning-layout class="slds-var-m-around_medium">
       <lightning-icon icon-name="standard:date_input" alternative-text="Calendar" size="small"></lightning-icon>
