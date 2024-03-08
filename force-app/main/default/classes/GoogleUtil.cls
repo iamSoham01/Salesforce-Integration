@@ -279,16 +279,19 @@ public class GoogleUtil {
     @Method Name    : createCalenderMeeting
     @author         : Soham Datta  
     @description    : Create Google Calender Meeting
-    @param          : calendarId, requestBody
+    @param          : mapAttributes
     *********************************************************
     */
 
     @AuraEnabled
-    public static String createCalenderMeeting(String calendarId, String requestBody){
-        
+    public static String createCalenderMeeting(Map<String, Object> mapAttributes){
+
+        //Preparing request
         String evtURL = '';
-        String endpoint = 'callout:Google/calendar/v3/calendars/{calendarId}/events';
+        String calendarId = 'test@gmail.com';
+        String endpoint = 'callout:GoogleCalendar/calendar/v3/calendars/{calendarId}/events';
         endPoint = endPoint.replace('{calendarId}', calendarId);
+        String requestBody = buildRequestBody(mapAttributes);
         
         Http http = new Http();
         HttpRequest httpReq   = prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody);
@@ -307,6 +310,69 @@ public class GoogleUtil {
             throw new CustomException(e.getMessage());
         }
         return evtURL; 
+    }
+
+    /*
+    *********************************************************
+    @Method Name    : buildRequestBody
+    @author         : Soham Datta  
+    @description    : Prepare request body for create google calendar meeting
+    @param          : mapAttributes
+    *********************************************************
+    */
+    
+    public static String buildRequestBody(Map<String, Object> mapAttributes){
+                                                 
+        // Attributes for requestBody
+        String endDateTime = (String)mapAttributes.get('endDateTime');
+        String startDateTime = (String)mapAttributes.get('startDateTime');
+        String timeZone = (String)mapAttributes.get('timeZone');
+        String meetingSubject = (String)mapAttributes.get('meetingSubject');
+        String meetingDescription = (String)mapAttributes.get('meetingDescription');
+
+        // Extract attendees email list and convert it to JSON string
+        List<Map<String, String>> attendeesList = new List<Map<String, String>>();
+        Object attendeesObj = mapAttributes.get('attendeesEmailList');
+        if (attendeesObj instanceof List<Object>) {
+            for (Object obj : (List<Object>)attendeesObj) {
+                attendeesList.add(new Map<String, String>{'email' => String.valueOf(obj)});
+            }
+        } else if (attendeesObj != null) {
+            attendeesList.add(new Map<String, String>{'email' => String.valueOf(attendeesObj)});
+        }
+        String attendeesJson = JSON.serialize(attendeesList);
+
+        // Construct requestBody
+        Map<String, Object> requestBody = new Map<String, Object>{
+            'end' => new Map<String, String>{
+                'dateTime' => endDateTime,
+                'timeZone' => timeZone
+            },
+            'start' => new Map<String, String>{
+                'dateTime' => startDateTime,
+                'timeZone' => timeZone
+            },
+            'summary' => meetingSubject,
+            'location' => 'Online',
+            'sendUpdates' => 'all',
+            'reminders' => new Map<String, Object>{
+                'useDefault' => false,
+                'overrides' => new List<Object>{
+                    new Map<String, Object>{
+                        'method' => 'email',
+                        'minutes' => 1440
+                    },
+                    new Map<String, Object>{
+                        'method' => 'popup',
+                        'minutes' => 60
+                    }
+                }
+            },
+            'description' => meetingDescription,
+            'attendees' => attendeesJson
+        };
+
+        return JSON.serialize(requestBody);
     }
 
     /*

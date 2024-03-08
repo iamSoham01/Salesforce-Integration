@@ -1,15 +1,17 @@
 /* customButton.css */
 .custom-button {
-  border: none;
-  background: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   padding: 5px 10px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
 }
 
-.button-label:active {
-  text-decoration: underline;
+.custom-button:focus,
+.custom-button:active,
+.custom-button:hover {
+  outline: none;
 }
 
 .button-image {
@@ -20,4 +22,10 @@
 
 .button-label {
   font-size: 14px;
+  white-space: nowrap;
 }
+
+.button-label:hover {
+  text-decoration: underline;
+}
+

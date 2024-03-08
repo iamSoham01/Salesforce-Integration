@@ -78,6 +78,7 @@
 		<members>ServicenowCredential</members>
 		<members>SlackCredential</members>
 		<members>SpotifyCredential</members>
+		<members>GoogleCalendarCredential</members>
 		<name>ExternalCredential</name>
 	</types>
 	<types>
@@ -88,6 +89,7 @@
 		<members>Servicenow</members>
 		<members>Slack</members>
 		<members>Spotify</members>
+		<members>GoogleCalendar</members>
 		<name>NamedCredential</name>
 	</types>
 	<types>
