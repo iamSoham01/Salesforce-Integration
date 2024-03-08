@@ -5,6 +5,11 @@
 		<members>opencage</members>
 		<members>chatgtp</members>
 		<members>servicenow</members>
+		<members>google</members>
+		<members>googleMaps</members>
+		<members>googleDrive</members>
+		<members>gmail</members>
+		<members>googleCalendar</members>
 		<name>StaticResource</name>
 	</types>
 	<types>
@@ -146,7 +151,7 @@
 	<types>
 		<members>ChatGTP</members>
 		<members>Facebook</members>
-		<members>Google_Calender</members>
+		<members>Google</members>
 		<members>LinkedIn</members>
 		<members>OpenCage</members>
 		<members>Servicenow</members>
@@ -157,7 +162,7 @@
 	<types>
 		<members>ChatGTP</members>
 		<members>Facebook</members>
-		<members>Google_Calender</members>
+		<members>Google</members>
 		<members>LinkedIn</members>
 		<members>OpenCage</members>
 		<members>Servicenow</members>
