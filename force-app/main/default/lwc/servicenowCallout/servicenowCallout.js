@@ -22,7 +22,7 @@ export default class ServicenowCallout extends LightningElement {
       }));
       this.callerNames = this.callerNames.concat(options);
     }else {
-      this.error = error;
+      this.error = JSON.stringify(error);
     }
   }
 
