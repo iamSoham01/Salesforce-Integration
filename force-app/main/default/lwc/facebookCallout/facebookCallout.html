@@ -1,49 +1,77 @@
 <template>
 
-  <lightning-card title="Facebook Post" icon-name="action:new_group">
+  <!-- Card Start -->
+  <lightning-card>
 
-    <lightning-layout class="slds-var-p-top_medium slds-var-p-bottom_x-large">
+    <!-- Card Header Start -->
+    <div class="slds-var-p-left_xx-large slds-var-m-bottom_x-large">
+      <img src={facebookLogo} alt="Open Cage Logo" width="150" height="50">
+    </div>
+    <!-- Card Header End -->    
+
+    <!-- Card Body Start -->
+    <lightning-layout class="slds-var-p-left_x-large slds-var-p-bottom_large">
       
       <lightning-layout-item size="4" padding="around-small">
         <lightning-combobox
             lwc:ref="pageName"
-            label="Select Facebook Page"
+            label="Select facebook page"
             value={value}
             options={facebookPageNames}
-            class="slds-var-m-left_xx-large"
             onchange={handleSelectedPage} >
         </lightning-combobox>
       </lightning-layout-item>
 
-      <template lwc:if={isPageSelected}>
+      <template lwc:if={isPageSelected} >
         
-        <lightning-layout-item size="4" padding="around-small">
-          <lightning-textarea label="Enter Message" class="slds-var-m-left_large" placeholder="type here..." lwc:ref="msg"></lightning-textarea>
+        <lightning-layout-item size="6" padding="around-small">
+          <lightning-textarea label="Enter message" class="slds-var-m-left_x-large" placeholder="type here..." lwc:ref="msg"></lightning-textarea>
         </lightning-layout-item>
 
-        <lightning-layout-item size="4" padding="around-small" style="margin-top: 22px">
-          <lightning-button label="Post" class="slds-var-m-left_large" onclick={handlePost} variant="brand"></lightning-button>
+        <lightning-layout-item size="2" style="margin-top: 22px" padding="around-small">
+          <lightning-button label="Create Post" icon-name="utility:share_post" class="slds-var-m-left_x-large" onclick={handlePost} variant="brand"></lightning-button>
         </lightning-layout-item>
   
       </template>
-
     </lightning-layout>
+    <!-- Card Body End -->
 
-    <lightning-layout class="slds-var-m-around_small">
+    <!-- Output Start -->
+    <lightning-layout class="slds-var-m-around_xx-large">
 
-      <template lwc:if={successResponse}>
-        <lightning-layout-item size="12" padding="around-small">
-          <strong style="font-size: 15px;" class="slds-var-m-left_large">Status: </strong>{successResponse}
-        </lightning-layout-item>
+      <template lwc:if={isLoaded}>
+        <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
       </template>
 
-      <template lwc:if={error}>
-        <lightning-layout-item size="12" padding="around-small">
-          <strong style="font-size: 15px;" class="slds-var-m-left_large">Error: </strong>{error}
-        </lightning-layout-item>
+      <template lwc:else>
+        <template lwc:if={successResponse}>
+          <lightning-layout-item size="12"> 
+            <div class="card-container">
+              <div class="card-content">
+                  <div class="card-detail">
+                    <strong>Message:</strong> {successResponse}
+                  </div>
+              </div>
+            </div>
+          </lightning-layout-item>
+        </template>
+
+        <template lwc:if={error}>
+          <lightning-layout-item size="12"> 
+            <div class="card-container">
+              <div class="card-content">
+                  <div class="card-detail">
+                    <strong>Error:</strong> {error}
+                  </div>
+              </div>
+            </div>
+          </lightning-layout-item>
+        </template>
       </template>
     </lightning-layout>
+    <!-- Output End -->
 
   </lightning-card>
+  <!-- Card End -->
     
 </template>

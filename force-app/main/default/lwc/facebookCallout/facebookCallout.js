@@ -1,12 +1,15 @@
 import { LightningElement, wire } from 'lwc';
+import FACEBOOK_LOGO from '@salesforce/resourceUrl/facebook';
 import getPageInfo from '@salesforce/apex/FacebookUtil.getPageInfo';
 import postFeedMessage from '@salesforce/apex/FacebookUtil.postFeedMessage';
 
 export default class FacebookCallout extends LightningElement {
 
+  facebookLogo = FACEBOOK_LOGO;
   isPageSelected;
   facebookPageNames = [{ label: 'None', value: '' }];
   error;
+  isLoaded = false;
   successResponse;
   selectedPageInfo;
 
@@ -21,6 +24,7 @@ export default class FacebookCallout extends LightningElement {
     }else {
       this.error = error;
     }
+    this.isLoaded = !this.isLoaded;
   }
 
   handleSelectedPage(){
@@ -47,9 +51,12 @@ export default class FacebookCallout extends LightningElement {
 
     const msg = this.refs.msg;
     const isMsgValid = this.checkFieldValidity(msg, `your message`);
+
     if(!isMsgValid){
       return;
     }
+
+    this.isLoaded = !this.isLoaded;
 
     const facbookPageId = this.selectedPageInfo.split(`:`)[0];
     const facbookPageToken = this.selectedPageInfo.split(`:`)[1];
@@ -59,11 +66,14 @@ export default class FacebookCallout extends LightningElement {
       this.error = ``;
       msg.value = ``;
       this.selectedPageInfo = ``;
-      this.successResponse = `Your message has been posted successfully with Id: ${result}`;
+      this.successResponse = `Your message has been posted successfully with id: ${result}`;
     })
     .catch((error) => {
       this.error = error.message;
       this.successResponse = ``;
+    })
+    .finally(() => {
+      this.isLoaded = !this.isLoaded;
     });
 
   }
