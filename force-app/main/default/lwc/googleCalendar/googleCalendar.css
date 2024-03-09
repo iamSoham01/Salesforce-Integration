@@ -1,0 +1,32 @@
+/* meetingCard.css */
+:host {
+  display: block;
+}
+
+.card-container {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  background-color: #ffffff;
+}
+
+.card-container:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-detail {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.card-detail strong {
+  font-weight: bold;
+}
+
+.card-link {
+  color: #005a9e;
+}

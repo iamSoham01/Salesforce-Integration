@@ -6,6 +6,7 @@
     <friendlyName>Google Auth Provider</friendlyName>
     <iconUrl>https://login.salesforce.com/icons/google-colored.png</iconUrl>
     <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <isPkceEnabled>true</isPkceEnabled>
     <providerType>Google</providerType>
     <requireMfa>false</requireMfa>
     <sendAccessTokenInHeader>false</sendAccessTokenInHeader>

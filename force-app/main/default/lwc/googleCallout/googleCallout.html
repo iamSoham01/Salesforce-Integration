@@ -1,103 +1,71 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
 <template>
-    
-  <lightning-card  title="Google Calender Integration" icon-name="standard:announcement">
+  
+  <!-- Card Begin -->
+  <lightning-card>
 
-    <!-- <lightning-layout class="slds-var-m-around_medium">
-
-      <lightning-layout-item size="6">
-        <h2 class="slds-text-heading_small slds-text-align_right" style="margin-top: 4px">
-          Click this button to Authenticate
-        </h2>
-      </lightning-layout-item> 
-
-      <lightning-layout-item size="6">
-        <lightning-button label="Authenticate" onclick={handleAuthentication} variant="success" class="slds-var-p-left_small"></lightning-button>
-      </lightning-layout-item>  
-    
-    </lightning-layout> -->
-
-    <lightning-layout class="slds-var-m-around_medium">
-      <lightning-icon icon-name="standard:date_input" alternative-text="Calendar" size="small"></lightning-icon>
-      <h2 class="slds-text-heading_small slds-var-m-left_small">Create a meeting</h2>
-    </lightning-layout>
-
-    <lightning-layout class="slds-var-m-around_medium">
-
-      <lightning-layout-item size="4" padding="around-small">
-        <lightning-input type="email" label="Enter Sender Email" lwc:ref="senderEmail"></lightning-input>
+    <!-- Card Header Start -->
+    <lightning-layout class="slds-var-m-top_large slds-var-m-bottom_xx-large">
+      <!-- Logo Start -->
+      <lightning-layout-item size="7">
+        <div class="slds-var-p-left_xx-large">
+          <img src={resources.googleLogo} alt="Open Cage Logo" width="75" height="25" />
+        </div>
       </lightning-layout-item>
+      <!-- Logo End -->
+      
+      <lightning-layout-item size="5">
 
-      <lightning-layout-item size="4" padding="around-small">
-        <lightning-input type="date" label="Enter Start Date" lwc:ref="startDate"></lightning-input>
-      </lightning-layout-item>
+        <!-- Menu Button Start -->
+        <lightning-button-group class="slds-var-m-top_large">
 
-      <lightning-layout-item size="4" padding="around-small">
-        <lightning-input type="time" label="Enter Start Time" lwc:ref="startTime"></lightning-input>
-      </lightning-layout-item>
-    
-    </lightning-layout>
+          <!-- Google Calendar Button -->
+          <button onclick={handleMenuBtn} data-name="Calendar" class="custom-button slds-button">
+            <img src={resources.calnedarLogo} data-name="Calendar" alt="Google Calendar Logo" class="button-image" />
+            <span data-name="Calendar" class="button-label">Calendar</span>
+          </button>
 
-    <lightning-layout class="slds-var-m-around_medium">
+          <!-- Gmail Button -->
+          <button onclick={handleMenuBtn} data-name="Gmail" class="custom-button slds-button">
+            <img src={resources.gmailLogo} data-name="Gmail" alt="Gmail Logo" class="button-image" />
+            <span data-name="Gmail" class="button-label">Gmail</span>
+          </button>
 
-      <lightning-layout-item size="4" padding="around-small">
-        <lightning-input type="date" label="Enter End Date" lwc:ref="endDate"></lightning-input>
-      </lightning-layout-item>
+          <!-- Google Maps Button -->
+          <button onclick={handleMenuBtn} data-name="Maps" class="custom-button slds-button">
+            <img src={resources.mapsLogo} data-name="Maps" alt="Google Maps Logo" class="button-image" />
+            <span class="button-label" data-name="Maps">Maps</span>
+          </button>
 
-      <lightning-layout-item size="4" padding="around-small">
-        <lightning-input type="time" label="Enter End Time" lwc:ref="endTime"></lightning-input>
-      </lightning-layout-item>
+          <!-- Google Drive Button -->
+          <button onclick={handleMenuBtn} data-name="Drive" class="custom-button slds-button">
+            <img src={resources.driveLogo} data-name="Drive" alt="Google Drive Logo" class="button-image" />
+            <span class="button-label" data-name="Drive">Drive</span>
+          </button>
 
-      <lightning-layout-item size="4" padding="around-small">
-        <lightning-combobox
-          name="timeZone"
-          label="Select Timezone"
-          value={selectedTimeZone}
-          options={timezones}
-          lwc:ref="timeZone">
-        </lightning-combobox>
-      </lightning-layout-item>
-    
-    </lightning-layout>
+        </lightning-button-group>
+        <!-- Menu Button End -->
 
-    <lightning-layout class="slds-var-m-around_medium">
-
-      <lightning-layout-item size="4" padding="around-small">
-        <lightning-input label="Enter Meeting Subject" lwc:ref="meetingSubject"></lightning-input>
-      </lightning-layout-item>
-
-      <lightning-layout-item size="4" padding="around-small">
-        <lightning-textarea label="Enter Meeting Description" placeholder="type here..." lwc:ref="meetingDescription"></lightning-textarea>
-      </lightning-layout-item>
-
-      <lightning-layout-item size="4" padding="around-small">
-        <lightning-textarea label="Enter Attendees Email" placeholder="type here..." lwc:ref="attendeesEmail"></lightning-textarea>
-      </lightning-layout-item>
-
-    </lightning-layout>
-
-    <lightning-layout class="slds-var-m-around_medium">
-      <lightning-layout-item size="6"></lightning-layout-item>
-      <lightning-layout-item size="6">
-        <lightning-button label="Create Meeting" onclick={handleCreateMeeting} variant="brand-outline" class="slds-var-p-left_x-small"></lightning-button>
       </lightning-layout-item>
     </lightning-layout>
+    <!-- Card Header End -->
 
-    <lightning-layout class="slds-var-m-around_medium">
+    <template lwc:if={isCalendar}>
+      <c-google-calendar></c-google-calendar>
+    </template>
 
-      <template lwc:if={meetingURL}> 
-        <lightning-layout-item size="12" padding="around-medium" >
-          <strong style="font-size: 15px;">Meeting Link: </strong>
-          <lightning-formatted-url value={meetingURL} class="slds-var-m-left_small" style="font-size: 15px;" linkify></lightning-formatted-url>
-        </lightning-layout-item>
-      </template>
+    <template lwc:if={isGmail}>
+      Gmail
+    </template>
 
-      <template lwc:if={error}> 
-        <lightning-layout-item size="12" style="margin-top: 15px" padding="around-medium" >
-          <strong style="font-size: 15px;" class="slds-var-m-right_small">Please send this message to system admin: </strong> {error}
-        </lightning-layout-item>
-      </template>
+    <template lwc:if={isMaps}>
+      Maps
+    </template>
 
-    </lightning-layout>
+    <template lwc:if={isDrive}>
+      Drive
+    </template>
     
   </lightning-card>
 

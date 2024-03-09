@@ -5,6 +5,11 @@
 		<members>opencage</members>
 		<members>chatgtp</members>
 		<members>servicenow</members>
+		<members>google</members>
+		<members>googleMaps</members>
+		<members>googleDrive</members>
+		<members>gmail</members>
+		<members>googleCalendar</members>
 		<name>StaticResource</name>
 	</types>
 	<types>
@@ -73,6 +78,7 @@
 		<members>ServicenowCredential</members>
 		<members>SlackCredential</members>
 		<members>SpotifyCredential</members>
+		<members>GoogleCalendarCredential</members>
 		<name>ExternalCredential</name>
 	</types>
 	<types>
@@ -83,6 +89,7 @@
 		<members>Servicenow</members>
 		<members>Slack</members>
 		<members>Spotify</members>
+		<members>GoogleCalendar</members>
 		<name>NamedCredential</name>
 	</types>
 	<types>
@@ -146,7 +153,7 @@
 	<types>
 		<members>ChatGTP</members>
 		<members>Facebook</members>
-		<members>Google_Calender</members>
+		<members>Google</members>
 		<members>LinkedIn</members>
 		<members>OpenCage</members>
 		<members>Servicenow</members>
@@ -157,7 +164,7 @@
 	<types>
 		<members>ChatGTP</members>
 		<members>Facebook</members>
-		<members>Google_Calender</members>
+		<members>Google</members>
 		<members>LinkedIn</members>
 		<members>OpenCage</members>
 		<members>Servicenow</members>

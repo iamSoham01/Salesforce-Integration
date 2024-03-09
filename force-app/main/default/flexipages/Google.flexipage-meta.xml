@@ -10,7 +10,7 @@
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Google Calender</masterLabel>
+    <masterLabel>Google</masterLabel>
     <template>
         <name>flexipage:defaultAppHomeTemplate</name>
     </template>

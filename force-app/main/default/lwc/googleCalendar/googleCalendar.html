@@ -1,0 +1,89 @@
+<template>
+
+  <lightning-layout class="slds-var-m-left_xx-large slds-var-p-top_xx-large slds-var-m-bottom_large">
+      <lightning-icon icon-name="standard:date_input" alternative-text="Calendar" size="small"></lightning-icon>
+      <h2 class="slds-text-heading_small slds-var-m-left_small">Schedule a meeting</h2>
+  </lightning-layout>
+
+  <lightning-layout class="slds-var-p-left_x-large slds-var-p-right_x-large">
+
+    <lightning-layout-item size="4" padding="around-medium">
+      <lightning-textarea label="Enter meeting subject" placeholder="type here..." lwc:ref="meetingSubject"></lightning-textarea>
+    </lightning-layout-item>
+
+    <lightning-layout-item size="4" padding="around-medium">
+      <lightning-textarea label="Enter description" placeholder="type here..." lwc:ref="meetingDescription"></lightning-textarea>
+    </lightning-layout-item>
+
+    <lightning-layout-item size="4" padding="around-medium">
+      <lightning-textarea label="Enter attendees email" placeholder="type here..." lwc:ref="attendeesEmail"></lightning-textarea>
+    </lightning-layout-item>
+
+  </lightning-layout>
+
+  <lightning-layout class="slds-var-p-left_x-large slds-var-p-right_x-large slds-var-p-top_xx-small">
+
+    <lightning-layout-item size="2" padding="around-medium">
+      <lightning-input type="date" label="Start date" lwc:ref="startDate"></lightning-input>
+    </lightning-layout-item>
+
+    <lightning-layout-item size="2" padding="around-medium">
+      <lightning-input type="time" label="Start time" lwc:ref="startTime"></lightning-input>
+    </lightning-layout-item>
+
+    <lightning-layout-item size="2" padding="around-medium">
+      <lightning-input type="date" label="End date" lwc:ref="endDate"></lightning-input>
+    </lightning-layout-item>
+
+    <lightning-layout-item size="2" padding="around-medium">
+      <lightning-input type="time" label="End time" lwc:ref="endTime"></lightning-input>
+    </lightning-layout-item>
+
+    <lightning-layout-item size="4" padding="around-medium">
+      <lightning-combobox
+        name="timeZone"
+        label="Select timezone"
+        value={selectedTimeZone}
+        options={timezones}
+        lwc:ref="timeZone">
+      </lightning-combobox>
+    </lightning-layout-item>
+  
+  </lightning-layout>
+
+  <lightning-layout class="slds-var-p-top_xx-large">
+    <lightning-layout-item flexibility="auto" padding="around-small">
+      <div class="slds-text-align_center">
+        <lightning-button label="Create Meeting" onclick={handleCreateMeeting} variant="brand-outline"></lightning-button>
+      </div>
+    </lightning-layout-item>
+  </lightning-layout>
+
+  <lightning-layout class="slds-var-m-around_x-large slds-align_absolute-center">
+
+    <template lwc:if={meetingURL}>
+      <lightning-layout-item size="12"> 
+        <div class="card-container">
+          <div class="card-content">
+              <div class="card-detail">
+                  Your meeting has been scheduled successfully. Please join using this <strong>Link:</strong> <a href={meetingURL} target="_blank" rel="noopener noreferrer" class="card-link"> {meetingURL}</a>
+              </div>
+          </div>
+        </div>
+      </lightning-layout-item>
+    </template>
+
+    <template lwc:if={error}>
+      <lightning-layout-item size="12"> 
+        <div class="card-container">
+          <div class="card-content">
+              <div class="card-detail">
+                Please send this message to <strong>system admin:</strong> {error}
+              </div>
+          </div>
+        </div>
+      </lightning-layout-item> 
+    </template>
+  </lightning-layout>
+    
+</template>
