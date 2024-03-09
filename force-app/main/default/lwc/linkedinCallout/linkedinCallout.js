@@ -1,9 +1,11 @@
 import { LightningElement } from 'lwc';
+import LINKEDIN_LOGO from '@salesforce/resourceUrl/linkedin';
 import createPost from '@salesforce/apex/LinkedinUtil.createPost';
-
 
 export default class LinkedinCallout extends LightningElement {
 
+  linkedinLogo = LINKEDIN_LOGO;
+  isLoaded = false;
   error;
   message;
   profileId;
@@ -29,6 +31,8 @@ export default class LinkedinCallout extends LightningElement {
     if(!checkMsgValid || !checkLinkedinVersionValid){
       return;
     }
+
+    this.isLoaded = !this.isLoaded;
     
     createPost({ msg: msg.value, linkedinVersion: linkedInVersion.value})
       .then((result) => {
@@ -40,6 +44,9 @@ export default class LinkedinCallout extends LightningElement {
       .catch((error) => {
         this.error = error.message;
         this.message = ``;
+      })
+      .finally(() => {
+        this.isLoaded = !this.isLoaded;
       });
 
   }

@@ -1,38 +1,62 @@
 <template>
 
-  <lightning-card  title="Linkedin Integration" icon-name="standard:job_position" >
+  <lightning-card>
 
-    <lightning-layout class="slds-var-m-around_medium">
+    <!-- Card Header Start -->
+    <div class="slds-var-m-around_xx-large">
+      <img src={linkedinLogo} alt="Linkedin Logo" width="150" height="50">
+    </div>
+    <!-- Card Header End -->
 
-      <lightning-layout-item size="4" padding="around-small">
-        <lightning-textarea label="Enter Message" class="slds-var-m-left_large" placeholder="type here..." lwc:ref="msg"></lightning-textarea>
+    <lightning-layout class="slds-var-m-left_xx-large slds-var-p-bottom_large">
+
+      <lightning-layout-item size="6">
+        <lightning-textarea label="Enter Message" placeholder="type here..." lwc:ref="msg"></lightning-textarea>
       </lightning-layout-item>
 
-      <lightning-layout-item size="4" padding="around-small">
-        <lightning-input label="Linkedin Version" class="slds-var-m-left_large" lwc:ref="linkedInVersion"></lightning-input>
+      <lightning-layout-item size="4">
+        <lightning-input label="Linkedin Version" class="slds-var-m-left_x-large" lwc:ref="linkedInVersion"></lightning-input>
       </lightning-layout-item>
 
-      <lightning-layout-item size="4" padding="around-small" style="margin-top: 22px">
-        <lightning-button label="Send Post" class="slds-var-m-left_large" onclick={handleSendPost} variant="brand-outline" ></lightning-button>
+      <lightning-layout-item size="2" style="margin-top: 22px">
+        <lightning-button label="Send Post" class="slds-var-m-left_x-large" onclick={handleSendPost} variant="brand-outline" ></lightning-button>
       </lightning-layout-item>
 
     </lightning-layout>
 
-    <lightning-layout class="slds-var-m-around_medium">
+    <lightning-layout class="slds-var-m-around_xx-large">
 
-      <template lwc:if={message}> 
-        <lightning-layout-item size="12" padding="around-small" >
-          <strong style="font-size: 15px;" class="slds-var-m-left_large">Message: </strong>{message}
-        </lightning-layout-item>
+      <template lwc:if={isLoaded}>
+        <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
       </template>
 
-      <template lwc:if={error}> 
-        <lightning-layout-item size="12" padding="around-small" >
-          <strong style="font-size: 15px;" class="slds-var-m-left_large">Error: </strong>{error}
-        </lightning-layout-item>
+      <template lwc:else>
+        <template lwc:if={message}>
+          <lightning-layout-item size="12"> 
+            <div class="card-container">
+              <div class="card-content">
+                  <div class="card-detail">
+                     <strong>Message:</strong> {message}
+                  </div>
+              </div>
+            </div>
+          </lightning-layout-item>
+        </template>
+
+        <template lwc:if={error}> 
+          <lightning-layout-item size="12"> 
+            <div class="card-container">
+              <div class="card-content">
+                  <div class="card-detail">
+                     <strong>Error:</strong> {error}
+                  </div>
+              </div>
+            </div>
+          </lightning-layout-item>
+        </template>
       </template>
+
     </lightning-layout>
-
 
   </lightning-card>
     
