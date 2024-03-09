@@ -58,6 +58,8 @@ export default class ServicenowCallout extends LightningElement {
     if(!isMessageValid){
       return;
     }
+    
+    this.isLoaded = !this.isLoaded;
 
     createIncident({callerId: this.callerId, description: message.value})
       .then(result => {
@@ -73,6 +75,9 @@ export default class ServicenowCallout extends LightningElement {
           this.error = err;
         }
         this.incidentNumber = ``;
+      })
+      .finally(() => {
+        this.isLoaded = !this.isLoaded;
       });
   }
 
