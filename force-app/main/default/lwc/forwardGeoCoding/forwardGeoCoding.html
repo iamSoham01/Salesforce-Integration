@@ -1,7 +1,7 @@
 <template>
   
   <!-- Input Start -->
-  <div class="slds-var-m-left_x-large slds-var-m-right_large slds-var-m-bottom_xx-large slds-var-m-top_xx-large">
+  <div class="slds-var-m-right_xx-large slds-var-m-bottom_xx-large slds-var-m-top_xx-large">
     <lightning-textarea label="Enter your address" placeholder="type here..." lwc:ref="address" style="margin-bottom: 18px;"></lightning-textarea>
     <lightning-button label="Get Coordinate" icon-name="utility:pin" variant="brand-outline" onclick={handleCoordinate}></lightning-button>
   </div>
@@ -13,16 +13,29 @@
   </template>
 
   <template lwc:else>
-    <div class="slds-var-m-left_x-large slds-var-m-bottom_xx-large">
-      <template lwc:if={lat}> 
-        <strong style="font-size: 15px;">Coordinate Location: </strong>
-        <lightning-formatted-location latitude={lat} longitude={lng} style="font-size: 15px;"></lightning-formatted-location>
+    <div class="slds-var-m-bottom_large slds-var-m-right_xx-large">
+      <template lwc:if={lat}>         
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                  <strong>Coordinate Location: </strong> <lightning-formatted-location latitude={lat} longitude={lng} style="font-size: 15px;"></lightning-formatted-location>
+                </div>
+            </div>
+          </div>
+        </lightning-layout-item>
       </template>
 
       <template lwc:if={error}>
-        <span style="font-size: 15px;">
-          <strong>Please send this message to system admin: </strong> {error}
-        </span>
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                  Please send this message to <strong>system admin:</strong> {error}
+                </div>
+            </div>
+          </div>
+        </lightning-layout-item>
       </template>
     </div>
   </template>

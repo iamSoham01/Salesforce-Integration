@@ -1,21 +1,21 @@
 <template>
   
   <!-- Card Begin -->
-  <lightning-card class="slds-var-m-top_xx-large">
+  <lightning-card>
 
     <!-- Card Header Start -->
-    <div class="slds-var-p-left_xx-large slds-var-m-bottom_large">
-      <img src={opencageLogo} alt="Open Cage Logo" width="150" height="50">
+    <div class="slds-var-p-left_xx-large slds-var-p-top_large">
+      <img src={opencageLogo} alt="Open Cage Logo" width="150" height="20">
     </div>
     <!-- Card Header End -->
 
     <!-- Card Body Start -->
-    <lightning-layout class="slds-var-m-bottom_xx-large">
+    <lightning-layout class="slds-var-m-around_xx-large">
 
-      <lightning-layout-item size="6" padding="around-medium">
+      <lightning-layout-item size="6">
 
         <!-- Menu Button Start -->
-        <lightning-button-group class="slds-var-p-left_x-large slds-var-m-bottom_xx-large">
+        <lightning-button-group class="slds-var-m-bottom_xx-large">
           <lightning-button label="Forward GeoCoding" icon-name="action:refresh" variant={forwardGeocodingBtnVariant} onclick={handleGeoCodingType}></lightning-button>
           <lightning-button label="Reverse GeoCoding" icon-name="action:recall" variant={reverseGeocodingBtnVariant} onclick={handleGeoCodingType}></lightning-button>
         </lightning-button-group>
@@ -37,7 +37,7 @@
 
       <!-- Display Map Start -->
       <template lwc:if={isMapVisible}> 
-        <lightning-layout-item size="5" class="slds-var-m-left_x-large">
+        <lightning-layout-item size="6" class="slds-var-p-left_small">
           <lightning-map map-markers={mapMarkers}> 
           </lightning-map>
         </lightning-layout-item>
