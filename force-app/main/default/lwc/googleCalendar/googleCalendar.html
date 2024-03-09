@@ -51,7 +51,7 @@
   
   </lightning-layout>
 
-  <lightning-layout class="slds-var-p-top_xx-large slds-var-p-bottom_large">
+  <lightning-layout class="slds-var-p-top_xx-large">
     <lightning-layout-item flexibility="auto" padding="around-small">
       <div class="slds-text-align_center">
         <lightning-button label="Create Meeting" onclick={handleCreateMeeting} variant="brand-outline"></lightning-button>
@@ -59,34 +59,31 @@
     </lightning-layout-item>
   </lightning-layout>
 
-  <lightning-layout class="slds-var-m-around_large">
+  <lightning-layout class="slds-var-m-around_x-large slds-align_absolute-center">
 
-    <template lwc:if={meetingDetails.htmlLink}> 
-      <div class="card-container">
-        <div class="card-content">
-            <div class="card-title">{meetingDetails.summary}</div>
-            <div class="card-detail">
-                <strong>Created:</strong> {meetingDetails.created}
-            </div>
-            <div class="card-detail">
-                <strong>Status:</strong> {meetingDetails.status}
-            </div>
-            <div class="card-detail">
-                <strong>Updated:</strong> {meetingDetails.updated}
-            </div>
-            <div class="card-detail">
-                <strong>HTML Link:</strong> <a href={meetingDetails.htmlLink} target="_blank" rel="noopener noreferrer" class="card-link">{meetingDetails.htmlLink}</a>
-            </div>
+    <template lwc:if={meetingURL}>
+      <lightning-layout-item size="12"> 
+        <div class="card-container">
+          <div class="card-content">
+              <div class="card-detail">
+                  Your meeting has been scheduled successfully. Please join using this <strong>Link:</strong> <a href={meetingURL} target="_blank" rel="noopener noreferrer" class="card-link"> {meetingURL}</a>
+              </div>
+          </div>
         </div>
-      </div>
-    </template>
-
-    <template lwc:if={error}> 
-      <lightning-layout-item size="12" style="margin-top: 15px" padding="around-medium" >
-        <strong style="font-size: 15px;" class="slds-var-m-right_small">Please send this message to system admin: </strong> {error}
       </lightning-layout-item>
     </template>
 
+    <template lwc:if={error}>
+      <lightning-layout-item size="12"> 
+        <div class="card-container">
+          <div class="card-content">
+              <div class="card-detail">
+                Please send this message to <strong>system admin:</strong> {error}
+              </div>
+          </div>
+        </div>
+      </lightning-layout-item> 
+    </template>
   </lightning-layout>
     
 </template>

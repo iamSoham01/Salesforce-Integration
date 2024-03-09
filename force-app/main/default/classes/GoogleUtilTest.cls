@@ -51,28 +51,13 @@ private class GoogleUtilTest {
         String meetingSubject = 'Best Rest API Course for Salesforce Developers';
         String meetingDescription = 'Please learn carefully';
         
-        String requestBody = '{'
-                        +'"end": {'
-                        +  '"dateTime": "' + endDateTime + '",'
-                        +  '"timeZone": "' + timeZone + '"'
-                        + '},'
-                        + '"start": {'
-                        + '"dateTime": "' + startDateTime + '",'
-                        + '"timeZone": "' + timeZone + '"'
-                        + '},'
-                        + '"summary": "' + meetingSubject + '",'
-                        + '"location": "Online",'
-                        + '"sendUpdates": "all",'
-                        + '"description": "' + meetingDescription + '",'
-                        + '"attendees":' + '[' 
-                        +	'{'
-      					+		'"email": "testuser1@gmail.com"'
-    					+	'},'
-    					+	'{'
-      					+		'"email": "testuser2@gmail.com"'
-    					+	'}' 
-                        + ']'
-                      +'}';
+        Map<String, Object> mapAttributes = new Map<String, Object>();
+        mapAttributes.put('endDateTime', endDateTime);
+        mapAttributes.put('startDateTime', startDateTime);
+        mapAttributes.put('timeZone', timeZone);
+        mapAttributes.put('meetingSubject', meetingSubject);
+        mapAttributes.put('meetingDescription', meetingDescription);
+        mapAttributes.put('attendeesEmailList', 'testuser1@gmail.com');
         
         // Starting the test execution.
         Test.startTest();
@@ -83,7 +68,7 @@ private class GoogleUtilTest {
             Test.setMock(HttpCalloutMock.class, new GoogleUtilMock());
             
             //Test Scenario 1: Providing payload
-            String meetingURL = GoogleUtil.createCalenderMeeting('test@gmail.com', requestBody);
+            String meetingURL = GoogleUtil.createCalenderMeeting(mapAttributes);
             Assert.areEqual('https://www.google.com/calendar/event?eid=M3NycHYxZjhibmU2ZW1nbzh2NWc0cXJlYzQgc29oYW1kYXR0YTAxQG0', meetingURL);
             
         }

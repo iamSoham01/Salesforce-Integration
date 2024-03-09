@@ -8,7 +8,6 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   background-color: #ffffff;
-  margin: 20px;
 }
 
 .card-container:hover {
@@ -19,14 +18,9 @@
   padding: 20px;
 }
 
-.card-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
 .card-detail {
   margin-bottom: 10px;
+  font-size: 15px;
 }
 
 .card-detail strong {

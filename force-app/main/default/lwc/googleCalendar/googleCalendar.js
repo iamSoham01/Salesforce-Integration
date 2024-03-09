@@ -5,7 +5,7 @@ export default class GoogleCalendar extends LightningElement {
   
   timezones = [];
   error;
-  @track meetingDetails;
+  @track meetingURL;
 
   connectedCallback() {
     this.loadTimeZoneData();
@@ -81,9 +81,7 @@ export default class GoogleCalendar extends LightningElement {
 
     createCalenderMeeting({mapAttributes: mapAttributes})
       .then((result) => {
-        console.log(`result: `,JSON.stringify(result));
-        this.meetingDetails = result;
-        console.log(`this.meetingDetails: `,JSON.stringify(this.meetingDetails));
+        this.meetingURL = result;
         this.error = ``;
         startDate.value = ``;
         startTime.value = ``;
@@ -92,10 +90,11 @@ export default class GoogleCalendar extends LightningElement {
         meetingSubject.value = ``;
         meetingDescription.value = ``;
         attendeesEmail.value = ``;
+        this.timezones = [];
       })
       .catch((error) => {
         this.error = error.message;
-        this.meetingDetails = ``;
+        this.meetingURL = ``;
       });
     
 
