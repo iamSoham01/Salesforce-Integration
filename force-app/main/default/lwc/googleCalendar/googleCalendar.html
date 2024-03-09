@@ -61,29 +61,36 @@
 
   <lightning-layout class="slds-var-m-around_x-large slds-align_absolute-center">
 
-    <template lwc:if={meetingURL}>
-      <lightning-layout-item size="12"> 
-        <div class="card-container">
-          <div class="card-content">
-              <div class="card-detail">
-                  Your meeting has been scheduled successfully. Please join using this <strong>Link:</strong> <a href={meetingURL} target="_blank" rel="noopener noreferrer" class="card-link"> {meetingURL}</a>
-              </div>
-          </div>
-        </div>
-      </lightning-layout-item>
+    <template lwc:if={isLoaded}>
+      <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
     </template>
 
-    <template lwc:if={error}>
-      <lightning-layout-item size="12"> 
-        <div class="card-container">
-          <div class="card-content">
-              <div class="card-detail">
-                Please send this message to <strong>system admin:</strong> {error}
-              </div>
+    <template lwc:else>
+      <template lwc:if={meetingURL}>
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                    Your meeting has been scheduled successfully. Please join using this <strong>Link:</strong> <a href={meetingURL} target="_blank" rel="noopener noreferrer" class="card-link"> {meetingURL}</a>
+                </div>
+            </div>
           </div>
-        </div>
-      </lightning-layout-item> 
+        </lightning-layout-item>
+      </template>
+
+      <template lwc:if={error}>
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                  Please send this message to <strong>system admin:</strong> {error}
+                </div>
+            </div>
+          </div>
+        </lightning-layout-item> 
+      </template>
     </template>
+    
   </lightning-layout>
     
 </template>

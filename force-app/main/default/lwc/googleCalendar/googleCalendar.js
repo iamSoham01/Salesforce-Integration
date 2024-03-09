@@ -1,11 +1,12 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement} from 'lwc';
 import createCalenderMeeting from '@salesforce/apex/GoogleUtil.createCalenderMeeting';
 
 export default class GoogleCalendar extends LightningElement {
   
   timezones = [];
   error;
-  @track meetingURL;
+  meetingURL;
+  isLoaded = false;
 
   connectedCallback() {
     this.loadTimeZoneData();
@@ -66,6 +67,8 @@ export default class GoogleCalendar extends LightningElement {
       return;
     }
 
+    this.isLoaded = !this.isLoaded;
+
     const attendeesEmailList = attendeesEmail.value.split('\n').filter(email => email.trim() !== '').filter(email => this.isValidEmail(email));
     const startDateTime = `${startDate.value}T${startTime.value.substring(0, 8)}`;
     const endDateTime = `${endDate.value}T${endTime.value.substring(0, 8)}`;
@@ -95,6 +98,9 @@ export default class GoogleCalendar extends LightningElement {
       .catch((error) => {
         this.error = error.message;
         this.meetingURL = ``;
+      })
+      .finally(() => {
+        this.isLoaded = !this.isLoaded;
       });
     
 
