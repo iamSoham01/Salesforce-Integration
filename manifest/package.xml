@@ -176,5 +176,5 @@
 		<members>Integration</members>
 		<name>CustomApplication</name>
 	</types>
-	<version>58.0</version>
+	<version>59.0</version>
 </Package>
