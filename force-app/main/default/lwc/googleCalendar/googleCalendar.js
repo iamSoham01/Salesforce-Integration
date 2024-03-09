@@ -93,7 +93,6 @@ export default class GoogleCalendar extends LightningElement {
         meetingSubject.value = ``;
         meetingDescription.value = ``;
         attendeesEmail.value = ``;
-        this.timezones = [];
       })
       .catch((error) => {
         this.error = error.message;

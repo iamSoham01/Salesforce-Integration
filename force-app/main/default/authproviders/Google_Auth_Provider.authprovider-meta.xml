@@ -2,7 +2,7 @@
 <AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
     <authorizeUrl>https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&amp;prompt=consent</authorizeUrl>
     <consumerKey>YOUR_CONSUMER_KEY</consumerKey>
-    <consumerSecret>YOUR_CONSUMER_SECRET</consumerSecret>
+    <consumerSecret>Placeholder_Value</consumerSecret>
     <friendlyName>Google Auth Provider</friendlyName>
     <iconUrl>https://login.salesforce.com/icons/google-colored.png</iconUrl>
     <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
