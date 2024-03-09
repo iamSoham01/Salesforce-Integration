@@ -5,6 +5,7 @@
     <consumerSecret>Placeholder_Value</consumerSecret>
     <friendlyName>Facebook Auth Provider</friendlyName>
     <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <isPkceEnabled>true</isPkceEnabled>
     <providerType>Facebook</providerType>
     <requireMfa>false</requireMfa>
     <sendAccessTokenInHeader>false</sendAccessTokenInHeader>
