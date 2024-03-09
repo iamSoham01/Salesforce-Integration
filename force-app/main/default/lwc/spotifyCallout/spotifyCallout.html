@@ -1,13 +1,23 @@
 <template>
 
+  <lightning-card>
+
+    <!-- Card Header Start -->
+    <div class="slds-var-p-left_xx-large slds-var-m-bottom_large">
+      <img src={spotifyLogo} alt="Open Cage Logo" width="150" height="50">
+    </div>
+    <!-- Card Header End -->
+    
     <template lwc:if={song}>
       <div class="envelope">
-        <img class="imgcover" src={song.albumPhoto} />
-        <h1 class="song-info">
-          You are listening to:<br />
-          {song.musicName}, by {song.artistName}.
-        </h1>
+        <img class="imgcover" src={song.albumPhoto} alt="Album Cover" />
+        <div class="song-info">
+            <h1 class="music-name">{song.musicName}</h1>
+            <h2 class="artist-name">by {song.artistName}</h2>
+        </div>
       </div>
     </template>
+
+  </lightning-card>
 
 </template>

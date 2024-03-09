@@ -1,16 +1,16 @@
 <template>
 
   <!-- Input Start -->
-  <lightning-layout class="slds-var-m-left_medium slds-var-m-right_large slds-var-m-top_xx-large">
-    <lightning-layout-item size="6" padding="around-medium">
-      <lightning-input type="number" label="Enter Latitude" step="any" pattern="[0-9]+([.][0-9]+)?" lwc:ref="lat"></lightning-input>
+  <lightning-layout class="slds-var-m-right_large slds-var-m-top_xx-large slds-var-m-bottom_medium">
+    <lightning-layout-item size="4" class="slds-var-m-right_large">
+      <lightning-input type="number"  label="Enter Latitude" step="any" pattern="[0-9]+([.][0-9]+)?" lwc:ref="lat"></lightning-input>
     </lightning-layout-item>
-    <lightning-layout-item size="6" padding="around-medium">
+    <lightning-layout-item size="4" class="slds-var-m-left_large slds-var-m-right_large">
       <lightning-input type="number" label="Enter Longitude" step="any" lwc:ref="lng"></lightning-input>
     </lightning-layout-item>
   </lightning-layout>
 
-  <lightning-button label="Get Address" icon-name="utility:target" variant="brand-outline" onclick={handleAddress} class="slds-var-m-bottom_xx-large slds-var-m-left_x-large"></lightning-button>
+  <lightning-button label="Get Address" icon-name="utility:target" variant="brand-outline" onclick={handleAddress} class="slds-var-m-bottom_medium"></lightning-button>
   <!-- Input End -->
 
   <!-- Output Message Start -->
@@ -19,16 +19,29 @@
   </template>
 
   <template lwc:else>
-    <div class="slds-var-m-left_x-large slds-var-m-top_x-large slds-var-m-bottom_xx-large">
-      <template lwc:if={address}> 
-        <span>
-          <strong style="font-size: 15px;">Address Location: </strong>
-          <p style="font-size: 15px;">{address}</p>
-        </span>
+    <div class="slds-var-m-top_xx-large slds-var-m-bottom_x-large slds-var-p-right_large">
+      <template lwc:if={address}>
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                  <strong>Address:</strong> {address}
+                </div>
+            </div>
+          </div>
+        </lightning-layout-item>
       </template>
 
       <template lwc:if={error}> 
-        <strong style="font-size: 15px;" class="slds-var-m-right_small">Please send this message to system admin: </strong> {error}
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                  Please send this message to <strong>system admin:</strong> {error}
+                </div>
+            </div>
+          </div>
+        </lightning-layout-item>
       </template>
     </div>
   </template>

@@ -12,7 +12,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>OpenCageApiKey</shortDescription>
-        <value>b139c2a7ffd58c11d6</value>
+        <value>YOUR_API_KEY</value>
     </labels>
     <labels>
         <fullName>OpenCageEndPoint</fullName>

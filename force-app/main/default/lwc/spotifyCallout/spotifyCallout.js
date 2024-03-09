@@ -1,8 +1,10 @@
 import { LightningElement } from 'lwc';
+import SPOTIFY_LOGO from '@salesforce/resourceUrl/spotify';
 import getSongInformations from "@salesforce/apex/SpotifyUtil.getSongInformations";
 
 export default class SpotifyCallout extends LightningElement {
 
+  spotifyLogo = SPOTIFY_LOGO;
   error; 
   song; 
 
