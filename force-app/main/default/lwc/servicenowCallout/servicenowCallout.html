@@ -39,18 +39,30 @@
         <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
       </template>
 
-      <template lwc:else>
-        <template lwc:if={incidentNumber}> 
-            <span style="font-size: 15px;">
-              Incident Number: <strong class="slds-var-m-left_small">{incidentNumber}</strong>
-            </span>
-        </template>
-
-        <template lwc:if={error}> 
-          <strong style="font-size: 15px;">Please send this message to system admin: </strong> {error}
-        </template>
+      <template lwc:if={incidentNumber}>
+          <lightning-layout-item size="12"> 
+            <div class="card-container">
+              <div class="card-content">
+                  <div class="card-detail">
+                    <strong>Incident Number:</strong> {incidentNumber}
+                  </div>
+              </div>
+            </div>
+          </lightning-layout-item>
       </template>
-  
+
+      <template lwc:if={error}> 
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                  <strong>Error:</strong> {error}
+                </div>
+            </div>
+          </div>
+        </lightning-layout-item>
+      </template>  
+
     </lightning-layout>
 
   </lightning-card>

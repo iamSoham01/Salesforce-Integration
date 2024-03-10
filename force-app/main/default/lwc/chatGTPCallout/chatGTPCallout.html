@@ -1,42 +1,57 @@
 <template>
 
-  <lightning-card class="slds-var-m-top_xx-large">
+  <lightning-card >
 
     <!-- Card Header Start -->
-    <div class="slds-var-p-left_xx-large slds-var-m-bottom_large">
-      <img src={chatGTPLogo} alt="ChatGTP Logo" width="100" height="25">
+    <div class="slds-var-m-left_xx-large">
+      <img src={chatGTPLogo} alt="ChatGTP Logo" width="150" height="100">
     </div>
     <!-- Card Header End -->
 
     <!-- Card Body Start -->
-    <lightning-layout class="slds-var-m-around_x-large slds-var-p-bottom_xx-large">
-    
+    <lightning-layout class="slds-var-m-around_xx-large">
       <!-- Input Start -->
-      <lightning-layout-item size="6" padding="around-medium" class="slds-var-m-top_large">
+      <lightning-layout-item size="10" >
         <lightning-textarea label="Enter your query" placeholder="type here..." class="slds-var-m-bottom_medium" lwc:ref="question"></lightning-textarea>
-        <lightning-button label="Ask ChatGTP" icon-name="utility:question" variant="brand-outline" onclick={handleAskQuestion}></lightning-button>
+      </lightning-layout-item>
+
+      <lightning-layout-item size="2" style="margin-top:22px;">
+        <lightning-button label="Ask ChatGTP" icon-name="utility:question" variant="brand-outline" onclick={handleAskQuestion} class="slds-var-m-right_x-large slds-float_right"></lightning-button>
       </lightning-layout-item>
       <!-- Input Start -->
+    </lightning-layout>
 
-      <!-- Response Message Start -->
+    <lightning-layout class="slds-var-m-around_xx-large">
+
       <template lwc:if={isLoaded}>
         <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
       </template>
-      <template lwc:else>
-        <template lwc:if={responseMsg}> 
-          <lightning-layout-item size="6" padding="around-medium" style="margin-top: 38px">
-            <lightning-formatted-rich-text value={responseMsg} class="" style="font-size: 15px;"></lightning-formatted-rich-text>
-          </lightning-layout-item>
-        </template>
 
-        <template lwc:if={error}> 
-          <lightning-layout-item size="6" padding="around-medium" style="margin-top: 40px" >
-            <strong style="font-size: 15px;">Please send this message to system admin: </strong> {error}
-          </lightning-layout-item>
-        </template>
+      <!-- Response Message Start -->
+      <template lwc:if={responseMsg}>
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                  {responseMsg}
+                </div>
+            </div>
+          </div>
+        </lightning-layout-item>
+      </template>
+
+      <template lwc:if={error}>
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                  Please send this message to <strong>system admin:</strong> {error}
+                </div>
+            </div>
+          </div>
+        </lightning-layout-item>
       </template>
       <!-- Response Message End -->
-  
     </lightning-layout>
     <!-- Card Body End -->
 
