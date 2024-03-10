@@ -1,56 +1,66 @@
 <template>
 
-  <lightning-card title="Slack Conversation" icon-name="standard:quick_text">
+  <lightning-card>
 
-    <div class="slds-var-m-left_xx-large slds-var-p-top_large">
-      <lightning-button-group>
-        <lightning-button label="Post Message" icon-name="utility:new_direct_message" variant="brand-outline"
-          onclick={handleMessage}></lightning-button>
-        <lightning-button label="Delete Message" icon-name="utility:delete" variant="brand-outline"
-          onclick={handleMessage}></lightning-button>
-      </lightning-button-group>
+    <!-- Card Header Start -->
+    <div class="slds-var-p-left_xx-large slds-var-p-top_large slds-var-p-bottom_large">
+      <img src={slackLogo} alt="Slack Logo" width="200" height="15">
     </div>
+    <!-- Card Header End -->
 
-    <lightning-layout class="slds-var-m-around_small">
+    <!-- Spinner Start -->
+    <template lwc:if={isLoaded}>
+      <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
+    </template>
+    <!-- Spinner End -->
 
-      <lightning-layout-item size="4" padding="around-small">
-        <lightning-input label="Enter Channel Id" class="slds-var-m-left_large" lwc:ref="channelId"></lightning-input>
+    <!-- Input Start -->
+    <lightning-layout class="slds-var-m-around_xx-large slds-var-p-bottom_large">
+
+      <lightning-layout-item size="2">
+        <lightning-input label="Enter channel id" lwc:ref="channelId"></lightning-input>
       </lightning-layout-item>
 
-      <template lwc:if={isPostMsg}>
-        <lightning-layout-item size="4" padding="around-small">
-          <lightning-textarea label="Enter Message" class="slds-var-m-left_large" placeholder="type here..."
-            lwc:ref="msg"></lightning-textarea>
-        </lightning-layout-item>
-      </template>
+      <lightning-layout-item size="8">
+        <lightning-textarea label="Enter message" class="slds-var-m-left_xx-large slds-var-m-right_xx-large" placeholder="type here..." lwc:ref="msg"></lightning-textarea>
+      </lightning-layout-item>
 
-      <template lwc:else>
-        <lightning-layout-item size="4" padding="around-small">
-          <lightning-input label="Enter Timestamp" class="slds-var-m-left_large" lwc:ref="ts"></lightning-input>
-        </lightning-layout-item>
-      </template>
-
-      <lightning-layout-item size="4" padding="around-small" style="margin-top: 22px">
-        <lightning-button label={btnLabel} class="slds-var-m-left_large" onclick={handleBtn}
-          variant="brand-outline"></lightning-button>
+      <lightning-layout-item size="2" style="margin-top: 22px">
+        <lightning-button label="Send Message" icon-name="utility:new_direct_message" onclick={handleSendMsg} variant="brand-outline"></lightning-button>
       </lightning-layout-item>
 
     </lightning-layout>
+    <!-- Input End -->
 
-    <lightning-layout class="slds-var-m-around_small">
+    <!-- Output Message Start -->
+    <lightning-layout class="slds-var-m-around_xx-large">
 
       <template lwc:if={message}>
-        <lightning-layout-item size="12" padding="around-small">
-          <strong style="font-size: 15px;" class="slds-var-m-left_large">Status: </strong>{message}
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                  Status: Your message has been sent successfully! <strong>Timestamp:  </strong> {message}. Would you like to delete it?
+                  <lightning-button variant="base" label="Yes please!" onclick={handleDeleteMsg} class="slds-var-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+          </div>
         </lightning-layout-item>
       </template>
 
       <template lwc:if={error}>
-        <lightning-layout-item size="12" padding="around-small">
-          <strong style="font-size: 15px;" class="slds-var-m-left_large">Error: </strong>{error}
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                    <strong>Error:</strong> {error}
+                </div>
+            </div>
+          </div>
         </lightning-layout-item>
       </template>
     </lightning-layout>
+    <!-- Output Message End -->
 
   </lightning-card>
 

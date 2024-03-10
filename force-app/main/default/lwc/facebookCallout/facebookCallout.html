@@ -7,7 +7,13 @@
     <div class="slds-var-p-left_xx-large slds-var-m-bottom_x-large">
       <img src={facebookLogo} alt="Open Cage Logo" width="150" height="50">
     </div>
-    <!-- Card Header End -->    
+    <!-- Card Header End -->  
+    
+    <!-- Spinner Start -->
+    <template lwc:if={isLoaded}>
+      <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
+    </template>
+    <!-- Spinner End -->
 
     <!-- Card Body Start -->
     <lightning-layout class="slds-var-p-left_x-large slds-var-p-bottom_large">
@@ -38,10 +44,6 @@
 
     <!-- Output Start -->
     <lightning-layout class="slds-var-m-around_xx-large">
-
-      <template lwc:if={isLoaded}>
-        <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
-      </template>
 
       <template lwc:if={successResponse}>
         <lightning-layout-item size="12"> 

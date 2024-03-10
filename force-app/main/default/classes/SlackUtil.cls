@@ -43,7 +43,7 @@ public with sharing class SlackUtil {
             if(response.getStatusCode() == 200){
                 //Fetch message information
                 MessageDetails msgInfo = (MessageDetails) JSON.deserialize(response.getBody(), MessageDetails.class);
-                responseMsg = 'Your message has been posted successfully! Timestamp: ' + msgInfo.ts;
+                responseMsg = msgInfo.ts;
             }else{
                 throw new CustomException(response.getBody());
             }

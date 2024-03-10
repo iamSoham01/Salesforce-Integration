@@ -8,6 +8,12 @@
     </div>
     <!-- Card Header End -->
 
+    <!-- Spinner Start -->
+    <template lwc:if={isLoaded}>
+      <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
+    </template>
+    <!-- Spinner End -->
+
     <lightning-layout class="slds-var-m-bottom_xx-large">
     
       <lightning-layout-item size="3">
@@ -34,10 +40,6 @@
     </lightning-layout>
 
     <lightning-layout class="slds-var-m-around_xx-large">
-  
-      <template lwc:if={isLoaded}>
-        <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
-      </template>
 
       <template lwc:if={incidentNumber}>
           <lightning-layout-item size="12"> 
