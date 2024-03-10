@@ -12,6 +12,7 @@
 		<members>googleCalendar</members>
 		<members>linkedin</members>
 		<members>spotify</members>
+		<members>slack</members>
 		<name>StaticResource</name>
 	</types>
 	<types>

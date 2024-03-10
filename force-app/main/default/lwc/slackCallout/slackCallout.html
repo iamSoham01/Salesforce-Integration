@@ -35,13 +35,25 @@
     <!-- Output Message Start -->
     <lightning-layout class="slds-var-m-around_xx-large">
 
-      <template lwc:if={message}>
+      <template lwc:if={postResponse}>
         <lightning-layout-item size="12"> 
           <div class="card-container">
             <div class="card-content">
                 <div class="card-detail">
-                  Status: Your message has been sent successfully! <strong>Timestamp:  </strong> {message}. Would you like to delete it?
+                  Status: Your message has been sent successfully! <strong>Timestamp:  </strong> {postResponse}. Would you like to delete it?
                   <lightning-button variant="base" label="Yes please!" onclick={handleDeleteMsg} class="slds-var-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+          </div>
+        </lightning-layout-item>
+      </template>
+
+      <template lwc:if={deleteResponse}>
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                  {deleteResponse}
                 </div>
             </div>
           </div>
