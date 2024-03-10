@@ -43,30 +43,28 @@
         <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
       </template>
 
-      <template lwc:else>
-        <template lwc:if={successResponse}>
-          <lightning-layout-item size="12"> 
-            <div class="card-container">
-              <div class="card-content">
-                  <div class="card-detail">
-                    <strong>Message:</strong> {successResponse}
-                  </div>
-              </div>
+      <template lwc:if={successResponse}>
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                  <strong>Message:</strong> {successResponse}
+                </div>
             </div>
-          </lightning-layout-item>
-        </template>
+          </div>
+        </lightning-layout-item>
+      </template>
 
-        <template lwc:if={error}>
-          <lightning-layout-item size="12"> 
-            <div class="card-container">
-              <div class="card-content">
-                  <div class="card-detail">
-                    <strong>Error:</strong> {error}
-                  </div>
-              </div>
+      <template lwc:if={error}>
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                  <strong>Error:</strong> {error}
+                </div>
             </div>
-          </lightning-layout-item>
-        </template>
+          </div>
+        </lightning-layout-item>
       </template>
     </lightning-layout>
     <!-- Output End -->

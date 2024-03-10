@@ -18,33 +18,31 @@
     <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
   </template>
 
-  <template lwc:else>
-    <div class="slds-var-m-top_xx-large slds-var-m-bottom_x-large slds-var-p-right_large">
-      <template lwc:if={address}>
-        <lightning-layout-item size="12"> 
-          <div class="card-container">
-            <div class="card-content">
-                <div class="card-detail">
-                  <strong>Address:</strong> {address}
-                </div>
-            </div>
+  <div class="slds-var-m-top_xx-large slds-var-m-bottom_x-large slds-var-p-right_large">
+    <template lwc:if={address}>
+      <lightning-layout-item size="12"> 
+        <div class="card-container">
+          <div class="card-content">
+              <div class="card-detail">
+                <strong>Address:</strong> {address}
+              </div>
           </div>
-        </lightning-layout-item>
-      </template>
+        </div>
+      </lightning-layout-item>
+    </template>
 
-      <template lwc:if={error}> 
-        <lightning-layout-item size="12"> 
-          <div class="card-container">
-            <div class="card-content">
-                <div class="card-detail">
-                  Please send this message to <strong>system admin:</strong> {error}
-                </div>
-            </div>
+    <template lwc:if={error}> 
+      <lightning-layout-item size="12"> 
+        <div class="card-container">
+          <div class="card-content">
+              <div class="card-detail">
+                Please send this message to <strong>system admin:</strong> {error}
+              </div>
           </div>
-        </lightning-layout-item>
-      </template>
-    </div>
-  </template>
+        </div>
+      </lightning-layout-item>
+    </template>
+  </div>
   <!-- Output Message End -->
 
 </template>

@@ -8,6 +8,7 @@
     </div>
     <!-- Card Header End -->
 
+    <!-- Input Start -->
     <lightning-layout class="slds-var-m-left_xx-large slds-var-p-bottom_large">
 
       <lightning-layout-item size="6">
@@ -23,41 +24,41 @@
       </lightning-layout-item>
 
     </lightning-layout>
+    <!-- Input End -->
 
+    <!-- Output Start -->
     <lightning-layout class="slds-var-m-around_xx-large">
 
       <template lwc:if={isLoaded}>
         <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
       </template>
 
-      <template lwc:else>
-        <template lwc:if={message}>
-          <lightning-layout-item size="12"> 
-            <div class="card-container">
-              <div class="card-content">
-                  <div class="card-detail">
-                     <strong>Message:</strong> {message}
-                  </div>
-              </div>
+      <template lwc:if={message}>
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                    <strong>Message:</strong> {message}
+                </div>
             </div>
-          </lightning-layout-item>
-        </template>
+          </div>
+        </lightning-layout-item>
+      </template>
 
-        <template lwc:if={error}> 
-          <lightning-layout-item size="12"> 
-            <div class="card-container">
-              <div class="card-content">
-                  <div class="card-detail">
-                     <strong>Error:</strong> {error}
-                  </div>
-              </div>
+      <template lwc:if={error}> 
+        <lightning-layout-item size="12"> 
+          <div class="card-container">
+            <div class="card-content">
+                <div class="card-detail">
+                    <strong>Error:</strong> {error}
+                </div>
             </div>
-          </lightning-layout-item>
-        </template>
+          </div>
+        </lightning-layout-item>
       </template>
 
     </lightning-layout>
-
+    <!-- Output End -->
   </lightning-card>
     
 </template>

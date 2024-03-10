@@ -12,33 +12,31 @@
     <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
   </template>
 
-  <template lwc:else>
-    <div class="slds-var-m-bottom_large slds-var-m-right_xx-large">
-      <template lwc:if={lat}>         
-        <lightning-layout-item size="12"> 
-          <div class="card-container">
-            <div class="card-content">
-                <div class="card-detail">
-                  <strong>Coordinate Location: </strong> <lightning-formatted-location latitude={lat} longitude={lng} style="font-size: 15px;"></lightning-formatted-location>
-                </div>
-            </div>
+  <div class="slds-var-m-bottom_large slds-var-m-right_xx-large">
+    <template lwc:if={lat}>         
+      <lightning-layout-item size="12"> 
+        <div class="card-container">
+          <div class="card-content">
+              <div class="card-detail">
+                <strong>Coordinate Location: </strong> <lightning-formatted-location latitude={lat} longitude={lng} style="font-size: 15px;"></lightning-formatted-location>
+              </div>
           </div>
-        </lightning-layout-item>
-      </template>
+        </div>
+      </lightning-layout-item>
+    </template>
 
-      <template lwc:if={error}>
-        <lightning-layout-item size="12"> 
-          <div class="card-container">
-            <div class="card-content">
-                <div class="card-detail">
-                  Please send this message to <strong>system admin:</strong> {error}
-                </div>
-            </div>
+    <template lwc:if={error}>
+      <lightning-layout-item size="12"> 
+        <div class="card-container">
+          <div class="card-content">
+              <div class="card-detail">
+                Please send this message to <strong>system admin:</strong> {error}
+              </div>
           </div>
-        </lightning-layout-item>
-      </template>
-    </div>
-  </template>
+        </div>
+      </lightning-layout-item>
+    </template>
+  </div>
   <!-- Output Message End -->
 
 </template>
