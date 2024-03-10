@@ -24,6 +24,7 @@ export default class ServicenowCallout extends LightningElement {
     }else {
       this.error = JSON.stringify(error);
     }
+    this.isLoaded = !this.isLoaded;
   }
 
   handleSelectedCaller(){

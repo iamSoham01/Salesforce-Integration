@@ -1,20 +1,14 @@
 import { LightningElement } from 'lwc';
+import SLACK_LOGO from '@salesforce/resourceUrl/slack';
 import postMessage from '@salesforce/apex/SlackUtil.postMessage';
 import deleteMessage from '@salesforce/apex/SlackUtil.deleteMessage';
 
 export default class SlackCallout extends LightningElement {
 
-  isPostMsg = true;
+  slackLogo = SLACK_LOGO;
+  isLoaded = false;
   error;
   message;
-
-  handleMessage(event){
-    this.isPostMsg = event.target.label === 'Post Message';
-  }
-
-  get btnLabel(){
-    return this.isPostMsg ? `Send` : `Delete`;
-  }
 
   checkFieldValidity(inputType, errorMsg) {
 
@@ -26,55 +20,59 @@ export default class SlackCallout extends LightningElement {
     return inputType.reportValidity();
   }
 
-  handleBtn(){
+  handleSendMsg(){
 
     const channelId = this.refs.channelId;
     const msg = this.refs.msg;
-    const ts = this.refs.ts;
 
     const isChannelIdValid = this.checkFieldValidity(channelId, `channel id`);
+    const isMsgValid = this.checkFieldValidity(msg, `your message`);
 
-    if(this.isPostMsg){
-      
-      const isMsgValid = this.checkFieldValidity(msg, `your message`);
-
-      if(!isChannelIdValid || !isMsgValid){
-        return;
-      }
-
-      postMessage({ message: msg.value, channelId: channelId.value})
-      .then((result) => {
-        this.error = ``;
-        msg.value = ``;
-        channelId.value = ``;
-        this.message = result;
-      })
-      .catch((error) => {
-        this.error = error.message;
-        this.message = ``;
-      });
-
-    }else {
-
-      const isTsValid = this.checkFieldValidity(ts, `time stamp`);
-
-      if(!isChannelIdValid || !isTsValid){
-        return;
-      }
-
-      deleteMessage({ timeStamp: ts.value, channelId: channelId.value})
-      .then((result) => {
-        this.error = ``;
-        ts.value = ``;
-        channelId.value = ``;
-        this.message = result;
-      })
-      .catch((error) => {
-        this.error = error.message;
-        this.message = ``;
-      });
-
+    if(!isChannelIdValid || !isMsgValid){
+      return;
     }
+
+    this.isLoaded = !this.isLoaded;
+
+    postMessage({ message: msg.value, channelId: channelId.value})
+    .then((result) => {
+      this.error = ``;
+      msg.value = ``;
+      this.message = result;
+    })
+    .catch((error) => {
+      this.error = error.message;
+      this.message = ``;
+    })
+    .finally(() => {
+      this.isLoaded = !this.isLoaded;
+    });
+
+  }
+
+  handleDeleteMsg() {
+
+    const channelId = this.refs.channelId;
+    const isChannelIdValid = this.checkFieldValidity(channelId, `channel id`);
+
+    if(!isChannelIdValid || !this.message){
+      return;
+    }
+
+    this.isLoaded = !this.isLoaded;
+
+    deleteMessage({ timeStamp: this.message, channelId: channelId.value})
+      .then((result) => {
+        this.error = ``;
+        this.message = result;
+      })
+      .catch((error) => {
+        this.error = error.message;
+        this.message = ``;
+      })
+      .finally(() => {
+        this.isLoaded = !this.isLoaded;
+      });
 
   }
 
