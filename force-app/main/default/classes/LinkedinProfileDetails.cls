@@ -12,7 +12,7 @@ Ver   Date         Author                               Modification
 */
 public class LinkedinProfileDetails {
     
-    public String localizedLastName;	
+  public String localizedLastName;	
 	public String vanityName;	
 	public String localizedHeadline;	
 	public String id;	

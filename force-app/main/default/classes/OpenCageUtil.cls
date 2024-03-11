@@ -11,7 +11,7 @@ Ver   Date         Author                               Modification
 *************************************************************************
 */
 
-public with sharing class OpenCageUtil {
+public class OpenCageUtil {
 
     /*
     *********************************************************

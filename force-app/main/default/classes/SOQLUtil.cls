@@ -10,7 +10,7 @@ Ver   Date         Author                               Modification
 1.0   13-02-2024   Soham Datta                         Initial Version
 *************************************************************************
 */
-global without sharing class SOQLUtil {
+global class SOQLUtil {
 
     private static FINAL String QUERY_SELECT = 'SELECT ';
     private static FINAL String QUERY_WHERE  = ' WHERE ';

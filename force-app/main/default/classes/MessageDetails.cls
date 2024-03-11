@@ -12,7 +12,7 @@ Ver   Date         Author                               Modification
 *********************************************************
 */
 
-public with sharing class MessageDetails {
+public class MessageDetails {
   public boolean ok;
 	public String channel;	
 	public String ts;	

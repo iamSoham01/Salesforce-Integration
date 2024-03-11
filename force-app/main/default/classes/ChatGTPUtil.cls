@@ -11,7 +11,7 @@ Ver   Date         Author                               Modification
 *************************************************************************
 */
 
-public with sharing class ChatGTPUtil {
+public class ChatGTPUtil {
     
     @AuraEnabled (cacheable=true)
     public static String getResponseMsg(String message){

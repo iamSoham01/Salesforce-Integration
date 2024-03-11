@@ -33,6 +33,8 @@ public class GoogleUtilMock implements HttpCalloutMock {
         // Determine the type of request and provide the corresponding mock response.
         if (req.getEndpoint().contains('calendar')){
             body = createMeetingResponse();
+        }else if (req.getEndpoint().contains('gmail')){
+            body = gmailResponse();
         }
         
         // Set serialized body in the HttpResponse.
@@ -61,6 +63,30 @@ public class GoogleUtilMock implements HttpCalloutMock {
             '    "updated": "2024-02-12T07:26:12.511Z",'+
             '    "summary": "Test Subject"'+
             '}';
+        
+        return body;
+    }
+
+    /*
+    *********************************************************
+    @Method Name    : gmailResponse
+    @author         : Soham Datta  
+    @description    : Gmail response
+    @param          :
+    *********************************************************
+    */
+
+    private String gmailResponse() {
+        
+        String body = '{'+
+		'    "id": "18e2ca4e7db42dff",'+
+		'    "threadId": "18e2ca4e7db42dff",'+
+		'    "labelIds": ['+
+		'        "UNREAD",'+
+		'        "SENT",'+
+		'        "INBOX"'+
+		'    ]'+
+		'}';
         
         return body;
     }

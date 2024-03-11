@@ -1,10 +1,19 @@
 <template>
 
+  <!-- Spinner Start -->
+  <template lwc:if={isLoaded}>
+    <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
+  </template>
+  <!-- Spinner End -->
+
+  <!-- Icon Start -->
   <lightning-layout class="slds-var-m-left_xx-large slds-var-p-top_xx-large slds-var-m-bottom_large">
       <lightning-icon icon-name="standard:date_input" alternative-text="Calendar" size="small"></lightning-icon>
-      <h2 class="slds-text-heading_small slds-var-m-left_small">Schedule a meeting</h2>
+      <h2 class="slds-text-heading_small slds-var-m-left_small">Organize a meeting</h2>
   </lightning-layout>
+  <!-- Icon End -->
 
+  <!-- Input Start -->
   <lightning-layout class="slds-var-p-left_x-large slds-var-p-right_x-large">
 
     <lightning-layout-item size="4" padding="around-medium">
@@ -51,19 +60,17 @@
   
   </lightning-layout>
 
-  <lightning-layout class="slds-var-p-top_xx-large">
+  <lightning-layout class="slds-var-p-top_large">
     <lightning-layout-item flexibility="auto" padding="around-small">
       <div class="slds-text-align_center">
-        <lightning-button label="Create Meeting" onclick={handleCreateMeeting} variant="brand-outline"></lightning-button>
+        <lightning-button icon-name="utility:meet_content_source" label="Create Meeting" onclick={handleCreateMeeting} variant="brand-outline"></lightning-button>
       </div>
     </lightning-layout-item>
   </lightning-layout>
+  <!-- Input End -->
 
+  <!-- Output Start -->
   <lightning-layout class="slds-var-m-around_x-large">
-
-    <template lwc:if={isLoaded}>
-      <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
-    </template>
 
     <template lwc:if={meetingURL}>
       <lightning-layout-item size="12"> 
@@ -90,5 +97,6 @@
     </template> 
 
   </lightning-layout>
+  <!-- Output End -->
     
 </template>
