@@ -1,0 +1,77 @@
+<template>
+    
+  <!-- Spinner Start -->
+  <template lwc:if={isLoaded}>
+    <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
+  </template>
+  <!-- Spinner End -->
+
+  <!-- Icon Start -->
+  <lightning-layout class="slds-var-m-left_xx-large slds-var-p-top_xx-large slds-var-m-bottom_large">
+    <lightning-icon icon-name="utility:email" alternative-text="Gmail" size="small"></lightning-icon>
+    <h2 class="slds-text-heading_small slds-var-m-left_small">Send an email</h2>
+  </lightning-layout>
+  <!-- Icon End -->
+
+  <!-- Input Start -->
+  <lightning-layout class="slds-var-p-left_x-large slds-var-p-right_x-large">
+
+    <lightning-layout-item size="4" padding="around-medium">
+      <lightning-textarea label="Enter email subject" placeholder="type here..." lwc:ref="emailSubject"></lightning-textarea>
+    </lightning-layout-item>
+
+    <lightning-layout-item size="8" padding="around-medium">
+      <lightning-textarea label="Enter email body" placeholder="type here..." lwc:ref="emailDescription"></lightning-textarea>
+    </lightning-layout-item>
+
+  </lightning-layout>
+
+  <lightning-layout class="slds-var-p-left_x-large slds-var-p-right_x-large">
+
+    <lightning-layout-item size="4" padding="around-medium">
+      <lightning-input type="file" label="Upload Image" accept=".png, .jpg" onchange={handleFileUpload} style="margin-top: -4px;"></lightning-input>
+      <template lwc:if={fileName}>{fileName}</template>
+    </lightning-layout-item>
+
+    <lightning-layout-item size="6" padding="around-medium">
+      <lightning-input label="Enter receiver email" lwc:ref="receiverAddress"></lightning-input>
+    </lightning-layout-item>
+
+    <lightning-layout-item size="2" padding="around-medium" style="margin-top: 22px;">
+      <lightning-button icon-name="utility:send" label="Send Email" onclick={handleSendEmail} variant="brand-outline"></lightning-button>
+    </lightning-layout-item>
+
+  </lightning-layout>>
+  <!-- Input End -->
+
+  <!-- Output Start -->
+  <lightning-layout class="slds-var-m-left_x-large slds-var-m-right_x-large slds-var-m-top_xx-large slds-var-m-bottom_xx-large">
+
+    <template lwc:if={responseMsg}>
+      <lightning-layout-item size="12"> 
+        <div class="card-container">
+          <div class="card-content">
+              <div class="card-detail">
+                  Your email has been sent successfully. <strong>Id: </strong>{responseMsg.id} and <strong>Thread Id: </strong>{responseMsg.threadId}
+              </div>
+          </div>
+        </div>
+      </lightning-layout-item>
+    </template>
+
+    <template lwc:if={error}>
+      <lightning-layout-item size="12"> 
+        <div class="card-container">
+          <div class="card-content">
+              <div class="card-detail">
+                Please send this message to <strong>system admin:</strong> {error}
+              </div>
+          </div>
+        </div>
+      </lightning-layout-item> 
+    </template> 
+
+  </lightning-layout>
+  <!-- Output End -->
+
+</template>

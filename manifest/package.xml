@@ -110,6 +110,8 @@
 		<members>FacebookUtilTest</members>
 		<members>GoogleToken</members>
 		<members>GoogleUtil</members>
+		<members>GoogleCalendarCallout</members>
+		<members>GmailCallout</members>
 		<members>GoogleUtilMock</members>
 		<members>GoogleUtilTest</members>
 		<members>LinkedinProfileDetails</members>
@@ -151,6 +153,7 @@
 		<members>servicenowCallout</members>
 		<members>slackCallout</members>
 		<members>spotifyCallout</members>
+		<members>gmail</members>
 		<name>LightningComponentBundle</name>
 	</types>
 	<types>

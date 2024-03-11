@@ -13,7 +13,7 @@ Ver   Date         Author                               Modification
 */
 
 @RestResource(urlMapping='/ApexWebService/*')
-global with sharing class ApexWebService {
+global class ApexWebService {
 
     /*
     *********************************************************

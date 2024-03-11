@@ -12,7 +12,7 @@ Ver   Date         Author                               Modification
 *********************************************************
 */
 
-public with sharing class FacebookUtil {
+public class FacebookUtil {
     
     /*
     *********************************************************

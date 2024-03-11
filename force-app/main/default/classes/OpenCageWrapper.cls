@@ -11,7 +11,7 @@ Ver   Date         Author                               Modification
 *************************************************************************
 */
 
-public with sharing class OpenCageWrapper {
+public class OpenCageWrapper {
 
 	public class Geometry {
 		@AuraEnabled public Double lat;

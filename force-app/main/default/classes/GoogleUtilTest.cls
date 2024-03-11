@@ -78,4 +78,48 @@ private class GoogleUtilTest {
         
     }
 
+    /*
+    *********************************************************
+    @Method Name    : testGmail
+    @author         : Soham Datta  
+    @description    : Test sendEmail() method
+    @param          :
+    *********************************************************
+    */
+    
+    @isTest
+    static void testGmail() {
+        
+        User admin = [Select Id From User Where UserName = 'googleuser@calenderevnt.com' Limit 1];
+        
+        String senderEmail = 'testsender@gmail.com';
+        String receiverEmail = 'testreceiver@gmail.com';
+        String emailSubject = 'Test Subject';
+        String emailBody = 'Test Email Body';
+        
+        Map<String, Object> mapAttributes = new Map<String, Object>();
+        mapAttributes.put('senderEmail', senderEmail);
+        mapAttributes.put('receiverEmail', receiverEmail);
+        mapAttributes.put('emailSubject', emailSubject);
+        mapAttributes.put('emailBody', emailBody);
+
+        // Starting the test execution.
+        Test.startTest();
+        
+        System.runAs(admin) {
+            
+            // Setting up a mock for the HTTP callout to ServiceNow.
+            Test.setMock(HttpCalloutMock.class, new GoogleUtilMock());
+            
+            //Test Scenario 1: Providing payload
+            Map<String, String> actualResponseMap = GoogleUtil.sendEmail(mapAttributes);
+            Assert.areEqual(2, actualResponseMap.size());
+            
+        }
+        
+        // Stopping the test execution.
+        Test.stopTest();
+        
+    }
+
 }
