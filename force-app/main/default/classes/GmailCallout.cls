@@ -28,9 +28,9 @@ public class GmailCallout {
         String receiverEmail = (String)mapAttributes.get('receiverEmail');
         String emailSubject = (String)mapAttributes.get('emailSubject');
         String emailBody = (String)mapAttributes.get('emailBody');
-        String fileContents = (String)mapAttributes.get('fileContents');
-        String fileName = (String)mapAttributes.get('fileName');
-
+        String filesData = (String)JSON.serialize(mapAttributes.get('filesData'));
+        List<FileReaderWrapper> files = (List<FileReaderWrapper>) JSON.deserialize(filesData, List<FileReaderWrapper>.class);
+        
         String endpoint = 'callout:Gmail/upload/gmail/v1/users/me/messages/send';
 
         String requestBody = 'Content-Type: multipart/related; boundary=foo_bar_baz\r\n'
@@ -41,16 +41,22 @@ public class GmailCallout {
                             +  emailBody + '\r\n'
                             + '\r\n';
 
-        if(String.isNotBlank(fileName)) {
-            requestBody += '--foo_bar_baz\r\n'
-                            + 'Content-Type: application/png\r\n'
+        if(!files.isEmpty()) {
+
+            requestBody += '--foo_bar_baz\r\n';
+
+            for(FileReaderWrapper file : files) {
+                requestBody += 'Content-Type: application/'+ file.fileType +'\r\n'
                             + 'Content-Transfer-Encoding: base64\r\n'
                             + 'MIME-Version: 1.0\r\n'
-                            + 'Content-Disposition: attachment; filename="' + fileName +'"\r\n'
+                            + 'Content-Disposition: attachment; filename="' + file.fileName +'"\r\n'
                             + '\r\n'
-                            +  fileContents + '\r\n'
+                            +  file.fileContent + '\r\n'
                             + '\r\n'
-                            + '--foo_bar_baz--\r\n';
+                            + '--foo_bar_baz\r\n';
+            }
+            requestBody = requestBody.removeEnd('\r\n');
+
         }
                 
         Http http = new Http();
@@ -75,6 +81,12 @@ public class GmailCallout {
         }
 
         return responseMap;
+    }
+
+    public class FileReaderWrapper {
+        public String fileName;
+        public String fileContent;
+        public String fileType;
     }
 
 }

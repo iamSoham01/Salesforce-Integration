@@ -29,8 +29,15 @@
   <lightning-layout class="slds-var-p-left_x-large slds-var-p-right_x-large">
 
     <lightning-layout-item size="4" padding="around-medium">
-      <lightning-input type="file" label="Upload Image" accept=".png, .jpg" onchange={handleFileUpload} style="margin-top: -4px;"></lightning-input>
-      <template lwc:if={fileName}>{fileName}</template>
+      <lightning-input type="file" label="Upload Image" accept=".png, .jpg, .zip, .pdf, .doc" onchange={handleFileUpload} style="margin-top: -4px;" multiple></lightning-input>
+      <template if:true={filesData}>
+        <template for:each={filesData} for:item="imgName" for:index="index">
+            {imgName.fileName}
+            <span key={imgName.fileName} data-id={index} onclick={removeReceiptImage} class="removeImage">
+              <lightning-button variant="base" label="x" onclick={handleDeleteMsg} class="slds-var-m-left_xx-small"></lightning-button>
+            </span> &nbsp;
+        </template>
+      </template>
     </lightning-layout-item>
 
     <lightning-layout-item size="6" padding="around-medium">
