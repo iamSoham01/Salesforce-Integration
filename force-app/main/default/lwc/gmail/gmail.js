@@ -1,13 +1,14 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, track } from 'lwc';
 import sendEmail from '@salesforce/apex/GoogleUtil.sendEmail';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+const MAX_FILE_SIZE = 2097152;
 
 export default class Gmail extends LightningElement {
 
   isLoaded = false;
   error;
   responseMsg;
-  fileName;
-  fileContents;
+  @track filesData = [];
 
   isValidEmail(inputType) {
     // Email validation regex
@@ -31,20 +32,35 @@ export default class Gmail extends LightningElement {
     return inputType.reportValidity();
   }
 
+  showToast(title, variant, message) {
+    this.dispatchEvent(
+        new ShowToastEvent({
+            title: title,
+            variant: variant,
+            message: message,
+        })
+    );
+  }
+
   handleFileUpload(event) {
-    const file = event.target.files[0];
-    if (file) {
-      this.fileName = file.name;
+
+    for (const file of event.target.files) {
+      if (file.size > MAX_FILE_SIZE) {
+          this.showToast('Error!', 'error', 'File size exceeded the upload size limit.');
+          return;
+      }
       const reader = new FileReader();
-      reader.onload = this.handleFileReaderOnLoad.bind(this);
+      reader.onload = () => {
+          const fileContents = reader.result.split(',')[1];
+          this.filesData.push({ fileName: file.name, fileContent: fileContents, fileType: file.type.split("/")[1] });
+      };
       reader.readAsDataURL(file);
     }
   }
 
-  handleFileReaderOnLoad(event) {
-      const base64 = event.target.result;
-      const base64Parts = base64.split(',');
-      this.fileContents = base64Parts[1];
+  removeReceiptImage(event) {
+    var index = event.currentTarget.dataset.id;
+    this.filesData.splice(index, 1);
   }
 
   handleSendEmail() {
@@ -68,8 +84,7 @@ export default class Gmail extends LightningElement {
       receiverEmail: receiverAddress.value,
       emailSubject: emailSubject.value,
       emailBody: emailDescription.value,
-      fileContents: this.fileContents,
-      fileName: this.fileName
+      filesData: this.filesData,
     };
 
     sendEmail({mapAttributes: mapAttributes})
@@ -80,8 +95,7 @@ export default class Gmail extends LightningElement {
         emailSubject.value = ``;
         emailDescription.value = ``;
         receiverAddress.value = ``;
-        this.fileContents = ``;
-        this.fileName = '';
+        this.filesData = [];
       })
       .catch((error) => {
         this.error = error.message;
