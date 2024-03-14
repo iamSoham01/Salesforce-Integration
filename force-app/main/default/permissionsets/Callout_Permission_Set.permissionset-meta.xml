@@ -162,7 +162,15 @@
     </externalCredentialPrincipalAccesses>
     <externalCredentialPrincipalAccesses>
         <enabled>true</enabled>
+        <externalCredentialPrincipal>GmailCredential-Client Credential</externalCredentialPrincipal>
+    </externalCredentialPrincipalAccesses>
+    <externalCredentialPrincipalAccesses>
+        <enabled>true</enabled>
         <externalCredentialPrincipal>GoogleCalendarCredential-Client Credential</externalCredentialPrincipal>
+    </externalCredentialPrincipalAccesses>
+    <externalCredentialPrincipalAccesses>
+        <enabled>true</enabled>
+        <externalCredentialPrincipal>GoogleDriveCredential-Client Credentials</externalCredentialPrincipal>
     </externalCredentialPrincipalAccesses>
     <externalCredentialPrincipalAccesses>
         <enabled>true</enabled>
