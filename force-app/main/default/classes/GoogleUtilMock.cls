@@ -25,7 +25,10 @@ public class GoogleUtilMock implements HttpCalloutMock {
     */
 
     public HttpResponse respond(HttpRequest req) {
+        
         HttpResponse res = new HttpResponse();
+        String requestMethod = req.getMethod();
+        Integer statusCode = 200;
         
         res.setHeader(ConstantClass.CONTENT_TYPE, ConstantClass.CONTENT_TYPE_VALUE);        
         String body = '';
@@ -35,11 +38,19 @@ public class GoogleUtilMock implements HttpCalloutMock {
             body = createMeetingResponse();
         }else if (req.getEndpoint().contains('gmail')){
             body = gmailResponse();
+        }else if (req.getEndpoint().contains('drive')){
+            
+            if(requestMethod.contains('POST')){
+                body = driveResponse();
+            }else if(requestMethod.contains('DELETE')){
+                statusCode = 204;
+            }
+            
         }
         
         // Set serialized body in the HttpResponse.
         res.setBody(body);
-        res.setStatusCode(200);
+        res.setStatusCode(statusCode);
         
         return res;
     }
@@ -87,6 +98,27 @@ public class GoogleUtilMock implements HttpCalloutMock {
 		'        "INBOX"'+
 		'    ]'+
 		'}';
+        
+        return body;
+    }
+    
+    /*
+    *********************************************************
+    @Method Name    : driveResponse
+    @author         : Soham Datta  
+    @description    : Google drive response
+    @param          :
+    *********************************************************
+    */
+
+    private String driveResponse() {
+        
+        String body = '{'+
+            '    "kind": "drive#file",'+
+            '    "id": "1-aio3oRYmrvWfV-glLWfj_Kiw0Y_Sg_7",'+
+            '    "name": "logo.png",'+
+            '    "mimeType": "image/png"'+
+            '}';
         
         return body;
     }

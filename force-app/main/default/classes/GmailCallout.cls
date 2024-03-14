@@ -46,7 +46,7 @@ public class GmailCallout {
                             + '\r\n';
         
         // Check attachemnt uploaded
-        if(!files.isEmpty()) {
+        if(files != null && files.size()>0) {
 
             requestBody += '--foo_bar_baz\r\n';
 
