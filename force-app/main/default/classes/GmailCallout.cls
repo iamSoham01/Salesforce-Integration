@@ -51,7 +51,7 @@ public class GmailCallout {
             requestBody += '--foo_bar_baz\r\n';
 
             for(FileReaderWrapper file : files) {
-                requestBody += 'Content-Type: application/'+ file.fileType +'\r\n'
+                requestBody += 'Content-Type: '+ file.fileType +'\r\n'
                             + 'Content-Transfer-Encoding: base64\r\n'
                             + 'MIME-Version: 1.0\r\n'
                             + 'Content-Disposition: attachment; filename="' + file.fileName +'"\r\n'

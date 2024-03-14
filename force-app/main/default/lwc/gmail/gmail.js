@@ -52,7 +52,7 @@ export default class Gmail extends LightningElement {
       const reader = new FileReader();
       reader.onload = () => {
           const fileContents = reader.result.split(',')[1];
-          this.filesData.push({ fileName: file.name, fileContent: fileContents, fileType: file.type.split("/")[1] });
+          this.filesData.push({ fileName: file.name, fileContent: fileContents, fileType: file.type });
       };
       reader.readAsDataURL(file);
     }
