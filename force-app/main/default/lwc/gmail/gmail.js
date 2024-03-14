@@ -89,7 +89,6 @@ export default class Gmail extends LightningElement {
 
     sendEmail({mapAttributes: mapAttributes})
       .then((result) => {
-        console.log(`Result: `,result);
         this.responseMsg = result;
         this.error = ``;
         emailSubject.value = ``;

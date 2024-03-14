@@ -82,6 +82,8 @@
 		<members>SlackCredential</members>
 		<members>SpotifyCredential</members>
 		<members>GoogleCalendarCredential</members>
+		<members>GmailCredential</members>
+		<members>GoogleDriveCredential</members>
 		<name>ExternalCredential</name>
 	</types>
 	<types>
@@ -93,6 +95,8 @@
 		<members>Slack</members>
 		<members>Spotify</members>
 		<members>GoogleCalendar</members>
+		<members>Gmail</members>
+		<members>GoogleDrive</members>
 		<name>NamedCredential</name>
 	</types>
 	<types>
@@ -111,6 +115,7 @@
 		<members>GoogleToken</members>
 		<members>GoogleUtil</members>
 		<members>GoogleCalendarCallout</members>
+		<members>GoogleDriveCallout</members>
 		<members>GmailCallout</members>
 		<members>GoogleUtilMock</members>
 		<members>GoogleUtilTest</members>
@@ -154,6 +159,7 @@
 		<members>slackCallout</members>
 		<members>spotifyCallout</members>
 		<members>gmail</members>
+		<members>googleDrive</members>
 		<name>LightningComponentBundle</name>
 	</types>
 	<types>

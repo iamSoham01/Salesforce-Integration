@@ -1,0 +1,81 @@
+<!-- sldsValidatorIgnore -->
+<template>
+  
+  <!-- Spinner Start -->
+  <template lwc:if={isLoaded}>
+    <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
+  </template>
+  <!-- Spinner End -->
+
+  <!-- Icon Start -->
+  <lightning-layout class="slds-var-m-left_xx-large slds-var-p-top_xx-large slds-var-m-bottom_large">
+    <lightning-icon icon-name="utility:upload" alternative-text="Google Drive" size="small"></lightning-icon>
+    <h2 class="slds-text-heading_small slds-var-m-left_small">Upload files to Google Drive</h2>
+  </lightning-layout>
+  <!-- Icon End -->
+
+  <!-- Body Start -->
+  <lightning-layout class="slds-var-p-left_x-large slds-var-p-right_x-large slds-var-m-bottom_xx-large slds-var-p-bottom_xx-large">
+
+    <!-- Input Start -->
+    <lightning-layout-item size="3" padding="around-medium">
+      <lightning-input 
+        type="file" 
+        label="Upload Document" 
+        accept=".png, .jpg, .zip, .pdf, .jpeg, .doc" 
+        onchange={handleFileUpload} 
+        style="margin-top: -4px;">
+      </lightning-input>
+      <template if:true={fileName}>
+        {fileName}
+      </template>
+    </lightning-layout-item>
+
+    <lightning-layout-item size="2" padding="around-medium" style="margin-top: 22px; margin-left: -75px">
+      <lightning-button icon-name="utility:share_file" label="Share" onclick={handleUploadToDrive} variant="brand-outline"></lightning-button>
+    </lightning-layout-item>
+    <!-- Input End -->
+
+    <!-- Output Start -->
+    <template lwc:if={uploadedFileId}>
+      <lightning-layout-item size="7"> 
+        <div class="card-container">
+          <div class="card-content">
+              <div class="card-detail">
+                  Your file has been uploaded successfully. <strong>File Id: </strong>{uploadedFileId}. <br/>
+                  Would you like to delete it?
+                  <lightning-button variant="base" label="Yes please!" onclick={handleDeleteMsg} class="slds-var-m-left_x-small"></lightning-button>
+              </div>
+          </div>
+        </div>
+      </lightning-layout-item>
+    </template>
+
+    <template lwc:if={deleteResponse}>
+      <lightning-layout-item size="7"> 
+        <div class="card-container">
+          <div class="card-content">
+              <div class="card-detail">
+                {deleteResponse}
+              </div>
+          </div>
+        </div>
+      </lightning-layout-item>
+    </template>
+
+    <template lwc:if={error}>
+      <lightning-layout-item size="7"> 
+        <div class="card-container">
+          <div class="card-content">
+              <div class="card-detail">
+                Please send this message to <strong>system admin:</strong> {error}
+              </div>
+          </div>
+        </div>
+      </lightning-layout-item> 
+    </template>
+    <!-- Output End -->
+  </lightning-layout>
+  <!-- Body End -->
+  
+</template>

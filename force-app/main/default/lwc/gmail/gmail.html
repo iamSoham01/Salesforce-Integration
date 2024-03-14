@@ -29,7 +29,7 @@
   <lightning-layout class="slds-var-p-left_x-large slds-var-p-right_x-large">
 
     <lightning-layout-item size="4" padding="around-medium">
-      <lightning-input type="file" label="Upload Image" accept=".png, .jpg, .zip, .pdf, .doc" onchange={handleFileUpload} style="margin-top: -4px;" multiple></lightning-input>
+      <lightning-input type="file" label="Upload Attachment" accept=".png, .jpg, .zip, .pdf, .doc" onchange={handleFileUpload} style="margin-top: -4px;" multiple></lightning-input>
       <template if:true={filesData}>
         <template for:each={filesData} for:item="imgName" for:index="index">
             {imgName.fileName}
@@ -48,7 +48,7 @@
       <lightning-button icon-name="utility:send" label="Send Email" onclick={handleSendEmail} variant="brand-outline"></lightning-button>
     </lightning-layout-item>
 
-  </lightning-layout>>
+  </lightning-layout>
   <!-- Input End -->
 
   <!-- Output Start -->

@@ -280,6 +280,7 @@ public class GoogleUtil {
     @author         : Soham Datta  
     @description    : Prepare request for callout
     @param          : endPoint, method, requestBody
+    @return         : HttpRequest
     *********************************************************
     */
     
@@ -301,6 +302,7 @@ public class GoogleUtil {
     @author         : Soham Datta  
     @description    : Create Google Calender Meeting
     @param          : mapAttributes
+    @return         : String
     *********************************************************
     */
 
@@ -315,12 +317,43 @@ public class GoogleUtil {
     @author         : Soham Datta  
     @description    : Create Google Calender Meeting
     @param          : mapAttributes
+    @return         : Map<String, String>
     *********************************************************
     */
 
     @AuraEnabled
     public static Map<String, String> sendEmail(Map<String, Object> mapAttributes){
         return GmailCallout.sendEmail(mapAttributes);
+    }
+
+    /*
+    *********************************************************
+    @Method Name    : uploadFiles
+    @author         : Soham Datta  
+    @description    : Upload files to Google Drive
+    @param          : mapAttributes
+    @return         : String
+    *********************************************************
+    */
+
+    @AuraEnabled
+    public static String uploadFiles(Map<String, Object> mapAttributes){
+        return GoogleDriveCallout.uploadFiles(mapAttributes);
+    }
+
+    /*
+    *********************************************************
+    @Method Name    : uploadFiles
+    @author         : Soham Datta  
+    @description    : Upload files to Google Drive
+    @param          : mapAttributes
+    @return         : String
+    *********************************************************
+    */
+
+    @AuraEnabled
+    public static String deleteFiles(String fileId){
+        return GoogleDriveCallout.deleteFiles(fileId);
     }
    
 }

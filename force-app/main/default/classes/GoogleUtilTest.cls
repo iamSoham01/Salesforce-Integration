@@ -121,5 +121,82 @@ private class GoogleUtilTest {
         Test.stopTest();
         
     }
+    
+    /*
+    *********************************************************
+    @Method Name    : testUploadFiles
+    @author         : Soham Datta  
+    @description    : Test uploadFiles() method
+    @param          :
+    *********************************************************
+    */
+    
+    @isTest
+    static void testUploadFiles() {
+        
+        User admin = [Select Id From User Where UserName = 'googleuser@calenderevnt.com' Limit 1];
+        
+        String fileName = 'logo.png';
+        String fileContent = 'XYSAMKKDNJNNBAHBHBBWVDHBHBHWBHJBDHBHDBBHWBHBHBHB';
+        String fileType = 'image/png';
+        
+        Map<String, Object> mapAttributes = new Map<String, Object>();
+        mapAttributes.put('fileName', fileName);
+        mapAttributes.put('fileContent', fileContent);
+        mapAttributes.put('fileType', fileType);
+
+        // Starting the test execution.
+        Test.startTest();
+        
+        System.runAs(admin) {
+            
+            // Setting up a mock for the HTTP callout to ServiceNow.
+            Test.setMock(HttpCalloutMock.class, new GoogleUtilMock());
+            
+            //Test Scenario 1: Providing payload
+            String uploadedFileId = GoogleUtil.uploadFiles(mapAttributes);
+            Assert.areEqual('1-aio3oRYmrvWfV-glLWfj_Kiw0Y_Sg_7', uploadedFileId);
+            
+        }
+        
+        // Stopping the test execution.
+        Test.stopTest();
+        
+    }
+    
+    /*
+    *********************************************************
+    @Method Name    : testDeleteFiles
+    @author         : Soham Datta  
+    @description    : Test deleteFiles() method
+    @param          :
+    *********************************************************
+    */
+    
+    @isTest
+    static void testDeleteFiles() {
+        
+        User admin = [Select Id From User Where UserName = 'googleuser@calenderevnt.com' Limit 1];
+        
+        String uploadedFileId = '1-aio3oRYmrvWfV-glLWfj_Kiw0Y_Sg_7';
+        
+        // Starting the test execution.
+        Test.startTest();
+        
+        System.runAs(admin) {
+            
+            // Setting up a mock for the HTTP callout to ServiceNow.
+            Test.setMock(HttpCalloutMock.class, new GoogleUtilMock());
+            
+            //Test Scenario 1: Providing payload
+            String responseMsg = GoogleUtil.deleteFiles(uploadedFileId);
+            Assert.areEqual('Your file has been deleted successfully!', responseMsg);
+            
+        }
+        
+        // Stopping the test execution.
+        Test.stopTest();
+        
+    }
 
 }
