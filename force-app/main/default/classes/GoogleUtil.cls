@@ -276,28 +276,6 @@ public class GoogleUtil {
 
     /*
     *********************************************************
-    @Method Name    : prepareRequest
-    @author         : Soham Datta  
-    @description    : Prepare request for callout
-    @param          : endPoint, method, requestBody
-    @return         : HttpRequest
-    *********************************************************
-    */
-    
-    public static HttpRequest prepareRequest(String endPoint, String method, String requestBody){
-                                                 
-        HttpRequest httpReq = new HttpRequest();
-        httpReq.setMethod(method);
-        httpReq.setEndpoint(endPoint);
-        if(String.isNotBlank(requestBody)){
-            httpReq.setBody(requestBody);
-        }
-        return httpReq;
-        
-    }
-
-    /*
-    *********************************************************
     @Method Name    : createCalenderMeeting
     @author         : Soham Datta  
     @description    : Create Google Calender Meeting

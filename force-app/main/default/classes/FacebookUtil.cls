@@ -32,7 +32,7 @@ public class FacebookUtil {
         
         Http http = new Http();
         //Preparing request for integration
-        HttpRequest httpReq = prepareRequest(endPoint, ConstantClass.METHOD_GET, '');
+        HttpRequest httpReq = CalloutUtility.prepareRequest(endPoint, ConstantClass.METHOD_GET, '');
         HttpResponse response = new HttpResponse();
         System.debug('httpReq: '+httpReq);
         
@@ -72,7 +72,7 @@ public class FacebookUtil {
         
         Http http = new Http();
         //Preparing request for integration
-        HttpRequest httpReq = prepareRequest(endPoint, ConstantClass.METHOD_GET, '');
+        HttpRequest httpReq = CalloutUtility.prepareRequest(endPoint, ConstantClass.METHOD_GET, '');
         HttpResponse response = new HttpResponse();
         
         try{
@@ -90,8 +90,8 @@ public class FacebookUtil {
                     Map<String, Object> dataMap = (Map<String, Object>)data;
                     String name = (String)dataMap.get('name');
                     String id = (String)dataMap.get('id');
-                    String access_token = (String)dataMap.get('access_token');
-                    String pageToken = id + ':' + access_token;
+                    String accessToken = (String)dataMap.get('access_token');
+                    String pageToken = id + ':' + accessToken;
                     
                     mapPageInfo.put(name, pageToken);
                 }
@@ -116,15 +116,15 @@ public class FacebookUtil {
 	*/
 
     @AuraEnabled(cacheable=true)
-    public static String postFeedMessage(String pageId, String access_token, String message){
+    public static String postFeedMessage(String pageId, String accessToken, String message){
         
         String postId = '';
-        String endPoint = 'callout:Facebook/v19.0/' + pageId + '/feed?access_token=' + access_token;
+        String endPoint = 'callout:Facebook/v19.0/' + pageId + '/feed?access_token=' + accessToken;
         String requestBody = '{"message": "' + message + '"}';
         
         Http http = new Http();
         //Preparing request for integration
-        HttpRequest httpReq = prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody);
+        HttpRequest httpReq = CalloutUtility.prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody);
         HttpResponse response = new HttpResponse();
         
         try{
@@ -142,27 +142,5 @@ public class FacebookUtil {
         }
         return postId;
     }
- 
-    /*
-    *********************************************************
-    @Method Name    : prepareRequest
-    @author         : Soham Datta  
-    @description    : Method to prepare request for integration callout
-    @param          : endPoint, method, requestBody
-    @return         : HttpRequest
-    *********************************************************
-	*/
-    public static HttpRequest prepareRequest(String endPoint, String method, String requestBody){
-        
-        httpRequest httpReq = new httpRequest();
-        httpReq.setMethod(method);
-        httpReq.setEndpoint(endPoint);
-        if(String.isNotBlank(requestBody)) {
-            httpReq.setBody(requestBody);
-        }
-        return httpReq;
-        
-    }
-    
 
 }

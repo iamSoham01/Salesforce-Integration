@@ -33,7 +33,7 @@ public class ServicenowUtil {
         
         Http http = new Http();
         //Preparing request for integration
-        HttpRequest httpReq = prepareRequest(endPoint, ConstantClass.METHOD_GET, '');
+        HttpRequest httpReq = CalloutUtility.prepareRequest(endPoint, ConstantClass.METHOD_GET, '');
         HttpResponse response = new HttpResponse();
         
         try{
@@ -96,7 +96,7 @@ public class ServicenowUtil {
         
         Http http = new Http();
         //Preparing request for integration
-        HttpRequest httpReq = prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody);
+        HttpRequest httpReq = CalloutUtility.prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody);
         HttpResponse response = new HttpResponse();
         
         try{
@@ -117,27 +117,6 @@ public class ServicenowUtil {
             throw new CustomException(e.getMessage());
         }
         return incidentNumber;
-    }
-    
-    /*
-    *********************************************************
-    @Method Name    : prepareRequest
-    @author         : Soham Datta  
-    @description    : Method to prepare request for integration callout
-    @param          : endPoint, method, requestBody
-    @return         : HttpRequest
-    *********************************************************
-	*/
-    public static HttpRequest prepareRequest(String endPoint, String method, String requestBody){
-        
-        httpRequest httpReq = new httpRequest();
-        httpReq.setMethod(method);
-        httpReq.setEndpoint(endPoint);
-        if(String.isNotBlank(requestBody)) {
-            httpReq.setBody(requestBody);
-        }
-        return httpReq;
-        
     }
     
     /*

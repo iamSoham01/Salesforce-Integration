@@ -66,7 +66,7 @@ public class GmailCallout {
                 
         // Create and send HTTP request
         Http http = new Http();
-        HttpRequest httpReq   = GoogleUtil.prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody);
+        HttpRequest httpReq   = CalloutUtility.prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody);
         HttpResponse response = new HttpResponse();
         
         try{

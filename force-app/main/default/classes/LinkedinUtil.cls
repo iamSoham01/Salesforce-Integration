@@ -18,30 +18,6 @@ public class LinkedinUtil {
     
     /*
     *********************************************************
-    @Method Name    : prepareRequest
-    @author         : Soham Datta  
-    @description    : Prepare request for callout
-    @param          : endPoint, accessToken, method, requestBody, contentType
-    *********************************************************
-    */
-    
-    public static HttpRequest prepareRequest(String endPoint, String method, String requestBody, String linkedInVersion){
-                                                 
-                                                 httpRequest httpReq = new httpRequest();
-                                                 httpReq.setMethod(method);
-                                                 httpReq.setEndpoint(endPoint);
-                                                 if(String.isNotBlank(linkedInVersion)){
-                                                     httpReq.setHeader(ConstantClass.LINKEDIN_VERSION, linkedInVersion);
-                                                 }
-                                                 if(String.isNotBlank(requestBody)){
-                                                     httpReq.setBody(requestBody);
-                                                 }
-                                                 return httpReq;
-                                                 
-                                             }
-    
-    /*
-    *********************************************************
     @Method Name    : getProfileInformation
     @author         : Soham Datta  
     @description    : Get LinkedIn Profile Information
@@ -54,7 +30,7 @@ public class LinkedinUtil {
         String endPoint = 'callout:Linkedin/v2/me';
         
         Http http = new Http();
-        HttpRequest httpReq   = prepareRequest(endPoint, ConstantClass.METHOD_GET, '', '');
+        HttpRequest httpReq   = CalloutUtility.prepareRequest(endPoint, ConstantClass.METHOD_GET, '', '');
         HttpResponse response = new HttpResponse();
         
         try{
@@ -110,7 +86,7 @@ public class LinkedinUtil {
             '}';
         
         Http http = new Http();
-        HttpRequest httpReq   = prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody, linkedinVersion);
+        HttpRequest httpReq   = CalloutUtility.prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody, linkedinVersion);
         HttpResponse response = new HttpResponse();
         
         try{
