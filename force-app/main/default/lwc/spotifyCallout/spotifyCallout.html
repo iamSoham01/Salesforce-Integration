@@ -1,3 +1,4 @@
+<!-- sldsValidatorIgnore -->
 <template>
 
   <lightning-card>
@@ -7,16 +8,65 @@
       <img src={spotifyLogo} alt="Open Cage Logo" width="150" height="50">
     </div>
     <!-- Card Header End -->
-    
-    <template lwc:if={song}>
-      <div class="envelope">
-        <img class="imgcover" src={song.albumPhoto} alt="Album Cover" />
-        <div class="song-info">
-            <h1 class="music-name">{song.musicName}</h1>
-            <h2 class="artist-name">by {song.artistName}</h2>
-        </div>
-      </div>
+
+    <!-- Spinner Start -->
+    <template lwc:if={isLoaded}>
+      <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
     </template>
+    <!-- Spinner End -->
+
+    <!-- Input Start -->
+    <lightning-layout class="slds-var-p-around_xx-large">
+
+      <lightning-layout-item size="6">
+        
+        <lightning-input variant="label-hidden" 
+                         placeholder="Enter song name"
+                         class="searchBox"
+                         onchange={handleTrackName}
+                         lwc:ref="songName">
+        </lightning-input>
+
+        <template lwc:if={song}>
+          <div class="envelope slds-var-p-top_xx-large">
+            <img class="imgcover" src={song.albumPhoto} alt="Album Cover" />
+            <div class="song-info">
+                <h1 class="music-name">{song.musicName}</h1>
+                <h2 class="artist-name">{song.artistName}</h2>
+            </div>
+          </div>
+        </template>
+      
+      </lightning-layout-item>
+
+      <lightning-layout-item size="6">
+
+        <template lwc:if={searchResults}>
+          <div class="song-list">
+            <template for:each={searchResults} for:item="song">
+              <div key={song.songUri} class="song-row">
+                <div class="thumbnail-container">
+                  <img src={song.songThumbnail} alt={song.songName} class="thumbnail"/>
+                  <lightning-icon icon-name="utility:play" 
+                                  alternative-text="Play" 
+                                  class="play-icon"
+                                  size="x-small"
+                                  onclick={handlePlayClick}
+                                  data-uri={song.songUri}>
+                  </lightning-icon>
+                </div>
+                <div class="song-info">
+                  <span class="song-name">{song.songName}</span>
+                </div>              
+              </div>
+            </template>
+          </div>  
+        </template>
+
+      </lightning-layout-item>
+
+    </lightning-layout>
+    <!-- Input End -->
 
   </lightning-card>
 
