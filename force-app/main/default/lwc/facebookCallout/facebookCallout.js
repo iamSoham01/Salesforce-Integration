@@ -61,7 +61,7 @@ export default class FacebookCallout extends LightningElement {
     const facbookPageId = this.selectedPageInfo.split(`:`)[0];
     const facbookPageToken = this.selectedPageInfo.split(`:`)[1];
 
-    postFeedMessage({pageId: facbookPageId, access_token: facbookPageToken, message: msg.value})
+    postFeedMessage({pageId: facbookPageId, accessToken: facbookPageToken, message: msg.value})
     .then((result) => {
       this.error = ``;
       msg.value = ``;

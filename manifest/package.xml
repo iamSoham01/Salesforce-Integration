@@ -138,9 +138,12 @@
 		<members>SlackUtilTest</members>
 		<members>SocialRegHandler</members>
 		<members>SpotifyUtil</members>
+		<members>SpotifyEvents</members>
+		<members>TrackWrapper</members>
 		<members>SpotifyUtilMock</members>
 		<members>SpotifyUtilTest</members>
 		<members>TestDataSetup</members>
+		<members>CalloutUtility</members>
 		<name>ApexClass</name>
 	</types>
 	<types>

@@ -51,7 +51,7 @@ public class GmailCallout {
             requestBody += '--foo_bar_baz\r\n';
 
             for(FileReaderWrapper file : files) {
-                requestBody += 'Content-Type: application/'+ file.fileType +'\r\n'
+                requestBody += 'Content-Type: '+ file.fileType +'\r\n'
                             + 'Content-Transfer-Encoding: base64\r\n'
                             + 'MIME-Version: 1.0\r\n'
                             + 'Content-Disposition: attachment; filename="' + file.fileName +'"\r\n'
@@ -66,7 +66,7 @@ public class GmailCallout {
                 
         // Create and send HTTP request
         Http http = new Http();
-        HttpRequest httpReq   = GoogleUtil.prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody);
+        HttpRequest httpReq   = CalloutUtility.prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody);
         HttpResponse response = new HttpResponse();
         
         try{

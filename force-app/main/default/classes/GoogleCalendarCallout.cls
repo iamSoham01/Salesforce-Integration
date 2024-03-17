@@ -29,7 +29,7 @@ public class GoogleCalendarCallout {
         String requestBody = buildRequestBody(mapAttributes);
         
         Http http = new Http();
-        HttpRequest httpReq   = GoogleUtil.prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody);
+        HttpRequest httpReq   = CalloutUtility.prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody);
         HttpResponse response = new HttpResponse();
         
         try{

@@ -51,7 +51,7 @@ public class GoogleDriveCallout {
 
         // Create and send HTTP request
         Http http = new Http();
-        HttpRequest httpReq   = GoogleUtil.prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody);
+        HttpRequest httpReq   = CalloutUtility.prepareRequest(endPoint, ConstantClass.METHOD_POST, requestBody);
         HttpResponse response = new HttpResponse();
 
         try {
@@ -89,7 +89,7 @@ public class GoogleDriveCallout {
         
         Http http = new Http();
         //Preparing request for integration
-        HttpRequest httpReq = GoogleUtil.prepareRequest(endPoint, ConstantClass.METHOD_DELETE, '');
+        HttpRequest httpReq = CalloutUtility.prepareRequest(endPoint, ConstantClass.METHOD_DELETE, '');
         HttpResponse response = new HttpResponse();
         
         try{
