@@ -333,5 +333,20 @@ public class GoogleUtil {
     public static String deleteFiles(String fileId){
         return GoogleDriveCallout.deleteFiles(fileId);
     }
+
+    /*
+    *********************************************************
+    @Method Name    : searchYoutubeVideos
+    @author         : Soham Datta  
+    @description    : Search videos on Youtube
+    @param          : searchQuery
+    @return         : List<YoutubeSearchWrapper>
+    *********************************************************
+    */
+
+    @AuraEnabled
+    public static List<YoutubeSearchWrapper> searchYoutubeVideos(String searchQuery){
+        return YoutubeCallout.searchVideos(searchQuery);
+    }
    
 }

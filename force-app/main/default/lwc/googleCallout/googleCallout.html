@@ -33,9 +33,9 @@
           </button>
 
           <!-- Google Maps Button -->
-          <button onclick={handleMenuBtn} data-name="Maps" class="custom-button slds-button">
-            <img src={resources.mapsLogo} data-name="Maps" alt="Google Maps Logo" class="button-image" />
-            <span class="button-label" data-name="Maps">Maps</span>
+          <button onclick={handleMenuBtn} data-name="Youtube" class="custom-button slds-button">
+            <img src={resources.youtubeLogo} data-name="Youtube" alt="Youtube Logo" class="button-image" />
+            <span class="button-label" data-name="Youtube">Youtube</span>
           </button>
 
           <!-- Google Drive Button -->
@@ -59,8 +59,8 @@
       <c-gmail></c-gmail>
     </template>
 
-    <template lwc:if={isMaps}>
-      Maps
+    <template lwc:if={isYoutube}>
+      <c-youtube></c-youtube>
     </template>
 
     <template lwc:if={isDrive}>

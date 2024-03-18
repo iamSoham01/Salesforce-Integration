@@ -198,5 +198,39 @@ private class GoogleUtilTest {
         Test.stopTest();
         
     }
+    
+    /*
+    *********************************************************
+    @Method Name    : testSearchYoutubeVideos
+    @author         : Soham Datta  
+    @description    : Test searchYoutubeVideos() method
+    @param          :
+    *********************************************************
+    */
+    
+    @isTest
+    static void testSearchYoutubeVideos() {
+        
+        User admin = [Select Id From User Where UserName = 'googleuser@calenderevnt.com' Limit 1];
+        String searchQuery = 'Tum Kya Mile';
+                
+        // Starting the test execution.
+        Test.startTest();
+        
+        System.runAs(admin) {
+            
+            // Setting up a mock for the HTTP callout to ServiceNow.
+            Test.setMock(HttpCalloutMock.class, new GoogleUtilMock());
+            
+            //Test Scenario 1: Providing payload
+            List<YoutubeSearchWrapper> searchWrapper = GoogleUtil.searchYoutubeVideos(searchQuery);
+            Assert.areEqual(3, searchWrapper.size());
+            
+        }
+        
+        // Stopping the test execution.
+        Test.stopTest();
+        
+    }
 
 }

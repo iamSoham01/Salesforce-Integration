@@ -46,6 +46,8 @@ public class GoogleUtilMock implements HttpCalloutMock {
                 statusCode = 204;
             }
             
+        }else if (req.getEndpoint().contains('youtube')){
+            body = youtubeResponse();
         }
         
         // Set serialized body in the HttpResponse.
@@ -118,6 +120,100 @@ public class GoogleUtilMock implements HttpCalloutMock {
             '    "id": "1-aio3oRYmrvWfV-glLWfj_Kiw0Y_Sg_7",'+
             '    "name": "logo.png",'+
             '    "mimeType": "image/png"'+
+            '}';
+        
+        return body;
+    }
+    
+    /*
+    *********************************************************
+    @Method Name    : youtubeResponse
+    @author         : Soham Datta  
+    @description    : Youtube search response
+    @param          :
+    *********************************************************
+    */
+
+    private String youtubeResponse() {
+        
+        String body = '{'+
+            '  "items": ['+
+            '    {'+
+            '      "id": {'+
+            '        "videoId": "2uUmHTgT65I"'+
+            '      },'+
+            '      "snippet": {'+
+            '        "title": "Dhoom Machale Song | DHOOM, Esha Deol, John Abraham, Abhishek, Uday, Sunidhi Chauhan, Pritam, Sameer",'+
+            '        "thumbnails": {'+
+            '          "default": {'+
+            '            "url": "https://i.ytimg.com/vi/2uUmHTgT65I/default.jpg",'+
+            '            "width": 120,'+
+            '            "height": 90'+
+            '          },'+
+            '          "medium": {'+
+            '            "url": "https://i.ytimg.com/vi/2uUmHTgT65I/mqdefault.jpg",'+
+            '            "width": 320,'+
+            '            "height": 180'+
+            '          },'+
+            '          "high": {'+
+            '            "url": "https://i.ytimg.com/vi/2uUmHTgT65I/hqdefault.jpg",'+
+            '            "width": 480,'+
+            '            "height": 360'+
+            '          }'+
+            '        }'+
+            '      }'+
+            '    },'+
+            '    {'+
+            '      "id": {'+
+            '        "videoId": "q0loWjfX0d8"'+
+            '      },'+
+            '      "snippet": {'+
+            '        "title": "Dilbara | Full Song | Dhoom | Abhishek Bachchan, Uday, Esha | Abhijeet, Sowmya | Pritam, Sameer",'+
+            '        "thumbnails": {'+
+            '          "default": {'+
+            '            "url": "https://i.ytimg.com/vi/q0loWjfX0d8/default.jpg",'+
+            '            "width": 120,'+
+            '            "height": 90'+
+            '          },'+
+            '          "medium": {'+
+            '            "url": "https://i.ytimg.com/vi/q0loWjfX0d8/mqdefault.jpg",'+
+            '            "width": 320,'+
+            '            "height": 180'+
+            '          },'+
+            '          "high": {'+
+            '            "url": "https://i.ytimg.com/vi/q0loWjfX0d8/hqdefault.jpg",'+
+            '            "width": 480,'+
+            '            "height": 360'+
+            '          }'+
+            '        }'+
+            '      }'+
+            '    },'+
+            '    {'+
+            '      "id": {'+
+            '        "videoId": "ilRIS3x2YA4"'+
+            '      },'+
+            '      "snippet": {'+
+            '        "title": "Dhoom status",'+
+            '        "thumbnails": {'+
+            '          "default": {'+
+            '            "url": "https://i.ytimg.com/vi/ilRIS3x2YA4/default.jpg",'+
+            '            "width": 120,'+
+            '            "height": 90'+
+            '          },'+
+            '          "medium": {'+
+            '            "url": "https://i.ytimg.com/vi/ilRIS3x2YA4/mqdefault.jpg",'+
+            '            "width": 320,'+
+            '            "height": 180'+
+            '          },'+
+            '          "high": {'+
+            '            "url": "https://i.ytimg.com/vi/ilRIS3x2YA4/hqdefault.jpg",'+
+            '            "width": 480,'+
+            '            "height": 360'+
+            '          }'+
+            '        }'+
+            '      }'+
+            '    }'+
+            '  ]'+
             '}';
         
         return body;

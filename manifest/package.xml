@@ -6,7 +6,7 @@
 		<members>chatgtp</members>
 		<members>servicenow</members>
 		<members>google</members>
-		<members>googleMaps</members>
+		<members>youtube</members>
 		<members>googleDrive</members>
 		<members>gmail</members>
 		<members>googleCalendar</members>
@@ -84,6 +84,7 @@
 		<members>GoogleCalendarCredential</members>
 		<members>GmailCredential</members>
 		<members>GoogleDriveCredential</members>
+		<members>YoutubeCredential</members>
 		<name>ExternalCredential</name>
 	</types>
 	<types>
@@ -97,6 +98,7 @@
 		<members>GoogleCalendar</members>
 		<members>Gmail</members>
 		<members>GoogleDrive</members>
+		<members>Youtube</members>
 		<name>NamedCredential</name>
 	</types>
 	<types>
@@ -117,6 +119,8 @@
 		<members>GoogleCalendarCallout</members>
 		<members>GoogleDriveCallout</members>
 		<members>GmailCallout</members>
+		<members>YoutubeCallout</members>
+		<members>YoutubeSearchWrapper</members>
 		<members>GoogleUtilMock</members>
 		<members>GoogleUtilTest</members>
 		<members>LinkedinProfileDetails</members>
