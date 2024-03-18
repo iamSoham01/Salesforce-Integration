@@ -1,0 +1,66 @@
+<template>
+    
+  <!-- Spinner Start -->
+  <template lwc:if={isLoaded}>
+    <lightning-spinner variant="brand" alternative-text="Loading"></lightning-spinner>
+  </template>
+  <!-- Spinner End -->
+
+  <!-- Icon Start -->
+  <lightning-layout class="slds-var-m-left_xx-large slds-var-p-top_xx-large">
+    <lightning-icon icon-name="utility:video" alternative-text="Gmail" size="small"></lightning-icon>
+    <h2 class="slds-text-heading_small slds-var-m-left_small">Search on youtube</h2>
+  </lightning-layout>
+  <!-- Icon End -->    
+
+  <lightning-layout class="slds-var-p-left_x-large slds-var-p-right_x-large slds-var-p-bottom_x-large">
+
+    <lightning-layout-item size="6">
+      <!-- Input Start -->
+      <lightning-layout>
+        <lightning-layout-item size="8" padding="around-medium">
+          <lightning-textarea label="Search on youtube" placeholder="type here..." lwc:ref="searchQuery"></lightning-textarea>
+        </lightning-layout-item>
+
+        <lightning-layout-item size="4" style="margin-top: 22px;" padding="around-medium">
+          <lightning-button icon-name="utility:search" label="Search" onclick={handleSearch} variant="brand-outline"></lightning-button>
+        </lightning-layout-item>
+      </lightning-layout>
+      <!-- Input End -->
+
+      <!-- Block for searched video playlist -->
+      <template if:true={searchedVideos}>
+        <div class="video-list slds-var-m-top_small slds-var-m-left_small">
+          <template for:each={searchedVideos} for:item="video">
+            <div key={video.videoURL} class="video-item" data-url={video.videoURL} onclick={handlePlayClick}>
+              <img data-url={video.videoURL} src={video.videoThumbnail} alt={video.videoTitle} class="thumbnail" />
+              <div data-url={video.videoURL} class="details" >
+                <p data-url={video.videoURL} class="title">{video.videoTitle}</p>
+              </div>
+            </div>
+          </template>
+        </div>
+      </template>        
+      <!-- Block for searched video playlist -->
+    </lightning-layout-item>
+
+    <lightning-layout-item size="6">
+      <!-- Block for youtube player -->
+      <template if:true={selectedYoutubeURL}>
+        <div class="youtube-player slds-var-m-right_x-large slds-var-m-top_x-large">
+          <iframe
+              width="560"
+              height="315"
+              src={selectedYoutubeURL}
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+          </iframe>
+        </div>
+      </template>
+      <!-- Block for youtube player -->
+    </lightning-layout-item>
+
+  </lightning-layout>
+
+</template>

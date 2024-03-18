@@ -3,7 +3,7 @@ import GOOGLE_LOGO from '@salesforce/resourceUrl/google';
 import CALENDAR_LOGO from '@salesforce/resourceUrl/googleCalendar';
 import GMAIL_LOGO from '@salesforce/resourceUrl/gmail';
 import DRIVE_LOGO from '@salesforce/resourceUrl/googleDrive';
-import MAPS_LOGO from '@salesforce/resourceUrl/googleMaps';
+import YOUTUBE_LOGO from '@salesforce/resourceUrl/youtube';
 
 export default class GoogleCallout extends LightningElement {
 
@@ -12,18 +12,18 @@ export default class GoogleCallout extends LightningElement {
     calnedarLogo: CALENDAR_LOGO,
     gmailLogo: GMAIL_LOGO,
     driveLogo: DRIVE_LOGO,
-    mapsLogo: MAPS_LOGO
+    youtubeLogo: YOUTUBE_LOGO
   };
 
   isCalendar = true;
   isGmail = false;
-  isMaps = false;
+  isYoutube = false;
   isDrive = false;
 
   handleMenuBtn(event){
     this.isCalendar = event.target.dataset.name === 'Calendar';
     this.isGmail = event.target.dataset.name === 'Gmail';
-    this.isMaps = event.target.dataset.name === 'Maps';
+    this.isYoutube = event.target.dataset.name === 'Youtube';
     this.isDrive = event.target.dataset.name === 'Drive';
   }
 

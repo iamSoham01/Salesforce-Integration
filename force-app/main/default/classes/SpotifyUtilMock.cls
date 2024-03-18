@@ -25,18 +25,28 @@ public class SpotifyUtilMock implements HttpCalloutMock {
     */
 
     public HttpResponse respond(HttpRequest req) {
+        
         HttpResponse res = new HttpResponse();
+        Integer statusCode = 200;
         
         String body = '';
        
         // Determine the type of request and provide the corresponding mock response.
         if (req.getEndpoint().contains('currently-playing')){
             body = currentPlayingSongResponse();
+        }else if (req.getEndpoint().contains('search')){
+            body = searchTrackResponse();
+        }else if (req.getEndpoint().contains('devices')){
+            body = getAvailableDevicesResponse();
+        }else if (req.getEndpoint().contains('play')){
+            statusCode = 204;
+        }else if (req.getEndpoint().contains('pause')){
+            statusCode = 204;
         }
         
         // Set serialized body in the HttpResponse.
         res.setBody(body);
-        res.setStatusCode(200);
+        res.setStatusCode(statusCode);
         
         return res;
     }
@@ -70,191 +80,6 @@ public class SpotifyUtilMock implements HttpCalloutMock {
 		'                    "type": "artist",'+
 		'                    "uri": "spotify:artist:1Xyo4u8uXC1ZmMpatF05PJ"'+
 		'                }'+
-		'            ],'+
-		'            "available_markets": ['+
-		'                "AR",'+
-		'                "AU",'+
-		'                "AT",'+
-		'                "BE",'+
-		'                "BO",'+
-		'                "BR",'+
-		'                "BG",'+
-		'                "CA",'+
-		'                "CL",'+
-		'                "CO",'+
-		'                "CR",'+
-		'                "CY",'+
-		'                "CZ",'+
-		'                "DK",'+
-		'                "DO",'+
-		'                "DE",'+
-		'                "EC",'+
-		'                "EE",'+
-		'                "SV",'+
-		'                "FI",'+
-		'                "FR",'+
-		'                "GR",'+
-		'                "GT",'+
-		'                "HN",'+
-		'                "HK",'+
-		'                "HU",'+
-		'                "IS",'+
-		'                "IE",'+
-		'                "IT",'+
-		'                "LV",'+
-		'                "LT",'+
-		'                "LU",'+
-		'                "MY",'+
-		'                "MT",'+
-		'                "MX",'+
-		'                "NL",'+
-		'                "NZ",'+
-		'                "NI",'+
-		'                "NO",'+
-		'                "PA",'+
-		'                "PY",'+
-		'                "PE",'+
-		'                "PH",'+
-		'                "PL",'+
-		'                "PT",'+
-		'                "SG",'+
-		'                "SK",'+
-		'                "ES",'+
-		'                "SE",'+
-		'                "CH",'+
-		'                "TW",'+
-		'                "TR",'+
-		'                "UY",'+
-		'                "US",'+
-		'                "GB",'+
-		'                "AD",'+
-		'                "LI",'+
-		'                "MC",'+
-		'                "ID",'+
-		'                "JP",'+
-		'                "TH",'+
-		'                "VN",'+
-		'                "RO",'+
-		'                "IL",'+
-		'                "ZA",'+
-		'                "SA",'+
-		'                "AE",'+
-		'                "BH",'+
-		'                "QA",'+
-		'                "OM",'+
-		'                "KW",'+
-		'                "EG",'+
-		'                "MA",'+
-		'                "DZ",'+
-		'                "TN",'+
-		'                "LB",'+
-		'                "JO",'+
-		'                "PS",'+
-		'                "IN",'+
-		'                "KZ",'+
-		'                "MD",'+
-		'                "UA",'+
-		'                "AL",'+
-		'                "BA",'+
-		'                "HR",'+
-		'                "ME",'+
-		'                "MK",'+
-		'                "RS",'+
-		'                "SI",'+
-		'                "KR",'+
-		'                "BD",'+
-		'                "PK",'+
-		'                "LK",'+
-		'                "GH",'+
-		'                "KE",'+
-		'                "NG",'+
-		'                "TZ",'+
-		'                "UG",'+
-		'                "AG",'+
-		'                "AM",'+
-		'                "BS",'+
-		'                "BB",'+
-		'                "BZ",'+
-		'                "BT",'+
-		'                "BW",'+
-		'                "BF",'+
-		'                "CV",'+
-		'                "CW",'+
-		'                "DM",'+
-		'                "FJ",'+
-		'                "GM",'+
-		'                "GE",'+
-		'                "GD",'+
-		'                "GW",'+
-		'                "GY",'+
-		'                "HT",'+
-		'                "JM",'+
-		'                "KI",'+
-		'                "LS",'+
-		'                "LR",'+
-		'                "MW",'+
-		'                "MV",'+
-		'                "ML",'+
-		'                "MH",'+
-		'                "FM",'+
-		'                "NA",'+
-		'                "NR",'+
-		'                "NE",'+
-		'                "PW",'+
-		'                "PG",'+
-		'                "WS",'+
-		'                "SM",'+
-		'                "ST",'+
-		'                "SN",'+
-		'                "SC",'+
-		'                "SL",'+
-		'                "SB",'+
-		'                "KN",'+
-		'                "LC",'+
-		'                "VC",'+
-		'                "SR",'+
-		'                "TL",'+
-		'                "TO",'+
-		'                "TT",'+
-		'                "TV",'+
-		'                "VU",'+
-		'                "AZ",'+
-		'                "BN",'+
-		'                "BI",'+
-		'                "KH",'+
-		'                "CM",'+
-		'                "TD",'+
-		'                "KM",'+
-		'                "GQ",'+
-		'                "SZ",'+
-		'                "GA",'+
-		'                "GN",'+
-		'                "KG",'+
-		'                "LA",'+
-		'                "MO",'+
-		'                "MR",'+
-		'                "MN",'+
-		'                "NP",'+
-		'                "RW",'+
-		'                "TG",'+
-		'                "UZ",'+
-		'                "ZW",'+
-		'                "BJ",'+
-		'                "MG",'+
-		'                "MU",'+
-		'                "MZ",'+
-		'                "AO",'+
-		'                "CI",'+
-		'                "DJ",'+
-		'                "ZM",'+
-		'                "CD",'+
-		'                "CG",'+
-		'                "IQ",'+
-		'                "LY",'+
-		'                "TJ",'+
-		'                "VE",'+
-		'                "ET",'+
-		'                "XK"'+
 		'            ],'+
 		'            "external_urls": {'+
 		'                "spotify": "https://open.spotify.com/album/4qZBW3f2Q8y0k1A84d4iAO"'+
@@ -307,191 +132,6 @@ public class SpotifyUtilMock implements HttpCalloutMock {
 		'                "uri": "spotify:artist:3hteYQFiMFbJY7wS0xDymP"'+
 		'            }'+
 		'        ],'+
-		'        "available_markets": ['+
-		'            "AR",'+
-		'            "AU",'+
-		'            "AT",'+
-		'            "BE",'+
-		'            "BO",'+
-		'            "BR",'+
-		'            "BG",'+
-		'            "CA",'+
-		'            "CL",'+
-		'            "CO",'+
-		'            "CR",'+
-		'            "CY",'+
-		'            "CZ",'+
-		'            "DK",'+
-		'            "DO",'+
-		'            "DE",'+
-		'            "EC",'+
-		'            "EE",'+
-		'            "SV",'+
-		'            "FI",'+
-		'            "FR",'+
-		'            "GR",'+
-		'            "GT",'+
-		'            "HN",'+
-		'            "HK",'+
-		'            "HU",'+
-		'            "IS",'+
-		'            "IE",'+
-		'            "IT",'+
-		'            "LV",'+
-		'            "LT",'+
-		'            "LU",'+
-		'            "MY",'+
-		'            "MT",'+
-		'            "MX",'+
-		'            "NL",'+
-		'            "NZ",'+
-		'            "NI",'+
-		'            "NO",'+
-		'            "PA",'+
-		'            "PY",'+
-		'            "PE",'+
-		'            "PH",'+
-		'            "PL",'+
-		'            "PT",'+
-		'            "SG",'+
-		'            "SK",'+
-		'            "ES",'+
-		'            "SE",'+
-		'            "CH",'+
-		'            "TW",'+
-		'            "TR",'+
-		'            "UY",'+
-		'            "US",'+
-		'            "GB",'+
-		'            "AD",'+
-		'            "LI",'+
-		'            "MC",'+
-		'            "ID",'+
-		'            "JP",'+
-		'            "TH",'+
-		'            "VN",'+
-		'            "RO",'+
-		'            "IL",'+
-		'            "ZA",'+
-		'            "SA",'+
-		'            "AE",'+
-		'            "BH",'+
-		'            "QA",'+
-		'            "OM",'+
-		'            "KW",'+
-		'            "EG",'+
-		'            "MA",'+
-		'            "DZ",'+
-		'            "TN",'+
-		'            "LB",'+
-		'            "JO",'+
-		'            "PS",'+
-		'            "IN",'+
-		'            "KZ",'+
-		'            "MD",'+
-		'            "UA",'+
-		'            "AL",'+
-		'            "BA",'+
-		'            "HR",'+
-		'            "ME",'+
-		'            "MK",'+
-		'            "RS",'+
-		'            "SI",'+
-		'            "KR",'+
-		'            "BD",'+
-		'            "PK",'+
-		'            "LK",'+
-		'            "GH",'+
-		'            "KE",'+
-		'            "NG",'+
-		'            "TZ",'+
-		'            "UG",'+
-		'            "AG",'+
-		'            "AM",'+
-		'            "BS",'+
-		'            "BB",'+
-		'            "BZ",'+
-		'            "BT",'+
-		'            "BW",'+
-		'            "BF",'+
-		'            "CV",'+
-		'            "CW",'+
-		'            "DM",'+
-		'            "FJ",'+
-		'            "GM",'+
-		'            "GE",'+
-		'            "GD",'+
-		'            "GW",'+
-		'            "GY",'+
-		'            "HT",'+
-		'            "JM",'+
-		'            "KI",'+
-		'            "LS",'+
-		'            "LR",'+
-		'            "MW",'+
-		'            "MV",'+
-		'            "ML",'+
-		'            "MH",'+
-		'            "FM",'+
-		'            "NA",'+
-		'            "NR",'+
-		'            "NE",'+
-		'            "PW",'+
-		'            "PG",'+
-		'            "WS",'+
-		'            "SM",'+
-		'            "ST",'+
-		'            "SN",'+
-		'            "SC",'+
-		'            "SL",'+
-		'            "SB",'+
-		'            "KN",'+
-		'            "LC",'+
-		'            "VC",'+
-		'            "SR",'+
-		'            "TL",'+
-		'            "TO",'+
-		'            "TT",'+
-		'            "TV",'+
-		'            "VU",'+
-		'            "AZ",'+
-		'            "BN",'+
-		'            "BI",'+
-		'            "KH",'+
-		'            "CM",'+
-		'            "TD",'+
-		'            "KM",'+
-		'            "GQ",'+
-		'            "SZ",'+
-		'            "GA",'+
-		'            "GN",'+
-		'            "KG",'+
-		'            "LA",'+
-		'            "MO",'+
-		'            "MR",'+
-		'            "MN",'+
-		'            "NP",'+
-		'            "RW",'+
-		'            "TG",'+
-		'            "UZ",'+
-		'            "ZW",'+
-		'            "BJ",'+
-		'            "MG",'+
-		'            "MU",'+
-		'            "MZ",'+
-		'            "AO",'+
-		'            "CI",'+
-		'            "DJ",'+
-		'            "ZM",'+
-		'            "CD",'+
-		'            "CG",'+
-		'            "IQ",'+
-		'            "LY",'+
-		'            "TJ",'+
-		'            "VE",'+
-		'            "ET",'+
-		'            "XK"'+
-		'        ],'+
 		'        "disc_number": 1,'+
 		'        "duration_ms": 241066,'+
 		'        "explicit": false,'+
@@ -522,6 +162,102 @@ public class SpotifyUtilMock implements HttpCalloutMock {
 		'    },'+
 		'    "is_playing": true'+
 		'}';
+        
+        return body;
+    }
+    
+    /*
+    *********************************************************
+    @Method Name    : searchTrackResponse
+    @author         : Soham Datta  
+    @description    : Search track response
+    @param          :
+    *********************************************************
+    */
+
+    private String searchTrackResponse() {
+        
+        String body = '{'+
+            '  "tracks": {'+
+            '    "items": ['+
+            '      {'+
+            '        "album": {'+
+            '          "images": ['+
+            '            {'+
+            '              "height": 640,'+
+            '              "url": "https://i.scdn.co/image/ab67616d0000b273d9cc24c0d415e40d5af3c8d5",'+
+            '              "width": 640'+
+            '            },'+
+            '            {'+
+            '              "height": 300,'+
+            '              "url": "https://i.scdn.co/image/ab67616d00001e02d9cc24c0d415e40d5af3c8d5",'+
+            '              "width": 300'+
+            '            },'+
+            '            {'+
+            '              "height": 64,'+
+            '              "url": "https://i.scdn.co/image/ab67616d00004851d9cc24c0d415e40d5af3c8d5",'+
+            '              "width": 64'+
+            '            }'+
+            '          ]'+
+            '        },'+
+            '        "name": "Malang",'+
+            '        "uri": "spotify:track:65bMbbRjIlGyJBgQRi6Qvv"'+
+            '      },'+
+            '      {'+
+            '        "album": {'+
+            '          "images": ['+
+            '            {'+
+            '              "height": 640,'+
+            '              "url": "https://i.scdn.co/image/ab67616d0000b27390ecbd32d810440ceac60938",'+
+            '              "width": 640'+
+            '            },'+
+            '            {'+
+            '              "height": 300,'+
+            '              "url": "https://i.scdn.co/image/ab67616d00001e0290ecbd32d810440ceac60938",'+
+            '              "width": 300'+
+            '            },'+
+            '            {'+
+            '              "height": 64,'+
+            '              "url": "https://i.scdn.co/image/ab67616d0000485190ecbd32d810440ceac60938",'+
+            '              "width": 64'+
+            '            }'+
+            '          ]'+
+            '        },'+
+            '        "name": "Dhoom Machale",'+
+            '        "uri": "spotify:track:1j6aCQO3m8Vo9xaIqzoAPh"'+
+            '      }'+
+            '    ]'+
+            '  }'+
+            '}';
+        
+        return body;
+    }
+    
+    /*
+    *********************************************************
+    @Method Name    : getAvailableDevicesResponse
+    @author         : Soham Datta  
+    @description    : Available devices response
+    @param          :
+    *********************************************************
+    */
+
+    private String getAvailableDevicesResponse() {
+        
+        String body = '{'+
+            '    "devices": ['+
+            '        {'+
+            '            "id": "cb5a2c3eeb6775985fe959c03b1c57d54523e680",'+
+            '            "is_active": false,'+
+            '            "is_private_session": false,'+
+            '            "is_restricted": false,'+
+            '            "name": "Web Player (Chrome)",'+
+            '            "supports_volume": true,'+
+            '            "type": "Computer",'+
+            '            "volume_percent": 80'+
+            '        }'+
+            '    ]'+
+            '}';
         
         return body;
     }

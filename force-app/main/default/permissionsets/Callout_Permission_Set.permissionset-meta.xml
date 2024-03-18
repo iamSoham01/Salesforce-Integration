@@ -9,6 +9,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CalloutUtility</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>ChatGTPMock</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -46,6 +50,18 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FacebookUtilTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GmailCallout</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GoogleCalendarCallout</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GoogleDriveCallout</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -137,6 +153,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>SpotifyEvents</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>SpotifyUtil</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -150,6 +170,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>TestDataSetup</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TrackWrapper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <externalCredentialPrincipalAccesses>
@@ -187,6 +211,10 @@
     <externalCredentialPrincipalAccesses>
         <enabled>true</enabled>
         <externalCredentialPrincipal>SpotifyCredential-Client Credentials</externalCredentialPrincipal>
+    </externalCredentialPrincipalAccesses>
+    <externalCredentialPrincipalAccesses>
+        <enabled>true</enabled>
+        <externalCredentialPrincipal>YoutubeCredential-Client Credential</externalCredentialPrincipal>
     </externalCredentialPrincipalAccesses>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Callout Permission Set</label>
