@@ -11,15 +11,15 @@ export default class SpotifyCallout extends LightningElement {
   isLoaded = false;
   searchResults = [];
   error; 
-  song; 
+  song;
+  togglePlayPauseIcon;
+  currentTrackURI;
 
   connectedCallback() {
-
     this.currentPlayingTrack();
     setInterval(() => {
       this.currentPlayingTrack();
-    }, 30000);
-    
+    }, 10000);
   }
 
   handleTrackName(event) {
@@ -45,7 +45,13 @@ export default class SpotifyCallout extends LightningElement {
   handlePlayClick(event) {
     
     const selectedSongURI = event.target.dataset.uri;
-    const lightningIcons = this.template.querySelectorAll(`lightning-icon`);
+    this.modifyPlaylistIcons(selectedSongURI);
+
+  }
+
+  modifyPlaylistIcons(selectedSongURI){
+
+    const lightningIcons = this.template.querySelectorAll(`.play-icon`);
 
     if (lightningIcons) {
       lightningIcons.forEach(icon => {
@@ -70,6 +76,9 @@ export default class SpotifyCallout extends LightningElement {
     getSongInformations() 
       .then((result) => {
         this.song = result;
+        this.currentTrackURI = result.trackURI;
+        this.togglePlayPauseIcon = result.isPlaying === 'true' ? 'utility:pause' : 'utility:play';
+        console.log(`Song: `,result);
       })
       .catch((error) => {
         console.error(error);
@@ -80,9 +89,7 @@ export default class SpotifyCallout extends LightningElement {
   startTrack(selectedSongURI) {
     startPlayback({ trackURI: selectedSongURI })
       .then((result) => {
-        
         this.currentPlayingTrack();
-
       })
       .catch((error) => {
         console.error(error);
@@ -98,6 +105,18 @@ export default class SpotifyCallout extends LightningElement {
         console.error(error);
         this.error = error;
       });
+  }
+
+  handlePlayPause(){
+
+    this.togglePlayPauseIcon = (this.togglePlayPauseIcon === `utility:play`) ? 'utility:pause' : 'utility:play';
+    if(this.togglePlayPauseIcon === 'utility:play'){
+      this.pauseTrack();
+      this.modifyPlaylistIcons(this.currentTrackURI);
+    }else{
+      this.startTrack(this.currentTrackURI);
+    }
+
   }
 
 }
