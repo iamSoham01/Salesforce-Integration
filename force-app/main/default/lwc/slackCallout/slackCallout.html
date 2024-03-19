@@ -18,7 +18,12 @@
     <lightning-layout class="slds-var-m-around_xx-large slds-var-p-bottom_large">
 
       <lightning-layout-item size="2">
-        <lightning-input label="Enter channel id" lwc:ref="channelId"></lightning-input>
+        <lightning-combobox
+            lwc:ref="channelId"
+            label="Select channel"
+            value={value}
+            options={allChannels}>
+        </lightning-combobox>
       </lightning-layout-item>
 
       <lightning-layout-item size="8">

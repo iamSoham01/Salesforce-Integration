@@ -13,6 +13,58 @@ Ver   Date         Author                               Modification
 */
 
 public class SlackUtil {
+
+    /*
+    *********************************************************
+    @Method Name    : getCallerDetails
+    @author         : Soham Datta  
+    @description    : Method to get caller details from Servicenow
+    @param          : 
+    @return         : Map<String, String>
+    *********************************************************
+	*/
+
+    @AuraEnabled(cacheable=true)
+    public static Map<String, String> getAllChannels(){
+
+        Map<String, String> mapAllChannels = new Map<String, String>();
+        
+        //Preparing endpoint
+        String endPoint = 'callout:Slack/conversations.list';
+        
+        Http http = new Http();
+        //Preparing request for integration
+        HttpRequest httpReq = CalloutUtility.prepareRequest(endPoint, ConstantClass.METHOD_GET, '');
+        HttpResponse response = new HttpResponse();
+        
+        try{
+            //Sending payload
+            response = http.send(httpReq);
+            //Getting success response
+            if(response.getStatusCode() == 200){
+                String responseBody = response.getBody();
+                //Parsing JSON
+                Map<String, Object> parsedJson = (Map<String, Object>) JSON.deserializeUntyped(responseBody);
+                
+                List<Object> channels = (List<Object>) parsedJson.get('channels');
+                for(Object channelObj : channels) {
+                    Map<String, Object> channelData = (Map<String, Object>) channelObj;
+                    Boolean isMember = (Boolean) channelData.get('is_member');
+                    if(isMember != null && isMember) {
+                        String name = (String) channelData.get('name');
+                        String id = (String) channelData.get('id');
+                        mapAllChannels.put(name, id);
+                    }
+                }
+            }else{
+                throw new CustomException(response.getBody());
+            }
+        }catch(Exception e){
+            throw new CustomException(e.getMessage());
+        }
+
+        return mapAllChannels;
+    }
     
     /*
     *********************************************************
