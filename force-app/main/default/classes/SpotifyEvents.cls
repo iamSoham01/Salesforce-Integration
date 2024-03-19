@@ -53,6 +53,10 @@ public class SpotifyEvents {
                 mapSongInfo.put('musicName', (String) item.get('name'));
                 mapSongInfo.put('albumPhoto', (String) imageForCover.get('url'));
                 mapSongInfo.put('artistName', (String) artistObject.get('name'));
+                mapSongInfo.put('trackURI', (String) item.get('uri'));
+                mapSongInfo.put('trackDuration', String.valueOf(item.get('duration_ms')));
+                mapSongInfo.put('isPlaying', String.valueOf(deserializedResult.get('is_playing')));
+                mapSongInfo.put('trackProgressDuration', String.valueOf(deserializedResult.get('progress_ms')));
                 
             }else{
                 throw new CustomException(response.getBody());

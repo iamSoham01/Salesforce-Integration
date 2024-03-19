@@ -26,43 +26,41 @@
                          onchange={handleTrackName}
                          lwc:ref="songName">
         </lightning-input>
-
+        <!-- Bloack to Display Player -->
         <template lwc:if={song}>
-          <div class="envelope slds-var-p-top_xx-large">
-            <img class="imgcover" src={song.albumPhoto} alt="Album Cover" />
+          <div class="spotify-player slds-var-p-top_xx-large">
             <div class="song-info">
-                <h1 class="music-name">{song.musicName}</h1>
-                <h2 class="artist-name">{song.artistName}</h2>
+              <div class="img-container">
+                  <img class="imgcover" src={song.albumPhoto} alt="Album Cover" />
+                  <lightning-icon icon-name={togglePlayPauseIcon} alternative-text="Play" class="play-btn" size="small" onclick={handlePlayPause}></lightning-icon>
+              </div>
+              <h1 class="music-name">{song.musicName}</h1>
+              <h2 class="artist-name">{song.artistName}</h2>
             </div>
           </div>
         </template>
-      
+        <!-- Bloack to Display Player -->
       </lightning-layout-item>
 
       <lightning-layout-item size="6">
-
+        <!-- Bloack to Display Playlist -->
         <template lwc:if={searchResults}>
-          <div class="song-list">
+          <div class="play-list">
             <template for:each={searchResults} for:item="song">
-              <div key={song.songUri} class="song-row">
+              <div key={song.songUri} class="playlist-row">
                 <div class="thumbnail-container">
                   <img src={song.songThumbnail} alt={song.songName} class="thumbnail"/>
-                  <lightning-icon icon-name="utility:play" 
-                                  alternative-text="Play" 
-                                  class="play-icon"
-                                  size="x-small"
-                                  onclick={handlePlayClick}
-                                  data-uri={song.songUri}>
+                  <lightning-icon icon-name="utility:play" alternative-text="Play" class="play-icon" size="x-small" onclick={handlePlayClick} data-uri={song.songUri}>
                   </lightning-icon>
                 </div>
-                <div class="song-info">
-                  <span class="song-name">{song.songName}</span>
+                <div class="playlist-info">
+                  <span class="playlist-name">{song.songName}</span>
                 </div>              
               </div>
             </template>
           </div>  
         </template>
-
+        <!-- Bloack to Display Playlist -->
       </lightning-layout-item>
 
     </lightning-layout>

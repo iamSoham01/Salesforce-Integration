@@ -30,7 +30,7 @@ public class YoutubeCallout {
         String encodedString = EncodingUtil.urlEncode(String.escapeSingleQuotes(searchQuery), 'UTF-8');
                 
         // Set up Youtube endpoint
-        String endpoint = 'callout:Youtube/youtube/v3/search?part=snippet&type=video&maxResults=3&videoEmbeddable=true&q=' + encodedString;
+        String endpoint = 'callout:Youtube/youtube/v3/search?part=snippet&type=video&maxResults=3&q=' + encodedString;
                 
         // Create and send HTTP request
         Http http = new Http();
