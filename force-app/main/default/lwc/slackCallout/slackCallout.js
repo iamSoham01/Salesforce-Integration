@@ -1,5 +1,6 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import SLACK_LOGO from '@salesforce/resourceUrl/slack';
+import getAllChannels from '@salesforce/apex/SlackUtil.getAllChannels';
 import postMessage from '@salesforce/apex/SlackUtil.postMessage';
 import deleteMessage from '@salesforce/apex/SlackUtil.deleteMessage';
 
@@ -7,14 +8,29 @@ export default class SlackCallout extends LightningElement {
 
   slackLogo = SLACK_LOGO;
   isLoaded = false;
+  allChannels = [{ label: 'None', value: '' }];
   error;
   postResponse = ``;
   deleteResponse = ``;
 
+  @wire(getAllChannels) 
+  servicenowCallerInfo({data, error}) {
+    if(data){
+      const options = Object.keys(data).map(key => ({
+        label: key,
+        value: data[key]
+      }));
+      this.allChannels = this.allChannels.concat(options);
+    }else {
+      this.error = JSON.stringify(error);
+    }
+    this.isLoaded = !this.isLoaded;
+  }
+
   checkFieldValidity(inputType, errorMsg) {
 
     if (!inputType.value) {
-      inputType.setCustomValidity(`Please enter ${errorMsg}`);
+      inputType.setCustomValidity(`Please  ${errorMsg}`);
     } else {
       inputType.setCustomValidity(``);
     }
@@ -24,10 +40,11 @@ export default class SlackCallout extends LightningElement {
   handleSendMsg(){
 
     const channelId = this.refs.channelId;
+    console.log(`channelId: `, channelId.value);
     const msg = this.refs.msg;
 
-    const isChannelIdValid = this.checkFieldValidity(channelId, `channel id`);
-    const isMsgValid = this.checkFieldValidity(msg, `your message`);
+    const isChannelIdValid = this.checkFieldValidity(channelId, `select your channel`);
+    const isMsgValid = this.checkFieldValidity(msg, `enter your message`);
 
     if(!isChannelIdValid || !isMsgValid){
       return;
