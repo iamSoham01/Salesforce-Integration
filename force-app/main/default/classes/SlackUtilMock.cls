@@ -31,7 +31,9 @@ public class SlackUtilMock implements HttpCalloutMock {
         String body = '';
        
         // Determine the type of request and provide the corresponding mock response.
-        if (req.getEndpoint().contains('chat.postMessage')){
+        if (req.getEndpoint().contains('conversations.list')){
+            body = allChannelResponse();
+        }else if (req.getEndpoint().contains('chat.postMessage')){
             body = postMsgResponse();
         }else if (req.getEndpoint().contains('chat.delete')){
             body = deleteMsgResponse();
@@ -42,6 +44,38 @@ public class SlackUtilMock implements HttpCalloutMock {
         res.setStatusCode(200);
         
         return res;
+    }
+    
+    /*
+    *********************************************************
+    @Method Name    : allChannelResponse
+    @author         : Soham Datta  
+    @description    : Get all slack channels
+    @param          :
+    *********************************************************
+    */
+
+    private String allChannelResponse() {
+        
+        String body = '{'+
+            '  "ok": true,'+
+            '  "channels": ['+
+            '    {'+
+            '      "id": "C06LD5BSZFZ",'+
+            '      "name": "random",'+
+            '      "is_private": false,'+
+            '      "is_member": true'+
+            '    },'+
+            '    {'+
+            '      "id": "C06M6BQKMQ9",'+
+            '      "name": "general",'+
+            '      "is_private": false,'+
+            '      "is_member": false'+
+            '    }'+
+            '  ]'+
+            '}';
+        
+        return body;
     }
 
     /*
