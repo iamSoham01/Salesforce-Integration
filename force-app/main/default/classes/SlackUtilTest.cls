@@ -33,6 +33,39 @@ private class SlackUtilTest {
     
     /*
     *********************************************************
+    @Method Name    : testGetAllChannels
+    @author         : Soham Datta  
+    @description    : Test getAllChannels() method
+    @param          :
+    *********************************************************
+    */
+    
+    @isTest
+    static void testGetAllChannels() {
+        
+        User admin = [Select Id From User Where UserName = 'slackadminuser@slack.com' Limit 1];
+        
+        // Starting the test execution.
+        Test.startTest();
+        
+        System.runAs(admin) {
+            
+            // Setting up a mock for the HTTP callout to ServiceNow.
+            Test.setMock(HttpCalloutMock.class, new SlackUtilMock());
+            
+            //Test Scenario 1: Providing payload
+            Map<String, String> mapAllChannels = SlackUtil.getAllChannels();
+            Assert.areEqual(1, mapAllChannels.size());
+            
+        }
+        
+        // Stopping the test execution.
+        Test.stopTest();
+        
+    }
+    
+    /*
+    *********************************************************
     @Method Name    : testPostMessage
     @author         : Soham Datta  
     @description    : Test postMessage() method
@@ -58,7 +91,7 @@ private class SlackUtilTest {
             
             //Test Scenario 1: Providing payload
             String responseMsg = SlackUtil.postMessage(message, channelId);
-            Assert.areEqual('Your message has been posted successfully! Timestamp: 1709140932.696539', responseMsg);
+            Assert.areEqual('1709140932.696539', responseMsg);
             
         }
         
